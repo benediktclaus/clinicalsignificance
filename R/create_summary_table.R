@@ -15,7 +15,6 @@ create_summary_table <- function(x, ...) {
 }
 
 
-
 #' Create Summary Table for Distribution-Based Approach
 #'
 #' @param x A results object that differs per approach:
@@ -34,10 +33,12 @@ create_summary_table.cs_distribution <- function(x, data, ...) {
   rci_results <- x[["data"]]
   used_data <- data[["data"]]
 
-
   # Check if data has a group column
-  if (.has_group(used_data)) group_var <- as.symbol("group") else group_var <- NULL
-
+  if (.has_group(used_data)) {
+    group_var <- as.symbol("group")
+  } else {
+    group_var <- NULL
+  }
 
   # Join used data with RCI results. This results in a data frame with one
   # participant per row and associated scores, change and RCI value as well as
@@ -45,11 +46,11 @@ create_summary_table.cs_distribution <- function(x, data, ...) {
   joined_data <- used_data |>
     dplyr::left_join(rci_results, dplyr::join_by("id"))
 
-
   # Count all cases per category and calculate relative amount (percentages)
   summary <- joined_data |>
     dplyr::summarise(
-      dplyr::across(improved:unchanged, sum), .by = tidyr::all_of(group_var)
+      dplyr::across(improved:unchanged, sum),
+      .by = tidyr::all_of(group_var)
     ) |>
     tidyr::pivot_longer(
       cols = improved:unchanged,
@@ -59,13 +60,18 @@ create_summary_table.cs_distribution <- function(x, data, ...) {
     dplyr::mutate(
       percent = insight::format_percent(round(n / sum(n), digits = 4)),
       category = tools::toTitleCase(category),
-      category = factor(category, levels = c("Improved", "Unchanged", "Deteriorated"))
+      category = factor(
+        category,
+        levels = c("Improved", "Unchanged", "Deteriorated")
+      )
     )
 
-  if (!.has_group(used_data)) dplyr::arrange(summary, category) else dplyr::arrange(summary, group, category)
+  if (!.has_group(used_data)) {
+    dplyr::arrange(summary, category)
+  } else {
+    dplyr::arrange(summary, group, category)
+  }
 }
-
-
 
 
 #' Create Summary Table for Statistical Approach
@@ -74,26 +80,24 @@ create_summary_table.cs_distribution <- function(x, data, ...) {
 #'
 #' @keywords internal
 #' @export
-create_summary_table.cs_statistical <- function(x,
-                                                data,
-                                                method,
-                                                ...) {
+create_summary_table.cs_statistical <- function(x, data, method, ...) {
   # Get the cutoff results as well as the used data (needed if grouped results
   # are required)
   cutoff_results <- x[["data"]]
   used_data <- data[["data"]]
 
-
   # Check if data has a group column
-  if (.has_group(used_data)) group_var <- as.symbol("group") else group_var <- NULL
-
+  if (.has_group(used_data)) {
+    group_var <- as.symbol("group")
+  } else {
+    group_var <- NULL
+  }
 
   # Join used data with RCI results. This results in a data frame with one
   # participant per row and associated scores, change and RCI value as well as
   # the RCI category
   joined_data <- used_data |>
     dplyr::left_join(cutoff_results, dplyr::join_by("id"))
-
 
   # Count all cases per category and calculate relative amount (percentages)
   if (method != "HA") {
@@ -109,11 +113,11 @@ create_summary_table.cs_statistical <- function(x,
       dplyr::mutate(unchanged = !improved & !deteriorated)
   }
 
-
   # Create summary table
   summary <- categories |>
     dplyr::summarise(
-      dplyr::across(improved:unchanged, sum), .by = tidyr::all_of(group_var)
+      dplyr::across(improved:unchanged, sum),
+      .by = tidyr::all_of(group_var)
     ) |>
     tidyr::pivot_longer(
       cols = improved:unchanged,
@@ -123,13 +127,18 @@ create_summary_table.cs_statistical <- function(x,
     dplyr::mutate(
       percent = insight::format_percent(round(n / sum(n), digits = 4)),
       category = tools::toTitleCase(category),
-      category = factor(category, levels = c("Improved", "Unchanged", "Deteriorated"))
+      category = factor(
+        category,
+        levels = c("Improved", "Unchanged", "Deteriorated")
+      )
     )
 
-  if (!.has_group(used_data)) dplyr::arrange(summary, category) else dplyr::arrange(summary, group, category)
+  if (!.has_group(used_data)) {
+    dplyr::arrange(summary, category)
+  } else {
+    dplyr::arrange(summary, group, category)
+  }
 }
-
-
 
 
 #' Create Summary Table for Combined Approach
@@ -143,26 +152,30 @@ create_summary_table.cs_statistical <- function(x,
 #'
 #' @keywords internal
 #' @export
-create_summary_table.cs_combined <- function(x,
-                                             cutoff_results,
-                                             data,
-                                             method,
-                                             r_dd,
-                                             se_measurement,
-                                             cutoff,
-                                             sd_post,
-                                             direction,
-                                             ...) {
+create_summary_table.cs_combined <- function(
+  x,
+  cutoff_results,
+  data,
+  method,
+  r_dd,
+  se_measurement,
+  cutoff,
+  sd_post,
+  direction,
+  ...
+) {
   # Get all results as well as the used data (needed if grouped results are
   # required)
   rci_results <- x[["data"]]
   cutoff_results <- cutoff_results[["data"]]
   used_data <- data[["data"]]
 
-
   # Check if data has a group column
-  if (.has_group(used_data)) group_var <- as.symbol("group") else group_var <- NULL
-
+  if (.has_group(used_data)) {
+    group_var <- as.symbol("group")
+  } else {
+    group_var <- NULL
+  }
 
   # Join used data with RCI results. This results in a data frame with one
   # participant per row and associated scores, change and RCI value as well as
@@ -171,24 +184,28 @@ create_summary_table.cs_combined <- function(x,
     dplyr::left_join(cutoff_results, dplyr::join_by("id")) |>
     dplyr::left_join(rci_results, dplyr::join_by("id"))
 
-
   # Count all cases per category and calculate relative amount (percentages)
-    categories <- joined_data |>
-      dplyr::mutate(
-        recovered = clinical_pre & functional_post & improved,
-        improved = ifelse(recovered, FALSE, improved),
-        harmed = !clinical_pre & !functional_post & deteriorated,
-        deteriorated = ifelse(harmed, FALSE, deteriorated)
-      ) |>
-      dplyr::relocate(clinical_pre, functional_post, recovered, .before = improved) |>
-      dplyr::relocate(unchanged, .after = improved) |>
-      dplyr::select(-c(clinical_pre, functional_post))
-
+  categories <- joined_data |>
+    dplyr::mutate(
+      recovered = clinical_pre & functional_post & improved,
+      improved = ifelse(recovered, FALSE, improved),
+      harmed = !clinical_pre & !functional_post & deteriorated,
+      deteriorated = ifelse(harmed, FALSE, deteriorated)
+    ) |>
+    dplyr::relocate(
+      clinical_pre,
+      functional_post,
+      recovered,
+      .before = improved
+    ) |>
+    dplyr::relocate(unchanged, .after = improved) |>
+    dplyr::select(-c(clinical_pre, functional_post))
 
   # Create summary table
   summary <- categories |>
     dplyr::summarise(
-      dplyr::across(recovered:harmed, sum), .by = tidyr::all_of(group_var)
+      dplyr::across(recovered:harmed, sum),
+      .by = tidyr::all_of(group_var)
     ) |>
     tidyr::pivot_longer(
       cols = recovered:harmed,
@@ -198,12 +215,24 @@ create_summary_table.cs_combined <- function(x,
     dplyr::mutate(
       percent = insight::format_percent(round(n / sum(n), digits = 4)),
       category = tools::toTitleCase(category),
-      category = factor(category, levels = c("Recovered", "Improved", "Unchanged", "Deteriorated", "Harmed"))
+      category = factor(
+        category,
+        levels = c(
+          "Recovered",
+          "Improved",
+          "Unchanged",
+          "Deteriorated",
+          "Harmed"
+        )
+      )
     )
 
-  if (!.has_group(used_data)) individual_level_summary <- dplyr::arrange(summary, category) else individual_level_summary <- dplyr::arrange(summary, group, category)
+  if (!.has_group(used_data)) {
+    individual_level_summary <- dplyr::arrange(summary, category)
+  } else {
+    individual_level_summary <- dplyr::arrange(summary, group, category)
+  }
   group_level_summary <- NA
-
 
   # Create group level summary table for HA method
   if (method == "HA") {
@@ -265,10 +294,12 @@ create_summary_table.cs_percentage <- function(x, data, ...) {
   # results are required)
   used_data <- data[["data"]]
 
-
   # Check if data has a group column
-  if (.has_group(used_data)) group_var <- as.symbol("group") else group_var <- NULL
-
+  if (.has_group(used_data)) {
+    group_var <- as.symbol("group")
+  } else {
+    group_var <- NULL
+  }
 
   # Join used data with RCI results. This results in a data frame with one
   # participant per row and associated scores, change and RCI value as well as
@@ -276,11 +307,11 @@ create_summary_table.cs_percentage <- function(x, data, ...) {
   joined_data <- used_data |>
     dplyr::left_join(x, dplyr::join_by("id"))
 
-
   # Count all cases per category and calculate relative amount (percentages)
   summary <- joined_data |>
     dplyr::summarise(
-      dplyr::across(improved:unchanged, sum), .by = tidyr::all_of(group_var)
+      dplyr::across(improved:unchanged, sum),
+      .by = tidyr::all_of(group_var)
     ) |>
     tidyr::pivot_longer(
       cols = improved:unchanged,
@@ -290,13 +321,18 @@ create_summary_table.cs_percentage <- function(x, data, ...) {
     dplyr::mutate(
       percent = insight::format_percent(round(n / sum(n), digits = 4)),
       category = tools::toTitleCase(category),
-      category = factor(category, levels = c("Improved", "Unchanged", "Deteriorated"))
+      category = factor(
+        category,
+        levels = c("Improved", "Unchanged", "Deteriorated")
+      )
     )
 
-  if (!.has_group(used_data)) dplyr::arrange(summary, category) else dplyr::arrange(summary, group, category)
+  if (!.has_group(used_data)) {
+    dplyr::arrange(summary, category)
+  } else {
+    dplyr::arrange(summary, group, category)
+  }
 }
-
-
 
 
 #' Create Summary Table for Anchor-Based Approach
@@ -309,10 +345,12 @@ create_summary_table.cs_anchor_individual_within <- function(x, data, ...) {
   anchor_results <- x[["data"]]
   used_data <- data[["data"]]
 
-
   # Check if data has a group column
-  if (.has_group(used_data)) group_var <- as.symbol("group") else group_var <- NULL
-
+  if (.has_group(used_data)) {
+    group_var <- as.symbol("group")
+  } else {
+    group_var <- NULL
+  }
 
   # Join used data with RCI results. This results in a data frame with one
   # participant per row and associated scores, change and RCI value as well as
@@ -320,11 +358,11 @@ create_summary_table.cs_anchor_individual_within <- function(x, data, ...) {
   joined_data <- used_data |>
     dplyr::left_join(anchor_results, dplyr::join_by("id"))
 
-
   # Count all cases per category and calculate relative amount (percentages)
   summary <- joined_data |>
     dplyr::summarise(
-      dplyr::across(improved:unchanged, sum), .by = tidyr::all_of(group_var)
+      dplyr::across(improved:unchanged, sum),
+      .by = tidyr::all_of(group_var)
     ) |>
     tidyr::pivot_longer(
       cols = improved:unchanged,
@@ -334,8 +372,15 @@ create_summary_table.cs_anchor_individual_within <- function(x, data, ...) {
     dplyr::mutate(
       percent = insight::format_percent(round(n / sum(n), digits = 4)),
       category = tools::toTitleCase(category),
-      category = factor(category, levels = c("Improved", "Unchanged", "Deteriorated"))
+      category = factor(
+        category,
+        levels = c("Improved", "Unchanged", "Deteriorated")
+      )
     )
 
-  if (!.has_group(used_data)) dplyr::arrange(summary, category) else dplyr::arrange(summary, group, category)
+  if (!.has_group(used_data)) {
+    dplyr::arrange(summary, category)
+  } else {
+    dplyr::arrange(summary, group, category)
+  }
 }
