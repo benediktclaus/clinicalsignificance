@@ -124,36 +124,77 @@
 #' cs_results_grouped
 #' summary(cs_results_grouped)
 #' plot(cs_results_grouped)
-cs_statistical <- function(data,
-                           id,
-                           time,
-                           outcome,
-                           group = NULL,
-                           pre = NULL,
-                           post = NULL,
-                           m_functional = NULL,
-                           sd_functional = NULL,
-                           reliability = NULL,
-                           better_is = c("lower", "higher"),
-                           cutoff_method = c("JT", "HA"),
-                           cutoff_type = c("a", "b", "c"),
-                           significance_level = 0.05) {
+cs_statistical <- function(
+  data,
+  id,
+  time,
+  outcome,
+  group = NULL,
+  pre = NULL,
+  post = NULL,
+  m_functional = NULL,
+  sd_functional = NULL,
+  reliability = NULL,
+  better_is = c("lower", "higher"),
+  cutoff_method = c("JT", "HA"),
+  cutoff_type = c("a", "b", "c"),
+  significance_level = 0.05
+) {
   # Check arguments
   cs_method <- rlang::arg_match(cutoff_method)
   cut_type <- rlang::arg_match(cutoff_type)
-  if (missing(id)) cli::cli_abort("Argument {.code id} is missing with no default. A column containing patient-specific IDs must be supplied.")
-  if (missing(time)) cli::cli_abort("Argument {.code time} is missing with no default. A column identifying the individual measurements must be supplied.")
-  if (missing(outcome)) cli::cli_abort("Argument {.code outcome} is missing with no default. A column containing the outcome must be supplied.")
+  if (missing(id)) {
+    cli::cli_abort(
+      "Argument {.code id} is missing with no default. A column containing patient-specific IDs must be supplied."
+    )
+  }
+  if (missing(time)) {
+    cli::cli_abort(
+      "Argument {.code time} is missing with no default. A column identifying the individual measurements must be supplied."
+    )
+  }
+  if (missing(outcome)) {
+    cli::cli_abort(
+      "Argument {.code outcome} is missing with no default. A column containing the outcome must be supplied."
+    )
+  }
   if (cs_method == "HA") {
-    if (is.null(reliability)) cli::cli_abort("Argument {.code reliability} is missing with no default. An instrument reliability must be supplied.")
-    if (!is.null(reliability) & !is.numeric(reliability)) cli::cli_abort("{.code reliability} must be numeric but a {.code {typeof(reliability)}} was supplied.")
-    if (!is.null(reliability) & !dplyr::between(reliability, 0, 1)) cli::cli_abort("{.code reliability} must be between 0 and 1 but {reliability} was supplied.")
+    if (is.null(reliability)) {
+      cli::cli_abort(
+        "Argument {.code reliability} is missing with no default. An instrument reliability must be supplied."
+      )
+    }
+    if (!is.null(reliability) & !is.numeric(reliability)) {
+      cli::cli_abort(
+        "{.code reliability} must be numeric but a {.code {typeof(reliability)}} was supplied."
+      )
+    }
+    if (!is.null(reliability) & !dplyr::between(reliability, 0, 1)) {
+      cli::cli_abort(
+        "{.code reliability} must be between 0 and 1 but {reliability} was supplied."
+      )
+    }
   } else {
-    if (!is.null(reliability)) cli::cli_alert_info("A reliability for the JT approach to calculating a population cutoff is not needed and will be ignored.")
+    if (!is.null(reliability)) {
+      cli::cli_alert_info(
+        "A reliability for the JT approach to calculating a population cutoff is not needed and will be ignored."
+      )
+    }
   }
   if (cut_type %in% c("b", "c")) {
-    if (is.null(m_functional) | is.null(sd_functional)) cli::cli_abort("For cutoffs {.code b} and {.code c}, mean and standard deviation for a functional population must be provided via {.code m_functional} and {.code sd_functional}")
-    if ((!is.null(m_functional) & !is.numeric(m_functional)) | (!is.null(sd_functional) & !is.numeric(sd_functional))) cli::cli_abort("The mean and standard deviation supplied with {.code m_functional} and {.code sd_functional} must be numeric.")
+    if (is.null(m_functional) | is.null(sd_functional)) {
+      cli::cli_abort(
+        "For cutoffs {.code b} and {.code c}, mean and standard deviation for a functional population must be provided via {.code m_functional} and {.code sd_functional}"
+      )
+    }
+    if (
+      (!is.null(m_functional) & !is.numeric(m_functional)) |
+        (!is.null(sd_functional) & !is.numeric(sd_functional))
+    ) {
+      cli::cli_abort(
+        "The mean and standard deviation supplied with {.code m_functional} and {.code sd_functional} must be numeric."
+      )
+    }
   }
 
   # Prepare the data
@@ -168,17 +209,14 @@ cs_statistical <- function(data,
     method = cs_method
   )
 
-
   # Prepend a class to enable method dispatch for RCI calculation
   class(datasets) <- c(paste0("cs_", tolower(cs_method)), class(datasets))
-
 
   # Count participants
   n_obs <- list(
     n_original = nrow(datasets[["wide"]]),
     n_used = nrow(datasets[["data"]])
   )
-
 
   # Calculate relevant summary statistics for the chosen RCI method
   m_pre <- mean(datasets[["data"]][["pre"]])
@@ -188,14 +226,19 @@ cs_statistical <- function(data,
     sd_post <- stats::sd(datasets[["data"]][["post"]])
   }
 
-
   # Get the direction of a beneficial intervention effect
-  if (rlang::arg_match(better_is) == "lower") direction <- -1 else direction <- 1
-
+  if (rlang::arg_match(better_is) == "lower") {
+    direction <- -1
+  } else {
+    direction <- 1
+  }
 
   # Determine critical RCI value based on significance level
-  if (cs_method != "HA") critical_value <- stats::qnorm(1 - significance_level/2) else critical_value <- stats::qnorm(1 - significance_level)
-
+  if (cs_method != "HA") {
+    critical_value <- stats::qnorm(1 - significance_level / 2)
+  } else {
+    critical_value <- stats::qnorm(1 - significance_level)
+  }
 
   # Calculate the cutoff value and check each patient's change relative to it
   cutoff_results <- calc_cutoff_from_data(
@@ -212,14 +255,12 @@ cs_statistical <- function(data,
     critical_value = critical_value
   )
 
-
   # Create the summary table for printing and exporting
   summary_table <- create_summary_table(
     x = cutoff_results,
     data = datasets,
     method = cs_method
   )
-
 
   class(cutoff_results) <- "list"
 
@@ -235,13 +276,15 @@ cs_statistical <- function(data,
     summary_table = summary_table
   )
 
-
   # Return output
-  class(output) <- c("cs_analysis", "cs_statistical", class(datasets), class(output))
+  class(output) <- c(
+    "cs_analysis",
+    "cs_statistical",
+    class(datasets),
+    class(output)
+  )
   output
 }
-
-
 
 
 #' Print Method for the Statistical Approach
@@ -272,17 +315,17 @@ print.cs_statistical <- function(x, ...) {
   summary_table_formatted <- summary_table |>
     dplyr::rename_with(tools::toTitleCase)
 
-
   # Print output
   output_fun <- function() {
     cli::cli_h2("Clinical Significance Results")
-    cli::cli_text("Statistical approach using the {.strong {cs_method}} method.")
+    cli::cli_text(
+      "Statistical approach using the {.strong {cs_method}} method."
+    )
     cli::cat_line()
     cli::cli_verbatim(insight::export_table(summary_table_formatted))
   }
   output_fun()
 }
-
 
 
 #' Summary Method for the Statistical Approach
@@ -320,20 +363,30 @@ summary.cs_statistical <- function(object, ...) {
   cutoff_type <- cutoff_info[["type"]]
   cutoff_value <- round(cutoff_info[["value"]], 2)
   cutoff_descriptives <- cutoff_info[, 1:4] |>
-    dplyr::rename("M Clinical" = "m_clinical", "SD Clinical" = "sd_clinical", "M Functional" = "m_functional", "SD Functional" = "sd_functional") |>
+    dplyr::rename(
+      "M Clinical" = "m_clinical",
+      "SD Clinical" = "sd_clinical",
+      "M Functional" = "m_functional",
+      "SD Functional" = "sd_functional"
+    ) |>
     insight::export_table(missing = "---", )
 
   outcome <- object[["outcome"]]
 
-
   # Print output
   output_fun <- function() {
     cli::cli_h2("Clinical Significance Results")
-    cli::cli_text("Statistical approach of clinical significance using the {.strong {cs_method}} method for calculating the population cutoff.")
+    cli::cli_text(
+      "Statistical approach of clinical significance using the {.strong {cs_method}} method for calculating the population cutoff."
+    )
     cli::cat_line()
-    cli::cli_text("There were {.strong {n_original}} participants in the whole dataset of which {.strong {n_used}} {.strong ({pct}%)} could be included in the analysis.")
+    cli::cli_text(
+      "There were {.strong {n_original}} participants in the whole dataset of which {.strong {n_used}} {.strong ({pct}%)} could be included in the analysis."
+    )
     cli::cat_line()
-    cli::cli_text("The cutoff type was {.strong {cutoff_type}} with a value of {.strong {cutoff_value}} based on the following sumamry statistics:")
+    cli::cli_text(
+      "The cutoff type was {.strong {cutoff_type}} with a value of {.strong {cutoff_value}} based on the following sumamry statistics:"
+    )
     cli::cat_line()
     cli::cli_h3("Population Characteristics")
     cli::cli_verbatim(cutoff_descriptives)
