@@ -348,7 +348,10 @@ print.cs_distribution <- function(x, ...) {
   cs_method <- x[["method"]]
 
   summary_table_formatted <- summary_table |>
-    dplyr::rename_with(tools::toTitleCase)
+    dplyr::mutate(
+      dplyr::across(dplyr::contains("percent"), \(a) insight::format_percent(a))
+    ) |>
+    dplyr::rename_with(snakecase::to_title_case)
 
   # Print output
   output_fun <- function() {
@@ -380,7 +383,10 @@ summary.cs_distribution <- function(object, ...) {
   # Get necessary information from object
   summary_table <- object[["summary_table"]]
   summary_table_formatted <- summary_table |>
-    dplyr::rename_with(tools::toTitleCase)
+    dplyr::mutate(
+      dplyr::across(dplyr::contains("percent"), \(a) insight::format_percent(a))
+    ) |>
+    dplyr::rename_with(snakecase::to_title_case)
 
   cs_method <- object[["method"]]
   n_original <- cs_get_n(object, "original")[[1]]
