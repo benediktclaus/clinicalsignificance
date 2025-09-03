@@ -72,7 +72,7 @@ create_summary_table.cs_distribution <- function(x, data, ...) {
     dplyr::arrange(summary, group, category) |>
       dplyr::mutate(
         percent_by_group = round(n / sum(n), digits = 4),
-        .by = group_var
+        .by = tidyr::all_of(group_var)
       )
   }
 }
@@ -143,7 +143,7 @@ create_summary_table.cs_statistical <- function(x, data, method, ...) {
     dplyr::arrange(summary, group, category) |>
       dplyr::mutate(
         percent_by_group = round(n / sum(n), digits = 4),
-        .by = group_var
+        .by = tidyr::all_of(group_var)
       )
   }
 }
@@ -241,7 +241,7 @@ create_summary_table.cs_combined <- function(
     individual_level_summary <- dplyr::arrange(summary, group, category) |>
       dplyr::mutate(
         percent_by_group = round(n / sum(n), digits = 4),
-        .by = group_var
+        .by = tidyr::all_of(group_var)
       )
   }
   group_level_summary <- NA
@@ -345,7 +345,7 @@ create_summary_table.cs_percentage <- function(x, data, ...) {
     dplyr::arrange(summary, group, category) |>
       dplyr::mutate(
         percent_by_group = round(n / sum(n), digits = 4),
-        .by = group_var
+        .by = tidyr::all_of(group_var)
       )
   }
 }
