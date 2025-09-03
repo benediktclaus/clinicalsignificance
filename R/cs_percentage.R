@@ -104,30 +104,65 @@
 #' summary(cs_results_who)
 #' plot(cs_results_who)
 #' plot(cs_results_who, show = category)
-cs_percentage <- function(data,
-                          id,
-                          time,
-                          outcome,
-                          group = NULL,
-                          pre = NULL,
-                          post = NULL,
-                          pct_improvement = NULL,
-                          pct_deterioration = NULL,
-                          better_is = c("lower", "higher")) {
+cs_percentage <- function(
+  data,
+  id,
+  time,
+  outcome,
+  group = NULL,
+  pre = NULL,
+  post = NULL,
+  pct_improvement = NULL,
+  pct_deterioration = NULL,
+  better_is = c("lower", "higher")
+) {
   # Check arguments
-  if (missing(id)) cli::cli_abort("Argument {.code id} is missing with no default. A column containing patient-specific IDs must be supplied.")
-  if (missing(time)) cli::cli_abort("Argument {.code time} is missing with no default. A column identifying the individual measurements must be supplied.")
-  if (missing(outcome)) cli::cli_abort("Argument {.code outcome} is missing with no default. A column containing the outcome must be supplied.")
-  if (is.null(pct_improvement)) cli::cli_abort("Argument {.code pct_improvement} is missing with no default. A percentage change that indicates clinically signifcant change must be supplied.")
-  if (!is.null(pct_improvement) & !is.numeric(pct_improvement)) cli::cli_abort("{.code pct_improvement} must be numeric but a {.code {typeof(pct_improvement)}} was supplied.")
-  if (!is.null(pct_improvement) & !dplyr::between(pct_improvement, 0, 1)) cli::cli_abort("{.code pct_improvement} must be between 0 and 1 but {pct_improvement} was supplied.")
+  if (missing(id)) {
+    cli::cli_abort(
+      "Argument {.code id} is missing with no default. A column containing patient-specific IDs must be supplied."
+    )
+  }
+  if (missing(time)) {
+    cli::cli_abort(
+      "Argument {.code time} is missing with no default. A column identifying the individual measurements must be supplied."
+    )
+  }
+  if (missing(outcome)) {
+    cli::cli_abort(
+      "Argument {.code outcome} is missing with no default. A column containing the outcome must be supplied."
+    )
+  }
+  if (is.null(pct_improvement)) {
+    cli::cli_abort(
+      "Argument {.code pct_improvement} is missing with no default. A percentage change that indicates clinically signifcant change must be supplied."
+    )
+  }
+  if (!is.null(pct_improvement) & !is.numeric(pct_improvement)) {
+    cli::cli_abort(
+      "{.code pct_improvement} must be numeric but a {.code {typeof(pct_improvement)}} was supplied."
+    )
+  }
+  if (!is.null(pct_improvement) & !dplyr::between(pct_improvement, 0, 1)) {
+    cli::cli_abort(
+      "{.code pct_improvement} must be between 0 and 1 but {pct_improvement} was supplied."
+    )
+  }
   if (!is.null(pct_deterioration)) {
-    if (!is.numeric(pct_deterioration)) cli::cli_abort("{.code pct_deterioration} must be numeric but a {.code {typeof(pct_deterioration)}} was supplied.")
-    if (!dplyr::between(pct_deterioration, 0, 1)) cli::cli_abort("{.code pct_deterioration} must be between 0 and 1 but {pct_deterioration} was supplied.")
+    if (!is.numeric(pct_deterioration)) {
+      cli::cli_abort(
+        "{.code pct_deterioration} must be numeric but a {.code {typeof(pct_deterioration)}} was supplied."
+      )
+    }
+    if (!dplyr::between(pct_deterioration, 0, 1)) {
+      cli::cli_abort(
+        "{.code pct_deterioration} must be between 0 and 1 but {pct_deterioration} was supplied."
+      )
+    }
   }
 
-  if (is.null(pct_deterioration)) pct_deterioration <- pct_improvement
-
+  if (is.null(pct_deterioration)) {
+    pct_deterioration <- pct_improvement
+  }
 
   # Prepare the data
   datasets <- .prep_data(
@@ -140,10 +175,8 @@ cs_percentage <- function(data,
     post = {{ post }}
   )
 
-
   # Prepend a class to enable method dispatch for RCI calculation
   class(datasets) <- c("cs_percentage", class(datasets))
-
 
   # Count participants
   n_obs <- list(
@@ -151,10 +184,12 @@ cs_percentage <- function(data,
     n_used = nrow(datasets[["data"]])
   )
 
-
   # Get the direction of a beneficial intervention effect
-  if (rlang::arg_match(better_is) == "lower") direction <- -1 else direction <- 1
-
+  if (rlang::arg_match(better_is) == "lower") {
+    direction <- -1
+  } else {
+    direction <- 1
+  }
 
   # Determine RCI and check each participant's change relative to it
   pct_results <- calc_percentage(
@@ -164,14 +199,11 @@ cs_percentage <- function(data,
     direction = direction
   )
 
-
-
   # Create the summary table for printing and exporting
   summary_table <- create_summary_table(
     x = pct_results,
     data = datasets
   )
-
 
   class(pct_results) <- c("tbl_df", "tbl", "data.frame")
 
@@ -187,13 +219,10 @@ cs_percentage <- function(data,
     summary_table = summary_table
   )
 
-
   # Return output
   class(output) <- c("cs_analysis", "cs_percentage", class(output))
   output
 }
-
-
 
 
 #' Print Method for the Percentange-Change Approach
@@ -222,8 +251,16 @@ print.cs_percentage <- function(x, ...) {
   pct_deterioration <- x[["pct_deterioration"]] * 100
   direction <- x[["direction"]]
 
-  if (direction == -1) dir_improvement <- "decrease" else dir_improvement <- "increase"
-  if (direction == -1) dir_deterioration <- "increase" else dir_deterioration <- "decrease"
+  if (direction == -1) {
+    dir_improvement <- "decrease"
+  } else {
+    dir_improvement <- "increase"
+  }
+  if (direction == -1) {
+    dir_deterioration <- "increase"
+  } else {
+    dir_deterioration <- "decrease"
+  }
 
   outcome <- x[["outcome"]]
 
@@ -234,8 +271,10 @@ print.cs_percentage <- function(x, ...) {
   }
 
   summary_table_formatted <- summary_table |>
-    dplyr::rename_with(tools::toTitleCase)
-
+    dplyr::mutate(
+      across(contains("percent"), \(a) insight::format_percent(a))
+    ) |>
+    dplyr::rename_with(snakecase::to_title_case)
 
   # Print output
   output_fun <- function() {
@@ -246,8 +285,6 @@ print.cs_percentage <- function(x, ...) {
   }
   output_fun()
 }
-
-
 
 
 #' Summary Method for the Percentage-Change Approach
@@ -273,7 +310,10 @@ print.cs_percentage <- function(x, ...) {
 summary.cs_percentage <- function(object, ...) {
   # Get necessary information from object
   summary_table <- object[["summary_table"]] |>
-    dplyr::rename_with(tools::toTitleCase)
+    dplyr::mutate(
+      across(contains("percent"), \(a) insight::format_percent(a))
+    ) |>
+    dplyr::rename_with(snakecase::to_title_case)
 
   pct_improvement <- object[["pct_improvement"]] * 100
   pct_deterioration <- object[["pct_deterioration"]] * 100
@@ -282,8 +322,16 @@ summary.cs_percentage <- function(object, ...) {
   pct <- round(n_used / n_original, digits = 3) * 100
   direction <- object[["direction"]]
 
-  if (direction == -1) dir_improvement <- "decrease" else dir_improvement <- "increase"
-  if (direction == -1) dir_deterioration <- "increase" else dir_deterioration <- "decrease"
+  if (direction == -1) {
+    dir_improvement <- "decrease"
+  } else {
+    dir_improvement <- "increase"
+  }
+  if (direction == -1) {
+    dir_deterioration <- "increase"
+  } else {
+    dir_deterioration <- "decrease"
+  }
 
   outcome <- object[["outcome"]]
 
@@ -293,13 +341,17 @@ summary.cs_percentage <- function(object, ...) {
     pct_string <- "{.strong {pct_improvement}%} {dir_improvement} in instrument scores indicating a clinical significant improvement and a {.strong {pct_deterioration}%} {dir_deterioration} in instrument scores indicating a clinical significant deterioration."
   }
 
-
   # Print output
   output_fun <- function() {
     cli::cli_h2("Clinical Significance Results")
-    cli::cli_text(c("Percentage-change analysis of clinical significance with a ", pct_string))
+    cli::cli_text(c(
+      "Percentage-change analysis of clinical significance with a ",
+      pct_string
+    ))
     cli::cat_line()
-    cli::cli_text("There were {.strong {n_original}} participants in the whole dataset of which {.strong {n_used}} {.strong ({pct}%)} could be included in the analysis.")
+    cli::cli_text(
+      "There were {.strong {n_original}} participants in the whole dataset of which {.strong {n_used}} {.strong ({pct}%)} could be included in the analysis."
+    )
     cli::cat_line()
     cli::cli_h3("Individual Level Results")
     cli::cat_line()
