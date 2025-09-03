@@ -316,10 +316,14 @@ print.cs_combined <- function(x, ...) {
   cs_method <- x[["method"]]
 
   individual_summary_table_formatted <- individual_summary_table |>
-    dplyr::rename_with(tools::toTitleCase)
+    dplyr::mutate(
+      dplyr::across(dplyr::contains("percent"), \(a) insight::format_percent(a))
+    ) |>
+    dplyr::rename_with(snakecase::to_title_case)
 
   if (cs_method == "HA") {
     group_summary_table_formatted <- group_summary_table |>
+      dplyr::mutate(percent = insight::format_percent(percent)) |>
       dplyr::rename_with(tools::toTitleCase)
   }
 
@@ -367,7 +371,10 @@ summary.cs_combined <- function(object, ...) {
   summary_table_formatted <- object[["summary_table"]][[
     "individual_level_summary"
   ]] |>
-    dplyr::rename_with(tools::toTitleCase) |>
+    dplyr::mutate(
+      dplyr::across(dplyr::contains("percent"), \(a) insight::format_percent(a))
+    ) |>
+    dplyr::rename_with(snakecase::to_title_case) |>
     insight::export_table()
 
   cs_method <- object[["method"]]
@@ -389,6 +396,7 @@ summary.cs_combined <- function(object, ...) {
 
   if (cs_method == "HA") {
     group_summary_table <- object[["summary_table"]][["group_level_summary"]] |>
+      dplyr::mutate(percent = insight::format_percent(percent)) |>
       dplyr::rename_with(tools::toTitleCase) |>
       insight::export_table()
   }

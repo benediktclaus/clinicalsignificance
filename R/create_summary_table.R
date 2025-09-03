@@ -221,7 +221,7 @@ create_summary_table.cs_combined <- function(
       values_to = "n"
     ) |>
     dplyr::mutate(
-      percent = insight::format_percent(round(n / sum(n), digits = 4)),
+      percent = round(n / sum(n), digits = 4),
       category = tools::toTitleCase(category),
       category = factor(
         category,
@@ -238,7 +238,11 @@ create_summary_table.cs_combined <- function(
   if (!.has_group(used_data)) {
     individual_level_summary <- dplyr::arrange(summary, category)
   } else {
-    individual_level_summary <- dplyr::arrange(summary, group, category)
+    individual_level_summary <- dplyr::arrange(summary, group, category) |>
+      dplyr::mutate(
+        percent_by_group = round(n / sum(n), digits = 4),
+        .by = group_var
+      )
   }
   group_level_summary <- NA
 
