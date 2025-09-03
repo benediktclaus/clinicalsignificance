@@ -66,7 +66,6 @@ cs_get_summary <- function(x, ...) {
 }
 
 
-
 #' Default Method To Get A Summary Table From A cs_analysis Object
 #'
 #' @param which Which level of summary table to return. This is only necessary
@@ -81,17 +80,24 @@ cs_get_summary.default <- function(x, which = c("individual", "group"), ...) {
   cs_method <- x[["method"]]
 
   # Needed to avoid an error
-  if (is.null(cs_method)) cs_method <- "Not HA"
+  if (is.null(cs_method)) {
+    cs_method <- "Not HA"
+  }
 
-  if (cs_method != "HA" & which_table == "group") abort("Group level results can only be exported for method HA.")
+  if (cs_method != "HA" & which_table == "group") {
+    abort("Group level results can only be exported for method HA.")
+  }
 
   if (cs_method == "HA") {
-    if (which_table != "group") x[["summary_table"]][[1]] else x[["summary_table"]][[2]]
+    if (which_table != "group") {
+      x[["summary_table"]][[1]]
+    } else {
+      x[["summary_table"]][[2]]
+    }
   } else {
     x[["summary_table"]]
   }
 }
-
 
 
 #' Method Get Summary Table From A cs_analysis Object With Within Group Effects
@@ -101,7 +107,6 @@ cs_get_summary.default <- function(x, which = c("individual", "group"), ...) {
 cs_get_summary.cs_anchor_group_within <- function(x, ...) {
   x[["anchor_results"]]
 }
-
 
 
 #' Method Get Summary Table From A cs_analysis Object With Between Group Effects
