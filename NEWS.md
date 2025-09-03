@@ -1,4 +1,9 @@
 # clinicalsignificance (development version)
+## Features
+- Calculate group-wise percentages in `cs_anchor()`, `cs_percentage()`, `cs_distribution()`, `cs_statistical()`, `cs_combined()` if the argument `group` is given
+
+## Minor fixes
+- The formatting of percentages for summary tables via `print()` or `summary()` was moved to the respective print and summary functions. Thusly, `cs_get_summary()` now returns raw numbers, which is useful for further analyses and plotting, e.g., in sensitivity analyses
 
 # clinicalsignificance 2.1.0
 - I included the JSS article <doi:10.18637/jss.v111.i01> as a reference.
