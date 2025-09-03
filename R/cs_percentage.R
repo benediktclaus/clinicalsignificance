@@ -272,7 +272,7 @@ print.cs_percentage <- function(x, ...) {
 
   summary_table_formatted <- summary_table |>
     dplyr::mutate(
-      across(contains("percent"), \(a) insight::format_percent(a))
+      dplyr::across(dplyr::contains("percent"), \(a) insight::format_percent(a))
     ) |>
     dplyr::rename_with(snakecase::to_title_case)
 
@@ -311,7 +311,7 @@ summary.cs_percentage <- function(object, ...) {
   # Get necessary information from object
   summary_table <- object[["summary_table"]] |>
     dplyr::mutate(
-      across(contains("percent"), \(a) insight::format_percent(a))
+      dplyr::across(dplyr::contains("percent"), \(a) insight::format_percent(a))
     ) |>
     dplyr::rename_with(snakecase::to_title_case)
 

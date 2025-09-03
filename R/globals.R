@@ -1,32 +1,73 @@
 globalVariables(unique(c(
   # .calc_rci_en:
-  "deteriorated", "id", "improved", "lower", "post", "pre", "pre_true", "unchanged", "upper",
+  "deteriorated",
+  "id",
+  "improved",
+  "lower",
+  "post",
+  "pre",
+  "pre_true",
+  "unchanged",
+  "upper",
   # .calc_rci_gln:
-  "change_adj", "post_adj", "pre_adj",
+  "change_adj",
+  "post_adj",
+  "pre_adj",
   # .calc_rci_ha:
-  "post", "pre",
+  "post",
+  "pre",
   # .calc_rci_hll:
-  "change_adj", "post", "post_adj", "pre", "pre_adj",
+  "change_adj",
+  "post",
+  "post_adj",
+  "pre",
+  "pre_adj",
   # .calc_rci_hlm:
-  "condsd", "condval", "eb_estimate", "grp", "id", "term", "value",
+  "condsd",
+  "condval",
+  "eb_estimate",
+  "grp",
+  "id",
+  "term",
+  "value",
   # .calc_rci_jt:
   "change",
   # .calc_rci_nk:
-  "change_adj", "post", "pre", "pre_adj",
+  "change_adj",
+  "post",
+  "pre",
+  "pre_adj",
   # .calc_cutoff_ha_data:
-  "cs_indiv", "functional_post",
+  "cs_indiv",
+  "functional_post",
   # .calc_cutoff_jt_data:
-  "clinical_pre", "functional_post",
+  "clinical_pre",
+  "functional_post",
   # .calc_improvement:
   "rci",
   # .calc_recovered:
-  "clinical_pre", "functional_post", "harmed", "recovered",
+  "clinical_pre",
+  "functional_post",
+  "harmed",
+  "recovered",
   # .calc_recovered_ha:
-  "cs_indiv", "functional_post", "rci", "recovered",
+  "cs_indiv",
+  "functional_post",
+  "rci",
+  "recovered",
   # .create_summary_table:
-  "category", "harmed", "recovered",
+  "category",
+  "harmed",
+  "recovered",
   # .create_summary_table_ha:
-  "category", "changed", "functional", "m_post", "mean_change", "sd_change", "z_changed", "z_functional",
+  "category",
+  "changed",
+  "functional",
+  "m_post",
+  "mean_change",
+  "sd_change",
+  "z_changed",
+  "z_functional",
   # get_augmented_data:
   "category",
   # get_cutoff:
@@ -34,17 +75,28 @@ globalVariables(unique(c(
   # get_cutoff_descriptives:
   "type",
   # get_n:
-  "n_original", "n_used",
+  "n_original",
+  "n_used",
   # plot.clinisig:
-  "outcome", "time", "ymax", "ymin",
+  "outcome",
+  "time",
+  "ymax",
+  "ymin",
   # summary.clinisig:
-  "m_clinical", "m_functional", "reliability_clinical", "reliability_functional", "sd_clinical", "sd_functional",
+  "m_clinical",
+  "m_functional",
+  "reliability_clinical",
+  "reliability_functional",
+  "sd_clinical",
+  "sd_functional",
   # pot:
   "group",
   # .prep_data:
   "n",
   # calc_anchor.cs_anchor_group_between:
-  "comparison", "reference", "results",
+  "comparison",
+  "reference",
+  "results",
   # calc_anchor.cs_anchor_group_within:
   "results",
   # calc_cutoff_from_data.cs_ha:
@@ -60,15 +112,24 @@ globalVariables(unique(c(
   # create_summary_table.cs_percentage:
   "n",
   # create_summary_table.cs_statistical:
-  "clinical_post", "n",
+  "clinical_post",
+  "n",
   # plot.cs_anchor_group_between:
-  "comparison", "difference",
+  "comparison",
+  "difference",
   # plot.cs_anchor_group_within:
   "difference",
   # t_test_between:
-  "CI", "CI_high", "CI_low", "Median",
+  "CI",
+  "CI_high",
+  "CI_low",
+  "Median",
   # t_test_within:
-  "CI", "CI_high", "CI_low", "Median",
+  "CI",
+  "CI_high",
+  "CI_low",
+  "Median",
   # calc_rci.cs_hlm:
-  "sd"
+  "sd",
+  "percent"
 )))
