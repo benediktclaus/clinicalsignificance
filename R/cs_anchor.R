@@ -632,7 +632,10 @@ print.cs_anchor_group_between <- function(x, ...) {
 summary.cs_anchor_individual_within <- function(object, ...) {
   # Get necessary information from object
   summary_table <- object[["summary_table"]] |>
-    dplyr::rename_with(tools::toTitleCase)
+    dplyr::mutate(
+      across(contains("percent"), \(a) insight::format_percent(a))
+    ) |>
+    dplyr::rename_with(snakecase::to_title_case)
 
   mid_improvement <- object[["mid_improvement"]]
   mid_deterioration <- object[["mid_deterioration"]]
