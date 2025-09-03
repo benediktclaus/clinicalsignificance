@@ -35,7 +35,7 @@
     Output
       
     Message
-      Category     |  n | Percent
+      Category     |  N | Percent
       ---------------------------
       Improved     | 29 |  72.50%
       Unchanged    | 10 |  25.00%
@@ -54,7 +54,7 @@
     Output
       
     Message
-      Category     |  n | Percent
+      Category     |  N | Percent
       ---------------------------
       Improved     | 32 |  80.00%
       Unchanged    |  5 |  12.50%
@@ -73,7 +73,7 @@
     Output
       
     Message
-      Category     |  n | Percent
+      Category     |  N | Percent
       ---------------------------
       Improved     | 12 |  30.00%
       Unchanged    | 16 |  40.00%
@@ -92,7 +92,7 @@
     Output
       
     Message
-      Category     |  n | Percent
+      Category     |  N | Percent
       ---------------------------
       Improved     | 29 |  72.50%
       Unchanged    | 10 |  25.00%
@@ -111,7 +111,7 @@
     Output
       
     Message
-      Category     |  n | Percent
+      Category     |  N | Percent
       ---------------------------
       Improved     | 28 |  70.00%
       Unchanged    | 11 |  27.50%
@@ -130,7 +130,7 @@
     Output
       
     Message
-      Category     |  n | Percent
+      Category     |  N | Percent
       ---------------------------
       Improved     | 32 |  80.00%
       Unchanged    |  7 |  17.50%
@@ -149,7 +149,7 @@
     Output
       
     Message
-      Category     |  n | Percent
+      Category     |  N | Percent
       ---------------------------
       Improved     | 11 |  27.50%
       Unchanged    | 20 |  50.00%

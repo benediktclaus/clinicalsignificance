@@ -11,7 +11,7 @@
     Output
       
     Message
-      Category     |  n | Percent
+      Category     |  N | Percent
       ---------------------------
       Improved     | 16 |  40.00%
       Unchanged    | 24 |  60.00%
@@ -32,7 +32,7 @@
     Output
       
     Message
-      Category     |  n | Percent
+      Category     |  N | Percent
       ---------------------------
       Improved     | 16 |  40.00%
       Unchanged    | 24 |  60.00%

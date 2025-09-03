@@ -35,7 +35,7 @@
     Output
       
     Message
-      Category     |  n | Percent
+      Category     |  N | Percent
       ---------------------------
       Recovered    | 26 |  65.00%
       Improved     |  3 |   7.50%
@@ -56,7 +56,7 @@
     Output
       
     Message
-      Category     |  n | Percent
+      Category     |  N | Percent
       ---------------------------
       Recovered    | 26 |  65.00%
       Improved     |  6 |  15.00%
@@ -77,7 +77,7 @@
     Output
       
     Message
-      Category     |  n | Percent
+      Category     |  N | Percent
       ---------------------------
       Recovered    | 12 |  30.00%
       Improved     |  0 |   0.00%
@@ -98,7 +98,7 @@
     Output
       
     Message
-      Category     |  n | Percent
+      Category     |  N | Percent
       ---------------------------
       Recovered    | 26 |  65.00%
       Improved     |  3 |   7.50%
@@ -120,7 +120,7 @@
     Output
       
     Message
-      Category     |  n | Percent
+      Category     |  N | Percent
       ---------------------------
       Recovered    | 26 |  65.00%
       Improved     |  2 |   5.00%
@@ -142,7 +142,7 @@
       
     Message
       Individual Level Summary
-      Category     |  n | Percent
+      Category     |  N | Percent
       ---------------------------
       Recovered    | 23 |  57.50%
       Improved     |  9 |  22.50%
@@ -155,8 +155,8 @@
       Groupcs Level Summary
       Category   | Percent
       --------------------
-      Changed    |    0.90
-      Functional |    0.76
+      Changed    |  90.31%
+      Functional |  75.55%
 
 ---
 
@@ -171,7 +171,7 @@
     Output
       
     Message
-      Category     |  n | Percent
+      Category     |  N | Percent
       ---------------------------
       Recovered    | 10 |  25.00%
       Improved     |  1 |   2.50%
