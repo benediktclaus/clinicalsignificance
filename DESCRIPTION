@@ -27,6 +27,7 @@ Imports:
     lme4,
     purrr,
     rlang,
+    snakecase,
     tibble,
     tidyr
 Suggests: 
