@@ -94,6 +94,9 @@ cs_get_summary.default <- function(x, which = c("individual", "group"), ...) {
     } else {
       x[["summary_table"]][[2]]
     }
+  }
+  if (cs_method != "HA" & inherits(x, "cs_combined")) {
+    x[["summary_table"]][["individual_level_summary"]]
   } else {
     x[["summary_table"]]
   }
