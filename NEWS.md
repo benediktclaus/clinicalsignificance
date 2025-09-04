@@ -1,4 +1,7 @@
 # clinicalsignificance (development version)
+## Breaking changes
+- All `print()` and `summary()` methods have been updated to be much simpler and more maintainable. The printout no longer utilizes the `cli` package which is now only used for special messages during argument validation and calculation, i.e. warning and messages. The results are unaffected by this change. This is purely cosmetic and improves code readability.
+
 ## Features
 - Calculate group-wise percentages in `cs_anchor()`, `cs_percentage()`, `cs_distribution()`, `cs_statistical()`, `cs_combined()` if the argument `group` is given
 
