@@ -179,7 +179,7 @@ cs_combined <- function(
     class(datasets) <- c(paste0("cs_", tolower(cs_method)), class(datasets))
   }
   if (!is.null(mid_improvement)) {
-    cs_method <- "anchor-based"
+    cs_method <- "CWB"
   }
 
   # Count participants
@@ -269,6 +269,9 @@ cs_combined <- function(
 
   class(rci_results) <- "list"
   class(cutoff_results) <- "list"
+  if (!is.null(mid_improvement)) {
+    cs_method <- "CWB"
+  }
 
   # Put everything into a list
   output <- list(
@@ -311,44 +314,44 @@ cs_combined <- function(
 #'
 #' cs_results
 print.cs_combined <- function(x, ...) {
-  individual_summary_table <- x[["summary_table"]][["individual_level_summary"]]
-  group_summary_table <- x[["summary_table"]][["group_level_summary"]]
+  individual_summary_table <- .format_summary_table(x[["summary_table"]][[
+    "individual_level_summary"
+  ]])
+
   cs_method <- x[["method"]]
 
-  individual_summary_table_formatted <- individual_summary_table |>
-    dplyr::mutate(
-      dplyr::across(dplyr::contains("percent"), \(a) insight::format_percent(a))
-    ) |>
-    dplyr::rename_with(snakecase::to_title_case)
-
   if (cs_method == "HA") {
-    group_summary_table_formatted <- group_summary_table |>
-      dplyr::mutate(percent = insight::format_percent(percent)) |>
-      dplyr::rename_with(tools::toTitleCase)
+    group_summary_table <- x[["summary_table"]][["group_level_summary"]] |>
+      .format_summary_table(table_title = "Group Level Summary")
   }
+
+  if (x[["direction"]] == -1) {
+    direction <- "Lower"
+  } else {
+    direction <- "Higher"
+  }
+
+  model_info <- .format_model_info_string(
+    list(
+      Approach = "Combined",
+      "Method" = cs_method,
+      "Better is" = direction
+    )
+  )
 
   # Print output
-  output_fun <- function() {
-    cli::cli_h2("Clinical Significance Results")
-    cli::cli_text(
-      "Combined approach using the {.strong {cs_method}} and {.strong statistical} approach."
+  if (cs_method != "HA") {
+    .print_strings(
+      model_info,
+      individual_summary_table
     )
-    cli::cat_line()
-    if (cs_method != "HA") {
-      cli::cli_verbatim(insight::export_table(
-        individual_summary_table_formatted
-      ))
-    } else {
-      cli::cli_text("Individual Level Summary")
-      cli::cli_verbatim(insight::export_table(
-        individual_summary_table_formatted
-      ))
-      cli::cat_line()
-      cli::cli_text("Groupcs Level Summary")
-      cli::cli_verbatim(insight::export_table(group_summary_table_formatted))
-    }
+  } else {
+    .print_strings(
+      model_info,
+      individual_summary_table,
+      group_summary_table
+    )
   }
-  output_fun()
 }
 
 
@@ -368,19 +371,16 @@ print.cs_combined <- function(x, ...) {
 summary.cs_combined <- function(object, ...) {
   # browser()
   # Get necessary information from object
-  summary_table_formatted <- object[["summary_table"]][[
-    "individual_level_summary"
-  ]] |>
-    dplyr::mutate(
-      dplyr::across(dplyr::contains("percent"), \(a) insight::format_percent(a))
-    ) |>
-    dplyr::rename_with(snakecase::to_title_case) |>
-    insight::export_table()
+  summary_table <- .format_summary_table(
+    object[["summary_table"]][[
+      "individual_level_summary"
+    ]],
+    table_title = "-- Results"
+  )
 
-  cs_method <- object[["method"]]
+  rci_method <- object[["method"]]
   n_original <- cs_get_n(object, "original")[[1]]
   n_used <- cs_get_n(object, "used")[[1]]
-  pct <- round(n_used / n_original, digits = 3) * 100
   cutoff_info <- cs_get_cutoff(object, with_descriptives = TRUE)
   cutoff_type <- cutoff_info[["type"]]
   cutoff_value <- round(cutoff_info[["value"]], 2)
@@ -391,56 +391,89 @@ summary.cs_combined <- function(object, ...) {
       "M Functional" = "m_functional",
       "SD Functional" = "sd_functional"
     ) |>
-    insight::export_table(missing = "---", )
-  mid <- object[["mid_improvement"]]
+    insight::export_table(missing = "---", title = "-- Cutoff Descriptives")
+  mid_improvement <- object[["mid_improvement"]]
+  mid_deterioration <- object[["mid_deterioration"]]
 
-  if (cs_method == "HA") {
-    group_summary_table <- object[["summary_table"]][["group_level_summary"]] |>
-      dplyr::mutate(percent = insight::format_percent(percent)) |>
-      dplyr::rename_with(tools::toTitleCase) |>
-      insight::export_table()
+  if (rci_method == "HA") {
+    group_summary_table <- .format_summary_table(
+      object[["summary_table"]][["group_level_summary"]],
+      table_title = "Group Level Results"
+    )
   }
 
   outcome <- object[["outcome"]]
-  if (cs_method == "anchor-based") {
-    reliability_summary <- "The outcome was {.strong {outcome}} and the MID was set to {.strong {mid}}."
-  } else if (cs_method != "NK") {
-    reliability <- cs_get_reliability(object)[[1]]
-    reliability_summary <- "The outcome was {.strong {outcome}} and the reliability was set to {.strong {reliability}}."
-  } else {
-    reliability_pre <- cs_get_reliability(object)[[1]]
-    reliability_post <- cs_get_reliability(object)[[2]]
-    reliability_summary <- "The outcome was {.strong {outcome}} and the reliability was set to {.strong {reliability_pre}} (pre intervention) and {.strong {reliability_post}} (post intervention)."
+
+  model_info <- list(
+    Approach = "Distribution-based",
+    "RCI Method" = rci_method,
+    "N (original)" = n_original,
+    "N (used)" = n_used,
+    "Percent used" = insight::format_percent(
+      n_used / n_original
+    ),
+    Outcome = object[["outcome"]],
+    "Cutoff Type" = cutoff_type,
+    Cutoff = cutoff_value,
+    Outcome = outcome
+  )
+
+  if (rci_method == "HLM") {
+    additional_info <- list(
+      Reliability = "----"
+    )
+  } else if (rci_method == "NK") {
+    additional_info <- list(
+      "Realiability Pre" = cs_get_reliability(object)[[1]],
+      "Reliability Post" = cs_get_reliability(object)[[2]]
+    )
   }
+  if (rci_method == "CWB") {
+    additional_info <- list(
+      "MID (Improvement)" = mid_improvement,
+      "MID (Deterioration)" = mid_deterioration
+    )
+  } else {
+    additional_info <- list(
+      Reliability = cs_get_reliability(object)[[1]]
+    )
+  }
+
+  model_info <- .format_model_info_string(c(model_info, additional_info))
 
   # Print output
-  output_fun <- function() {
-    cli::cli_h2("Clinical Significance Results")
-    cli::cli_text(
-      "Combined analysis of clinical significance using the {.strong {cs_method}} and {.strong statistical} approach method for calculating the RCI and population cutoffs."
-    )
-    cli::cat_line()
-    cli::cli_text(
-      "There were {.strong {n_original}} participants in the whole dataset of which {.strong {n_used}} {.strong ({pct}%)} could be included in the analysis."
-    )
-    cli::cat_line()
-    cli::cli_text(reliability_summary)
-    cli::cat_line()
-    cli::cli_text(
-      "The cutoff type was {.strong {cutoff_type}} with a value of {.strong {cutoff_value}} based on the following sumamry statistics:"
-    )
-    cli::cat_line()
-    cli::cli_h3("Population Characteristics")
-    cli::cli_verbatim(cutoff_descriptives)
-    cli::cat_line()
-
-    cli::cli_h3("Individual Level Results")
-    cli::cli_verbatim(summary_table_formatted)
-    if (cs_method == "HA") {
-      cli::cat_line()
-      cli::cli_h3("Group Level Results")
-      cli::cli_verbatim(group_summary_table)
-    }
-  }
-  output_fun()
+  .print_strings(
+    model_info,
+    cutoff_descriptives,
+    summary_table
+  )
+  # output_fun <- function() {
+  #   cli::cli_h2("Clinical Significance Results")
+  #   cli::cli_text(
+  #     "Combined analysis of clinical significance using the {.strong {cs_method}} and {.strong statistical} approach method for calculating the RCI and population cutoffs."
+  #   )
+  #   cli::cat_line()
+  #   cli::cli_text(
+  #     "There were {.strong {n_original}} participants in the whole dataset of which {.strong {n_used}} {.strong ({pct}%)} could be included in the analysis."
+  #   )
+  #   cli::cat_line()
+  #   cli::cli_text(reliability_summary)
+  #   cli::cat_line()
+  #   cli::cli_text(
+  #     "The cutoff type was {.strong {cutoff_type}} with a value of {.strong {cutoff_value}} based on the following sumamry statistics:"
+  #   )
+  #   cli::cat_line()
+  #   cli::cli_h3("Population Characteristics")
+  #   cli::cli_verbatim(cutoff_descriptives)
+  #   cli::cat_line()
+  #
+  #   cli::cli_h3("Individual Level Results")
+  #   cli::cli_verbatim(summary_table_formatted)
+  #   if (cs_method == "HA") {
+  #     cli::cat_line()
+  #     cli::cli_h3("Group Level Results")
+  #     cli::cli_verbatim(group_summary_table)
+  #   }
+  # }
+  # output_fun()
 }
