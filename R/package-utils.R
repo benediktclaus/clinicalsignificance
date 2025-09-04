@@ -8,17 +8,18 @@
 #' - All column names are converted to Title Case using `snakecase::to_title_case()`.
 #'
 #' @param summary_table A `data.frame` or `tibble` to be formatted.
+#' @param table_title String
 #'
 #' @return A formatted `tibble`.
 #'
 #' @noRd
-.format_summary_table <- function(summary_table) {
+.format_summary_table <- function(summary_table, table_title = NULL) {
   summary_table |>
     dplyr::mutate(
       dplyr::across(dplyr::contains("percent"), \(a) insight::format_percent(a))
     ) |>
     dplyr::rename_with(snakecase::to_title_case) |>
-    insight::export_table()
+    insight::export_table(title = table_title)
 }
 
 #' Print a Formatted Model Information Table as String
