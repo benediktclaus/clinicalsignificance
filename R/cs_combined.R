@@ -447,33 +447,4 @@ summary.cs_combined <- function(object, ...) {
     cutoff_descriptives,
     summary_table
   )
-  # output_fun <- function() {
-  #   cli::cli_h2("Clinical Significance Results")
-  #   cli::cli_text(
-  #     "Combined analysis of clinical significance using the {.strong {cs_method}} and {.strong statistical} approach method for calculating the RCI and population cutoffs."
-  #   )
-  #   cli::cat_line()
-  #   cli::cli_text(
-  #     "There were {.strong {n_original}} participants in the whole dataset of which {.strong {n_used}} {.strong ({pct}%)} could be included in the analysis."
-  #   )
-  #   cli::cat_line()
-  #   cli::cli_text(reliability_summary)
-  #   cli::cat_line()
-  #   cli::cli_text(
-  #     "The cutoff type was {.strong {cutoff_type}} with a value of {.strong {cutoff_value}} based on the following sumamry statistics:"
-  #   )
-  #   cli::cat_line()
-  #   cli::cli_h3("Population Characteristics")
-  #   cli::cli_verbatim(cutoff_descriptives)
-  #   cli::cat_line()
-  #
-  #   cli::cli_h3("Individual Level Results")
-  #   cli::cli_verbatim(summary_table_formatted)
-  #   if (cs_method == "HA") {
-  #     cli::cat_line()
-  #     cli::cli_h3("Group Level Results")
-  #     cli::cli_verbatim(group_summary_table)
-  #   }
-  # }
-  # output_fun()
 }
