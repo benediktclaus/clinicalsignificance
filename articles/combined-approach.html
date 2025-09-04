@@ -6,12 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Combined Approach • clinicalsignificance</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -26,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">clinicalsignificance</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0.9003</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,7 +51,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/pedscience/clinicalsignificance/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/benediktclaus/clinicalsignificance/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -68,7 +67,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Combined Approach</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/pedscience/clinicalsignificance/blob/main/vignettes/combined-approach.Rmd" class="external-link"><code>vignettes/combined-approach.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/benediktclaus/clinicalsignificance/blob/main/vignettes/combined-approach.Rmd" class="external-link"><code>vignettes/combined-approach.Rmd</code></a></small>
       <div class="d-none name"><code>combined-approach.Rmd</code></div>
     </div>
 
@@ -101,7 +100,7 @@ place:</p>
 <p>First, let’s have a look at the datasets, which come with the
 package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pedscience.github.io/clinicalsignificance/" class="external-link">clinicalsignificance</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://benediktclaus.github.io/clinicalsignificance/">clinicalsignificance</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">antidepressants</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1,110 × 4</span></span></span>
@@ -215,10 +214,13 @@ used to calculate the population cutoff.</li>
 <code class="sourceCode R"><span><span class="co"># Print the results</span></span>
 <span><span class="va">combined_results</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Combined approach using the <span style="font-weight: bold;">anchor-based</span> and <span style="font-weight: bold;">statistical</span> approach.</span></span>
-<span><span class="co">#&gt; Category     |   n | Percent</span></span>
+<span><span class="co">#&gt; Approach:  Combined</span></span>
+<span><span class="co">#&gt; Method:    CWB</span></span>
+<span><span class="co">#&gt; Better is: Lower</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Category     |   N | Percent</span></span>
 <span><span class="co">#&gt; ----------------------------</span></span>
 <span><span class="co">#&gt; Recovered    | 166 |  29.91%</span></span>
 <span><span class="co">#&gt; Improved     | 150 |  27.03%</span></span>
@@ -229,23 +231,30 @@ used to calculate the population cutoff.</li>
 <span><span class="co"># Get a summary</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">combined_results</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Combined analysis of clinical significance using the <span style="font-weight: bold;">anchor-based</span> and</span></span>
-<span><span class="co">#&gt; <span style="font-weight: bold;">statistical</span> approach method for calculating the RCI and population cutoffs.</span></span>
-<span><span class="co">#&gt; There were <span style="font-weight: bold;">555</span> participants in the whole dataset of which <span style="font-weight: bold;">555</span> <span style="font-weight: bold;">(100%)</span> could be</span></span>
-<span><span class="co">#&gt; included in the analysis.</span></span>
-<span><span class="co">#&gt; The outcome was <span style="font-weight: bold;">mom_di</span> and the MID was set to <span style="font-weight: bold;">8</span>.</span></span>
-<span><span class="co">#&gt; The cutoff type was <span style="font-weight: bold;">c</span> with a value of <span style="font-weight: bold;">19.72</span> based on the following sumamry</span></span>
-<span><span class="co">#&gt; statistics:</span></span>
+<span><span class="co">#&gt; Approach:            Distribution-based</span></span>
+<span><span class="co">#&gt; RCI Method:          CWB</span></span>
+<span><span class="co">#&gt; N (original):        555</span></span>
+<span><span class="co">#&gt; N (used):            555</span></span>
+<span><span class="co">#&gt; Percent used:        100.00%</span></span>
+<span><span class="co">#&gt; Outcome:             mom_di</span></span>
+<span><span class="co">#&gt; Cutoff Type:         c</span></span>
+<span><span class="co">#&gt; Cutoff:              19.72</span></span>
+<span><span class="co">#&gt; Outcome:             mom_di</span></span>
+<span><span class="co">#&gt; MID (Improvement):   8</span></span>
+<span><span class="co">#&gt; MID (Deterioration): 8</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── Population Characteristics</span></span>
+<span><span class="co">#&gt; -- Cutoff Descriptives</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; M Clinical | SD Clinical | M Functional | SD Functional</span></span>
 <span><span class="co">#&gt; -------------------------------------------------------</span></span>
 <span><span class="co">#&gt; 34.73      |        8.26 |            7 |             7</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── Individual Level Results</span></span>
-<span><span class="co">#&gt; Category     |   n | Percent</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; -- Results</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Category     |   N | Percent</span></span>
 <span><span class="co">#&gt; ----------------------------</span></span>
 <span><span class="co">#&gt; Recovered    | 166 |  29.91%</span></span>
 <span><span class="co">#&gt; Improved     | 150 |  27.03%</span></span>
@@ -292,10 +301,13 @@ explicitly define the pre and post measurement time points using the
 <span><span class="co"># Display the results</span></span>
 <span><span class="va">cs_results</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Combined approach using the <span style="font-weight: bold;">anchor-based</span> and <span style="font-weight: bold;">statistical</span> approach.</span></span>
-<span><span class="co">#&gt; Category     |  n | Percent</span></span>
+<span><span class="co">#&gt; Approach:  Combined</span></span>
+<span><span class="co">#&gt; Method:    CWB</span></span>
+<span><span class="co">#&gt; Better is: Lower</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Category     |  N | Percent</span></span>
 <span><span class="co">#&gt; ---------------------------</span></span>
 <span><span class="co">#&gt; Recovered    | 11 |  27.50%</span></span>
 <span><span class="co">#&gt; Improved     |  9 |  22.50%</span></span>
@@ -304,23 +316,30 @@ explicitly define the pre and post measurement time points using the
 <span><span class="co">#&gt; Harmed       |  0 |   0.00%</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cs_results</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Combined analysis of clinical significance using the <span style="font-weight: bold;">anchor-based</span> and</span></span>
-<span><span class="co">#&gt; <span style="font-weight: bold;">statistical</span> approach method for calculating the RCI and population cutoffs.</span></span>
-<span><span class="co">#&gt; There were <span style="font-weight: bold;">43</span> participants in the whole dataset of which <span style="font-weight: bold;">40</span> <span style="font-weight: bold;">(93%)</span> could be</span></span>
-<span><span class="co">#&gt; included in the analysis.</span></span>
-<span><span class="co">#&gt; The outcome was <span style="font-weight: bold;">bdi</span> and the MID was set to <span style="font-weight: bold;">8</span>.</span></span>
-<span><span class="co">#&gt; The cutoff type was <span style="font-weight: bold;">c</span> with a value of <span style="font-weight: bold;">20.15</span> based on the following sumamry</span></span>
-<span><span class="co">#&gt; statistics:</span></span>
+<span><span class="co">#&gt; Approach:            Distribution-based</span></span>
+<span><span class="co">#&gt; RCI Method:          CWB</span></span>
+<span><span class="co">#&gt; N (original):        43</span></span>
+<span><span class="co">#&gt; N (used):            40</span></span>
+<span><span class="co">#&gt; Percent used:        93.02%</span></span>
+<span><span class="co">#&gt; Outcome:             bdi</span></span>
+<span><span class="co">#&gt; Cutoff Type:         c</span></span>
+<span><span class="co">#&gt; Cutoff:              20.15</span></span>
+<span><span class="co">#&gt; Outcome:             bdi</span></span>
+<span><span class="co">#&gt; MID (Improvement):   8</span></span>
+<span><span class="co">#&gt; MID (Deterioration): 8</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── Population Characteristics</span></span>
+<span><span class="co">#&gt; -- Cutoff Descriptives</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; M Clinical | SD Clinical | M Functional | SD Functional</span></span>
 <span><span class="co">#&gt; -------------------------------------------------------</span></span>
 <span><span class="co">#&gt; 35.48      |        8.16 |            7 |             7</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── Individual Level Results</span></span>
-<span><span class="co">#&gt; Category     |  n | Percent</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; -- Results</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Category     |  N | Percent</span></span>
 <span><span class="co">#&gt; ---------------------------</span></span>
 <span><span class="co">#&gt; Recovered    | 11 |  27.50%</span></span>
 <span><span class="co">#&gt; Improved     |  9 |  22.50%</span></span>
@@ -354,21 +373,24 @@ categories.</p>
 <span><span class="co"># Display and visualize the results</span></span>
 <span><span class="va">cs_results_grouped</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Combined approach using the <span style="font-weight: bold;">anchor-based</span> and <span style="font-weight: bold;">statistical</span> approach.</span></span>
-<span><span class="co">#&gt; Group |     Category |  n | Percent</span></span>
-<span><span class="co">#&gt; -----------------------------------</span></span>
-<span><span class="co">#&gt; TAU   |    Recovered |  4 |  10.00%</span></span>
-<span><span class="co">#&gt; TAU   |     Improved |  2 |   5.00%</span></span>
-<span><span class="co">#&gt; TAU   |    Unchanged | 10 |  25.00%</span></span>
-<span><span class="co">#&gt; TAU   | Deteriorated |  3 |   7.50%</span></span>
-<span><span class="co">#&gt; TAU   |       Harmed |  0 |   0.00%</span></span>
-<span><span class="co">#&gt; PA    |    Recovered |  7 |  17.50%</span></span>
-<span><span class="co">#&gt; PA    |     Improved |  7 |  17.50%</span></span>
-<span><span class="co">#&gt; PA    |    Unchanged |  7 |  17.50%</span></span>
-<span><span class="co">#&gt; PA    | Deteriorated |  0 |   0.00%</span></span>
-<span><span class="co">#&gt; PA    |       Harmed |  0 |   0.00%</span></span>
+<span><span class="co">#&gt; Approach:  Combined</span></span>
+<span><span class="co">#&gt; Method:    CWB</span></span>
+<span><span class="co">#&gt; Better is: Lower</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Group |     Category |  N | Percent | Percent by Group</span></span>
+<span><span class="co">#&gt; ------------------------------------------------------</span></span>
+<span><span class="co">#&gt; TAU   |    Recovered |  4 |  10.00% |           21.05%</span></span>
+<span><span class="co">#&gt; TAU   |     Improved |  2 |   5.00% |           10.53%</span></span>
+<span><span class="co">#&gt; TAU   |    Unchanged | 10 |  25.00% |           52.63%</span></span>
+<span><span class="co">#&gt; TAU   | Deteriorated |  3 |   7.50% |           15.79%</span></span>
+<span><span class="co">#&gt; TAU   |       Harmed |  0 |   0.00% |            0.00%</span></span>
+<span><span class="co">#&gt; PA    |    Recovered |  7 |  17.50% |           33.33%</span></span>
+<span><span class="co">#&gt; PA    |     Improved |  7 |  17.50% |           33.33%</span></span>
+<span><span class="co">#&gt; PA    |    Unchanged |  7 |  17.50% |           33.33%</span></span>
+<span><span class="co">#&gt; PA    | Deteriorated |  0 |   0.00% |            0.00%</span></span>
+<span><span class="co">#&gt; PA    |       Harmed |  0 |   0.00% |            0.00%</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cs_results_grouped</span><span class="op">)</span></span></code></pre></div>
 <p><img src="combined-approach_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
 </div>
@@ -398,10 +420,13 @@ better.</p>
 <span><span class="co"># Display the results</span></span>
 <span><span class="va">cs_results_who</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Combined approach using the <span style="font-weight: bold;">anchor-based</span> and <span style="font-weight: bold;">statistical</span> approach.</span></span>
-<span><span class="co">#&gt; Category     |  n | Percent</span></span>
+<span><span class="co">#&gt; Approach:  Combined</span></span>
+<span><span class="co">#&gt; Method:    CWB</span></span>
+<span><span class="co">#&gt; Better is: Higher</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Category     |  N | Percent</span></span>
 <span><span class="co">#&gt; ---------------------------</span></span>
 <span><span class="co">#&gt; Recovered    | 10 |  25.00%</span></span>
 <span><span class="co">#&gt; Improved     |  1 |   2.50%</span></span>
@@ -432,23 +457,29 @@ reliability of the MoM-DI is 0.80.</p>
 <span><span class="co"># Summarize and visualize the results</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">jt_results</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Combined analysis of clinical significance using the <span style="font-weight: bold;">JT</span> and <span style="font-weight: bold;">statistical</span></span></span>
-<span><span class="co">#&gt; approach method for calculating the RCI and population cutoffs.</span></span>
-<span><span class="co">#&gt; There were <span style="font-weight: bold;">555</span> participants in the whole dataset of which <span style="font-weight: bold;">555</span> <span style="font-weight: bold;">(100%)</span> could be</span></span>
-<span><span class="co">#&gt; included in the analysis.</span></span>
-<span><span class="co">#&gt; The outcome was <span style="font-weight: bold;">mom_di</span> and the reliability was set to <span style="font-weight: bold;">0.8</span>.</span></span>
-<span><span class="co">#&gt; The cutoff type was <span style="font-weight: bold;">c</span> with a value of <span style="font-weight: bold;">19.72</span> based on the following sumamry</span></span>
-<span><span class="co">#&gt; statistics:</span></span>
+<span><span class="co">#&gt; Approach:     Distribution-based</span></span>
+<span><span class="co">#&gt; RCI Method:   JT</span></span>
+<span><span class="co">#&gt; N (original): 555</span></span>
+<span><span class="co">#&gt; N (used):     555</span></span>
+<span><span class="co">#&gt; Percent used: 100.00%</span></span>
+<span><span class="co">#&gt; Outcome:      mom_di</span></span>
+<span><span class="co">#&gt; Cutoff Type:  c</span></span>
+<span><span class="co">#&gt; Cutoff:       19.72</span></span>
+<span><span class="co">#&gt; Outcome:      mom_di</span></span>
+<span><span class="co">#&gt; Reliability:  0.8</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── Population Characteristics</span></span>
+<span><span class="co">#&gt; -- Cutoff Descriptives</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; M Clinical | SD Clinical | M Functional | SD Functional</span></span>
 <span><span class="co">#&gt; -------------------------------------------------------</span></span>
 <span><span class="co">#&gt; 34.73      |        8.26 |            7 |             7</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── Individual Level Results</span></span>
-<span><span class="co">#&gt; Category     |   n | Percent</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; -- Results</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Category     |   N | Percent</span></span>
 <span><span class="co">#&gt; ----------------------------</span></span>
 <span><span class="co">#&gt; Recovered    | 159 |  28.65%</span></span>
 <span><span class="co">#&gt; Improved     | 115 |  20.72%</span></span>
@@ -482,7 +513,7 @@ clinical research applications.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer>

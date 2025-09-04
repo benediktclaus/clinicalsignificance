@@ -6,12 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Percentage-Change Approach to Clinical Significance in R • clinicalsignificance</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -26,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">clinicalsignificance</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0.9003</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,7 +51,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/pedscience/clinicalsignificance/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/benediktclaus/clinicalsignificance/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -68,7 +67,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Percentage-Change Approach to Clinical Significance in R</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/pedscience/clinicalsignificance/blob/main/vignettes/percentage-change-approach.Rmd" class="external-link"><code>vignettes/percentage-change-approach.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/benediktclaus/clinicalsignificance/blob/main/vignettes/percentage-change-approach.Rmd" class="external-link"><code>vignettes/percentage-change-approach.Rmd</code></a></small>
       <div class="d-none name"><code>percentage-change-approach.Rmd</code></div>
     </div>
 
@@ -103,7 +102,7 @@ place:</p>
 <p>First, let’s have a look at the datasets, which come with the
 package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pedscience.github.io/clinicalsignificance/" class="external-link">clinicalsignificance</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://benediktclaus.github.io/clinicalsignificance/">clinicalsignificance</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">antidepressants</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1,110 × 4</span></span></span>
@@ -203,11 +202,14 @@ for improvement to 30%.</li>
 <code class="sourceCode R"><span><span class="co"># Print the results</span></span>
 <span><span class="va">pct_results</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Percentage-change approach with a <span style="font-weight: bold;">50%</span> decrease in instrument scores indicating</span></span>
-<span><span class="co">#&gt; a clinical significant improvement.</span></span>
-<span><span class="co">#&gt; Category     |   n | Percent</span></span>
+<span><span class="co">#&gt; Approach:                 Percentage-based</span></span>
+<span><span class="co">#&gt; Percentage Improvement:   50.00%</span></span>
+<span><span class="co">#&gt; Percentage Deterioration: 50.00%</span></span>
+<span><span class="co">#&gt; Better is:                Lower</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Category     |   N | Percent</span></span>
 <span><span class="co">#&gt; ----------------------------</span></span>
 <span><span class="co">#&gt; Improved     | 155 |  27.93%</span></span>
 <span><span class="co">#&gt; Unchanged    | 366 |  65.95%</span></span>
@@ -216,15 +218,18 @@ for improvement to 30%.</li>
 <span><span class="co"># Get a summary</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">pct_results</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Percentage-change analysis of clinical significance with a <span style="font-weight: bold;">50%</span> decrease in</span></span>
-<span><span class="co">#&gt; instrument scores indicating a clinical significant improvement.</span></span>
-<span><span class="co">#&gt; There were <span style="font-weight: bold;">555</span> participants in the whole dataset of which <span style="font-weight: bold;">555</span> <span style="font-weight: bold;">(100%)</span> could be</span></span>
-<span><span class="co">#&gt; included in the analysis.</span></span>
+<span><span class="co">#&gt; Approach:                 Percentage-based</span></span>
+<span><span class="co">#&gt; Percentage Improvement:   50.00%</span></span>
+<span><span class="co">#&gt; Percentage Deterioration: 50.00%</span></span>
+<span><span class="co">#&gt; Better is:                Lower</span></span>
+<span><span class="co">#&gt; N (original):             555</span></span>
+<span><span class="co">#&gt; N (used):                 555</span></span>
+<span><span class="co">#&gt; Percent used:             100.00%</span></span>
+<span><span class="co">#&gt; Outcome:                  mom_di</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── Individual Level Results</span></span>
-<span><span class="co">#&gt; Category     |   n | Percent</span></span>
+<span><span class="co">#&gt; Category     |   N | Percent</span></span>
 <span><span class="co">#&gt; ----------------------------</span></span>
 <span><span class="co">#&gt; Improved     | 155 |  27.93%</span></span>
 <span><span class="co">#&gt; Unchanged    | 366 |  65.95%</span></span>
@@ -266,26 +271,32 @@ explicitly define the pre and post measurement time points using the
 <span><span class="co"># Display the results</span></span>
 <span><span class="va">cs_results</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Percentage-change approach with a <span style="font-weight: bold;">30%</span> decrease in instrument scores indicating</span></span>
-<span><span class="co">#&gt; a clinical significant improvement.</span></span>
-<span><span class="co">#&gt; Category     |  n | Percent</span></span>
+<span><span class="co">#&gt; Approach:                 Percentage-based</span></span>
+<span><span class="co">#&gt; Percentage Improvement:   30.00%</span></span>
+<span><span class="co">#&gt; Percentage Deterioration: 30.00%</span></span>
+<span><span class="co">#&gt; Better is:                Lower</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Category     |  N | Percent</span></span>
 <span><span class="co">#&gt; ---------------------------</span></span>
 <span><span class="co">#&gt; Improved     | 19 |  47.50%</span></span>
 <span><span class="co">#&gt; Unchanged    | 21 |  52.50%</span></span>
 <span><span class="co">#&gt; Deteriorated |  0 |   0.00%</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cs_results</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Percentage-change analysis of clinical significance with a <span style="font-weight: bold;">30%</span> decrease in</span></span>
-<span><span class="co">#&gt; instrument scores indicating a clinical significant improvement.</span></span>
-<span><span class="co">#&gt; There were <span style="font-weight: bold;">43</span> participants in the whole dataset of which <span style="font-weight: bold;">40</span> <span style="font-weight: bold;">(93%)</span> could be</span></span>
-<span><span class="co">#&gt; included in the analysis.</span></span>
+<span><span class="co">#&gt; Approach:                 Percentage-based</span></span>
+<span><span class="co">#&gt; Percentage Improvement:   30.00%</span></span>
+<span><span class="co">#&gt; Percentage Deterioration: 30.00%</span></span>
+<span><span class="co">#&gt; Better is:                Lower</span></span>
+<span><span class="co">#&gt; N (original):             43</span></span>
+<span><span class="co">#&gt; N (used):                 40</span></span>
+<span><span class="co">#&gt; Percent used:             93.02%</span></span>
+<span><span class="co">#&gt; Outcome:                  bdi</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── Individual Level Results</span></span>
-<span><span class="co">#&gt; Category     |  n | Percent</span></span>
+<span><span class="co">#&gt; Category     |  N | Percent</span></span>
 <span><span class="co">#&gt; ---------------------------</span></span>
 <span><span class="co">#&gt; Improved     | 19 |  47.50%</span></span>
 <span><span class="co">#&gt; Unchanged    | 21 |  52.50%</span></span>
@@ -315,12 +326,14 @@ example:</p>
 <span><span class="co"># Display the results</span></span>
 <span><span class="va">cs_results_2</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Percentage-change approach with a <span style="font-weight: bold;">30%</span> decrease in instrument scores indicating</span></span>
-<span><span class="co">#&gt; a clinical significant improvement and a <span style="font-weight: bold;">20%</span> increase in instrument scores</span></span>
-<span><span class="co">#&gt; indicating a clinical significant deterioration.</span></span>
-<span><span class="co">#&gt; Category     |  n | Percent</span></span>
+<span><span class="co">#&gt; Approach:                 Percentage-based</span></span>
+<span><span class="co">#&gt; Percentage Improvement:   30.00%</span></span>
+<span><span class="co">#&gt; Percentage Deterioration: 20.00%</span></span>
+<span><span class="co">#&gt; Better is:                Lower</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Category     |  N | Percent</span></span>
 <span><span class="co">#&gt; ---------------------------</span></span>
 <span><span class="co">#&gt; Improved     | 25 |  62.50%</span></span>
 <span><span class="co">#&gt; Unchanged    | 14 |  35.00%</span></span>
@@ -351,18 +364,21 @@ categories.</p>
 <span><span class="co"># Display and visualize the results</span></span>
 <span><span class="va">cs_results_grouped</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Percentage-change approach with a <span style="font-weight: bold;">30%</span> decrease in instrument scores indicating</span></span>
-<span><span class="co">#&gt; a clinical significant improvement.</span></span>
-<span><span class="co">#&gt; Group |     Category |  n | Percent</span></span>
-<span><span class="co">#&gt; -----------------------------------</span></span>
-<span><span class="co">#&gt; TAU   |     Improved |  6 |  15.00%</span></span>
-<span><span class="co">#&gt; TAU   |    Unchanged | 13 |  32.50%</span></span>
-<span><span class="co">#&gt; TAU   | Deteriorated |  0 |   0.00%</span></span>
-<span><span class="co">#&gt; PA    |     Improved | 19 |  47.50%</span></span>
-<span><span class="co">#&gt; PA    |    Unchanged |  2 |   5.00%</span></span>
-<span><span class="co">#&gt; PA    | Deteriorated |  0 |   0.00%</span></span>
+<span><span class="co">#&gt; Approach:                 Percentage-based</span></span>
+<span><span class="co">#&gt; Percentage Improvement:   30.00%</span></span>
+<span><span class="co">#&gt; Percentage Deterioration: 30.00%</span></span>
+<span><span class="co">#&gt; Better is:                Lower</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Group |     Category |  N | Percent | Percent by Group</span></span>
+<span><span class="co">#&gt; ------------------------------------------------------</span></span>
+<span><span class="co">#&gt; TAU   |     Improved |  6 |  15.00% |           31.58%</span></span>
+<span><span class="co">#&gt; TAU   |    Unchanged | 13 |  32.50% |           68.42%</span></span>
+<span><span class="co">#&gt; TAU   | Deteriorated |  0 |   0.00% |            0.00%</span></span>
+<span><span class="co">#&gt; PA    |     Improved | 19 |  47.50% |           90.48%</span></span>
+<span><span class="co">#&gt; PA    |    Unchanged |  2 |   5.00% |            9.52%</span></span>
+<span><span class="co">#&gt; PA    | Deteriorated |  0 |   0.00% |            0.00%</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cs_results_grouped</span><span class="op">)</span></span></code></pre></div>
 <p><img src="percentage-change-approach_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 </div>
@@ -389,11 +405,14 @@ better.</p>
 <span><span class="co"># Display the results</span></span>
 <span><span class="va">cs_results_who</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Percentage-change approach with a <span style="font-weight: bold;">30%</span> increase in instrument scores indicating</span></span>
-<span><span class="co">#&gt; a clinical significant improvement.</span></span>
-<span><span class="co">#&gt; Category     |  n | Percent</span></span>
+<span><span class="co">#&gt; Approach:                 Percentage-based</span></span>
+<span><span class="co">#&gt; Percentage Improvement:   30.00%</span></span>
+<span><span class="co">#&gt; Percentage Deterioration: 30.00%</span></span>
+<span><span class="co">#&gt; Better is:                Higher</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Category     |  N | Percent</span></span>
 <span><span class="co">#&gt; ---------------------------</span></span>
 <span><span class="co">#&gt; Improved     | 28 |  70.00%</span></span>
 <span><span class="co">#&gt; Unchanged    |  9 |  22.50%</span></span>
@@ -421,7 +440,7 @@ clinical research applications.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer>

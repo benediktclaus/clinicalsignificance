@@ -6,12 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>An R-Package for Clinical Significance Analyses • clinicalsignificance</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" sizes="any" href="favicon.ico">
+<link rel="manifest" href="site.webmanifest">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -19,7 +18,7 @@
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="An R-Package for Clinical Significance Analyses">
 <meta name="description" content="A Toolbox for Clinical Significance Analyses in Intervention Studies">
 <meta property="og:description" content="A Toolbox for Clinical Significance Analyses in Intervention Studies">
-<meta property="og:image" content="/logo.png">
+<meta property="og:image" content="https://benediktclaus.github.io/clinicalsignificance/logo.png">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -29,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="index.html">clinicalsignificance</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0.9003</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,7 +54,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/pedscience/clinicalsignificance/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/benediktclaus/clinicalsignificance/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -80,7 +79,7 @@
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"clinicalsignificance"</span><span class="op">)</span></span></code></pre></div>
 <p>Alternatively, you can install the development version from GitHub:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"pedscience/clinicalsignificance"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"benediktclaus/clinicalsignificance"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="main-functions">Main Functions<a class="anchor" aria-label="anchor" href="#main-functions"></a>
@@ -101,7 +100,7 @@
 <p>Claus et al. (2020) implemented a novel intervention to enhance the effectiveness of antidepressants by boosting the inherent placebo effect of that medication. The randomized patients to treatment as usual (TAU) and a placebo amplification (PA) group and measured the severity of depressive symptoms over time.</p>
 <p>In the anchor-based approach, a clinical significant change is believed to have occured if a given change is greater or equal to the minimally important difference of the used instrument. Given a tidy dataset of the study and a minimally important difference for the Beck Depression Inventory (second edition, BDI-II) of 7 points, the study data by Claus et al. (2020) may be analyzed as follows:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pedscience.github.io/clinicalsignificance/" class="external-link">clinicalsignificance</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://benediktclaus.github.io/clinicalsignificance/">clinicalsignificance</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">cs_results</span> <span class="op">&lt;-</span> <span class="va">claus_2020</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="reference/cs_anchor.html">cs_anchor</a></span><span class="op">(</span></span>
@@ -115,11 +114,14 @@
 <span></span>
 <span><span class="va">cs_results</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── Clinical Significance Results ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Individual anchor-based approach with a 7 point decrease in instrument scores</span></span>
-<span><span class="co">#&gt; indicating a clinical significant improvement.</span></span>
-<span><span class="co">#&gt; Category     |  n | Percent</span></span>
+<span><span class="co">#&gt; Approach:          Anchor-based</span></span>
+<span><span class="co">#&gt; MID Improvement:   7</span></span>
+<span><span class="co">#&gt; MID Deterioration: 7</span></span>
+<span><span class="co">#&gt; Better is:         Lower</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Category     |  N | Percent</span></span>
 <span><span class="co">#&gt; ---------------------------</span></span>
 <span><span class="co">#&gt; Improved     | 25 |  62.50%</span></span>
 <span><span class="co">#&gt; Unchanged    | 11 |  27.50%</span></span>
@@ -128,16 +130,18 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cs_results</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── Clinical Significance Results ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Individual anchor-based analysis of clinical significance with a 7 point</span></span>
-<span><span class="co">#&gt; decrease in instrument scores (bdi) indicating a clinical significant</span></span>
-<span><span class="co">#&gt; improvement.</span></span>
-<span><span class="co">#&gt; There were 43 participants in the whole dataset of which 40 (93%) could be</span></span>
-<span><span class="co">#&gt; included in the analysis.</span></span>
+<span><span class="co">#&gt; Approach:          Anchor-based</span></span>
+<span><span class="co">#&gt; MID Improvement:   7</span></span>
+<span><span class="co">#&gt; MID Deterioration: 7</span></span>
+<span><span class="co">#&gt; N (original):      43</span></span>
+<span><span class="co">#&gt; N (used):          40</span></span>
+<span><span class="co">#&gt; Percent (used):    93.02%</span></span>
+<span><span class="co">#&gt; Better is:         Lower</span></span>
+<span><span class="co">#&gt; Outcome:           bdi</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── Individual Level Results</span></span>
-<span><span class="co">#&gt; Category     |  n | Percent</span></span>
+<span><span class="co">#&gt; Category     |  N | Percent</span></span>
 <span><span class="co">#&gt; ---------------------------</span></span>
 <span><span class="co">#&gt; Improved     | 25 |  62.50%</span></span>
 <span><span class="co">#&gt; Unchanged    | 11 |  27.50%</span></span>
@@ -164,23 +168,25 @@
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cs_results_grouped</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── Clinical Significance Results ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Individual anchor-based analysis of clinical significance with a 7 point</span></span>
-<span><span class="co">#&gt; decrease in instrument scores (bdi) indicating a clinical significant</span></span>
-<span><span class="co">#&gt; improvement.</span></span>
-<span><span class="co">#&gt; There were 43 participants in the whole dataset of which 40 (93%) could be</span></span>
-<span><span class="co">#&gt; included in the analysis.</span></span>
+<span><span class="co">#&gt; Approach:          Anchor-based</span></span>
+<span><span class="co">#&gt; MID Improvement:   7</span></span>
+<span><span class="co">#&gt; MID Deterioration: 7</span></span>
+<span><span class="co">#&gt; N (original):      43</span></span>
+<span><span class="co">#&gt; N (used):          40</span></span>
+<span><span class="co">#&gt; Percent (used):    93.02%</span></span>
+<span><span class="co">#&gt; Better is:         Lower</span></span>
+<span><span class="co">#&gt; Outcome:           bdi</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── Individual Level Results</span></span>
-<span><span class="co">#&gt; Group |     Category |  n | Percent</span></span>
-<span><span class="co">#&gt; -----------------------------------</span></span>
-<span><span class="co">#&gt; TAU   |     Improved |  8 |  20.00%</span></span>
-<span><span class="co">#&gt; TAU   |    Unchanged |  7 |  17.50%</span></span>
-<span><span class="co">#&gt; TAU   | Deteriorated |  4 |  10.00%</span></span>
-<span><span class="co">#&gt; PA    |     Improved | 17 |  42.50%</span></span>
-<span><span class="co">#&gt; PA    |    Unchanged |  4 |  10.00%</span></span>
-<span><span class="co">#&gt; PA    | Deteriorated |  0 |   0.00%</span></span>
+<span><span class="co">#&gt; Group |     Category |  N | Percent | Percent by Group</span></span>
+<span><span class="co">#&gt; ------------------------------------------------------</span></span>
+<span><span class="co">#&gt; TAU   |     Improved |  8 |  20.00% |           42.11%</span></span>
+<span><span class="co">#&gt; TAU   |    Unchanged |  7 |  17.50% |           36.84%</span></span>
+<span><span class="co">#&gt; TAU   | Deteriorated |  4 |  10.00% |           21.05%</span></span>
+<span><span class="co">#&gt; PA    |     Improved | 17 |  42.50% |           80.95%</span></span>
+<span><span class="co">#&gt; PA    |    Unchanged |  4 |  10.00% |           19.05%</span></span>
+<span><span class="co">#&gt; PA    | Deteriorated |  0 |   0.00% |            0.00%</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cs_results_grouped</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-8-1.png" width="80%" style="display: block; margin: auto;"></p>
 </div>
@@ -210,8 +216,8 @@
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
 <li><a href="https://cloud.r-project.org/package=clinicalsignificance" class="external-link">View on CRAN</a></li>
-<li><a href="https://github.com/pedscience/clinicalsignificance/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/pedscience/clinicalsignificance/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/benediktclaus/clinicalsignificance/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/benediktclaus/clinicalsignificance/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -234,7 +240,7 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Benedikt Claus <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-9501-0954" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Benedikt Claus <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-9501-0954" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 </ul>
 </div>
 
@@ -255,7 +261,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer>
