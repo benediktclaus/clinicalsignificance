@@ -34,7 +34,7 @@ install.packages("clinicalsignificance")
 Alternatively, you can install the development version from GitHub:
 
 ``` r
-devtools::install_github("pedscience/clinicalsignificance")
+pak::pak("benediktclaus/clinicalsignificance")
 ```
 
 ## Main Functions
@@ -83,11 +83,14 @@ cs_results <- claus_2020 |>
 
 cs_results
 #> 
-#> ── Clinical Significance Results ──
+#> ---- Clinical Significance Results ----
 #> 
-#> Individual anchor-based approach with a 7 point decrease in instrument scores
-#> indicating a clinical significant improvement.
-#> Category     |  n | Percent
+#> Approach:          Anchor-based
+#> MID Improvement:   7
+#> MID Deterioration: 7
+#> Better is:         Lower
+#> 
+#> Category     |  N | Percent
 #> ---------------------------
 #> Improved     | 25 |  62.50%
 #> Unchanged    | 11 |  27.50%
@@ -99,16 +102,18 @@ You can receive a detailed summary of the analysis by
 ``` r
 summary(cs_results)
 #> 
-#> ── Clinical Significance Results ──
+#> ---- Clinical Significance Results ----
 #> 
-#> Individual anchor-based analysis of clinical significance with a 7 point
-#> decrease in instrument scores (bdi) indicating a clinical significant
-#> improvement.
-#> There were 43 participants in the whole dataset of which 40 (93%) could be
-#> included in the analysis.
+#> Approach:          Anchor-based
+#> MID Improvement:   7
+#> MID Deterioration: 7
+#> N (original):      43
+#> N (used):          40
+#> Percent (used):    93.02%
+#> Better is:         Lower
+#> Outcome:           bdi
 #> 
-#> ── Individual Level Results
-#> Category     |  n | Percent
+#> Category     |  N | Percent
 #> ---------------------------
 #> Improved     | 25 |  62.50%
 #> Unchanged    | 11 |  27.50%
@@ -141,23 +146,25 @@ cs_results_grouped <- claus_2020 |>
 
 summary(cs_results_grouped)
 #> 
-#> ── Clinical Significance Results ──
+#> ---- Clinical Significance Results ----
 #> 
-#> Individual anchor-based analysis of clinical significance with a 7 point
-#> decrease in instrument scores (bdi) indicating a clinical significant
-#> improvement.
-#> There were 43 participants in the whole dataset of which 40 (93%) could be
-#> included in the analysis.
+#> Approach:          Anchor-based
+#> MID Improvement:   7
+#> MID Deterioration: 7
+#> N (original):      43
+#> N (used):          40
+#> Percent (used):    93.02%
+#> Better is:         Lower
+#> Outcome:           bdi
 #> 
-#> ── Individual Level Results
-#> Group |     Category |  n | Percent
-#> -----------------------------------
-#> TAU   |     Improved |  8 |  20.00%
-#> TAU   |    Unchanged |  7 |  17.50%
-#> TAU   | Deteriorated |  4 |  10.00%
-#> PA    |     Improved | 17 |  42.50%
-#> PA    |    Unchanged |  4 |  10.00%
-#> PA    | Deteriorated |  0 |   0.00%
+#> Group |     Category |  N | Percent | Percent by Group
+#> ------------------------------------------------------
+#> TAU   |     Improved |  8 |  20.00% |           42.11%
+#> TAU   |    Unchanged |  7 |  17.50% |           36.84%
+#> TAU   | Deteriorated |  4 |  10.00% |           21.05%
+#> PA    |     Improved | 17 |  42.50% |           80.95%
+#> PA    |    Unchanged |  4 |  10.00% |           19.05%
+#> PA    | Deteriorated |  0 |   0.00% |            0.00%
 plot(cs_results_grouped)
 ```
 
