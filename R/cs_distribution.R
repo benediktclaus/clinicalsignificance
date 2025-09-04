@@ -344,25 +344,20 @@ cs_distribution <- function(
 #'
 #' cs_results
 print.cs_distribution <- function(x, ...) {
-  summary_table <- x[["summary_table"]]
-  cs_method <- x[["method"]]
+  model_info <- .format_model_info_string(
+    list(
+      Approach = "Distribution-based",
+      "RCI Method" = x[["method"]]
+    )
+  )
 
-  summary_table_formatted <- summary_table |>
-    dplyr::mutate(
-      dplyr::across(dplyr::contains("percent"), \(a) insight::format_percent(a))
-    ) |>
-    dplyr::rename_with(snakecase::to_title_case)
+  summary_table <- .format_summary_table(x[["summary_table"]])
 
   # Print output
-  output_fun <- function() {
-    cli::cli_h2("Clinical Significance Results")
-    cli::cli_text(
-      "Distribution-based approach using the {.strong {cs_method}} method."
-    )
-    cli::cat_line()
-    cli::cli_verbatim(insight::export_table(summary_table_formatted))
-  }
-  output_fun()
+  .print_strings(
+    model_info,
+    summary_table
+  )
 }
 
 
@@ -380,46 +375,43 @@ print.cs_distribution <- function(x, ...) {
 #'
 #' summary(cs_results)
 summary.cs_distribution <- function(object, ...) {
+  # browser()
   # Get necessary information from object
-  summary_table <- object[["summary_table"]]
-  summary_table_formatted <- summary_table |>
-    dplyr::mutate(
-      dplyr::across(dplyr::contains("percent"), \(a) insight::format_percent(a))
-    ) |>
-    dplyr::rename_with(snakecase::to_title_case)
-
-  cs_method <- object[["method"]]
+  summary_table <- .format_summary_table(object[["summary_table"]])
   n_original <- cs_get_n(object, "original")[[1]]
   n_used <- cs_get_n(object, "used")[[1]]
-  pct <- round(n_used / n_original, digits = 3) * 100
+  rci_method <- object[["method"]]
 
-  outcome <- object[["outcome"]]
-  if (cs_method == "HLM") {
-    reliability_summary <- "The outcome was {.strong {outcome}}."
-  } else if (cs_method != "NK") {
-    reliability <- cs_get_reliability(object)[[1]]
-    reliability_summary <- "The outcome was {.strong {outcome}} and the reliability was set to {.strong {reliability}}."
+  model_info <- list(
+    Approach = "Distribution-based",
+    "RCI Method" = rci_method,
+    "N (original)" = n_original,
+    "N (used)" = n_used,
+    "Percent used" = insight::format_percent(
+      n_used / n_original
+    ),
+    Outcome = object[["outcome"]]
+  )
+
+  if (rci_method == "HLM") {
+    additional_info <- list(
+      Reliability = "----"
+    )
+  } else if (rci_method == "NK") {
+    additional_info <- list(
+      "Realiability Pre" = cs_get_reliability(object)[[1]],
+      "Reliability Post" = cs_get_reliability(object)[[2]]
+    )
   } else {
-    reliability_pre <- cs_get_reliability(object)[[1]]
-    reliability_post <- cs_get_reliability(object)[[2]]
-    reliability_summary <- "The outcome was {.strong {outcome}} and the reliability was set to {.strong {reliability_pre}} (pre intervention) and {.strong {reliability_post}} (post intervention)."
+    additional_info <- list(
+      Reliability = cs_get_reliability(object)[[1]]
+    )
   }
 
-  # Print output
-  output_fun <- function() {
-    cli::cli_h2("Clinical Significance Results")
-    cli::cli_text(
-      "Distribution-based analysis of clinical significance using the {.strong {cs_method}} method for calculating the RCI."
-    )
-    cli::cat_line()
-    cli::cli_text(
-      "There were {.strong {n_original}} participants in the whole dataset of which {.strong {n_used}} {.strong ({pct}%)} could be included in the analysis."
-    )
-    cli::cat_line()
-    cli::cli_text(reliability_summary)
-    cli::cat_line()
-    cli::cli_h3("Individual Level Results")
-    cli::cli_verbatim(insight::export_table(summary_table_formatted))
-  }
-  output_fun()
+  model_info <- .format_model_info_string(c(model_info, additional_info))
+
+  .print_strings(
+    model_info,
+    summary_table
+  )
 }

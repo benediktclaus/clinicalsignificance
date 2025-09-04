@@ -1,3 +1,81 @@
+#' Format a Summary Table for Printing
+#'
+#' @description
+#' Internal helper function to prepare a summary table for output in `print()`
+#' or `summary()` methods.
+#'
+#' - Columns containing "percent" in their name are formatted using `insight::format_percent()`.
+#' - All column names are converted to Title Case using `snakecase::to_title_case()`.
+#'
+#' @param summary_table A `data.frame` or `tibble` to be formatted.
+#'
+#' @return A formatted `tibble`.
+#'
+#' @noRd
+.format_summary_table <- function(summary_table) {
+  summary_table |>
+    dplyr::mutate(
+      dplyr::across(dplyr::contains("percent"), \(a) insight::format_percent(a))
+    ) |>
+    dplyr::rename_with(snakecase::to_title_case) |>
+    insight::export_table()
+}
+
+#' Print a Formatted Model Information Table as String
+#'
+#' @description
+#' An internal helper that takes a named list of model attributes and prints them
+#' to the console as a key-value table. Values are left-aligned for a clean,
+#' table-like appearance.
+#'
+#' @param model_info A named `list` where names are the descriptions (keys) and
+#'   elements are the values to be displayed.
+#'
+#' @return Invisibly `NULL`. This function is called for its side effect of
+#'   printing to the console.
+#'
+#' @noRd
+.format_model_info_string <- function(model_info) {
+  # Add the colon to the names first
+  names_with_colon <- paste0(names(model_info), ":")
+
+  # Find the width of the longest name-with-colon
+  width <- max(nchar(names_with_colon))
+
+  # The format string now pads the combined "name:" string
+  format_string <- paste0("%-", width, "s %s")
+
+  formatted_lines <- purrr::map2_chr(
+    names_with_colon,
+    model_info,
+    \(name, value) {
+      sprintf(format_string, name, value)
+    }
+  )
+
+  paste(formatted_lines, collapse = "\n")
+}
+
+#' Print Strings with a Standard Heading and Separation
+#'
+#' @description
+#' A helper function that wraps `cat()` to produce a standardized output. It
+#' first prints a "Clinical Significance Results" heading and then prints any
+#' number of subsequent strings, each separated by a blank line.
+#'
+#' @param ... Character strings to be printed. Each argument will be separated
+#'   by a blank line.
+#'
+#' @return Invisibly `NULL`. This function is called for its side effect of
+#'   printing to the console.
+#'
+#' @noRd
+.print_strings <- function(...) {
+  heading <- "\n---- Clinical Significance Results ----"
+
+  cat(heading, ..., sep = "\n\n")
+}
+
 #' Check if a data frame has a column named group
 #'
 #' @param data A data frame
@@ -10,7 +88,6 @@
 }
 
 
-
 #' Check if an Object is of Class cs_analysis
 #'
 #' @param data A data frame
@@ -19,9 +96,12 @@
 #'
 #' @noRd
 .check_class <- function(x) {
-  if (!inherits(x, "cs_analysis")) cli::cli_abort("The supplied object must be of class {.code cs_analysis} and not {.code {class(x)}}.")
+  if (!inherits(x, "cs_analysis")) {
+    cli::cli_abort(
+      "The supplied object must be of class {.code cs_analysis} and not {.code {class(x)}}."
+    )
+  }
 }
-
 
 
 #' Calculate improvement or deterioration based on RCI scores
@@ -41,9 +121,9 @@
 .calc_improvement <- function(data, rci_cutoff = 1.96, direction = 1) {
   data |>
     dplyr::mutate(
-      improved        = ifelse(direction * rci > rci_cutoff, TRUE, FALSE),
-      deteriorated    = ifelse(direction * rci < -rci_cutoff, TRUE, FALSE),
-      unchanged       = !improved & !deteriorated
+      improved = ifelse(direction * rci > rci_cutoff, TRUE, FALSE),
+      deteriorated = ifelse(direction * rci < -rci_cutoff, TRUE, FALSE),
+      unchanged = !improved & !deteriorated
     ) |>
     dplyr::select(id, rci, improved:unchanged)
 }
