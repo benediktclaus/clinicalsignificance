@@ -309,25 +309,21 @@ cs_statistical <- function(
 #'
 #' cs_results
 print.cs_statistical <- function(x, ...) {
-  summary_table <- x[["summary_table"]]
+  summary_table <- .format_summary_table(x[["summary_table"]])
   cs_method <- x[["method"]]
 
-  summary_table_formatted <- summary_table |>
-    dplyr::mutate(
-      dplyr::across(dplyr::contains("percent"), \(a) insight::format_percent(a))
-    ) |>
-    dplyr::rename_with(snakecase::to_title_case)
+  model_info <- .format_model_info_string(
+    list(
+      Approach = "Statistical",
+      Method = cs_method
+    )
+  )
 
   # Print output
-  output_fun <- function() {
-    cli::cli_h2("Clinical Significance Results")
-    cli::cli_text(
-      "Statistical approach using the {.strong {cs_method}} method."
-    )
-    cli::cat_line()
-    cli::cli_verbatim(insight::export_table(summary_table_formatted))
-  }
-  output_fun()
+  .print_strings(
+    model_info,
+    summary_table
+  )
 }
 
 
@@ -354,17 +350,14 @@ print.cs_statistical <- function(x, ...) {
 #' summary(cs_results)
 summary.cs_statistical <- function(object, ...) {
   # Get necessary information from object
-  summary_table <- object[["summary_table"]]
-  summary_table_formatted <- summary_table |>
-    dplyr::mutate(
-      dplyr::across(dplyr::contains("percent"), \(a) insight::format_percent(a))
-    ) |>
-    dplyr::rename_with(snakecase::to_title_case)
+  summary_table <- .format_summary_table(
+    object[["summary_table"]],
+    table_title = "-- Results"
+  )
 
   cs_method <- object[["method"]]
   n_original <- cs_get_n(object, "original")[[1]]
   n_used <- cs_get_n(object, "used")[[1]]
-  pct <- round(n_used / n_original, digits = 3) * 100
   cutoff_info <- cs_get_cutoff(object, with_descriptives = TRUE)
   cutoff_type <- cutoff_info[["type"]]
   cutoff_value <- round(cutoff_info[["value"]], 2)
@@ -375,30 +368,26 @@ summary.cs_statistical <- function(object, ...) {
       "M Functional" = "m_functional",
       "SD Functional" = "sd_functional"
     ) |>
-    insight::export_table(missing = "---", )
+    insight::export_table(missing = "---", title = "-- Cutoff Descriptives")
 
   outcome <- object[["outcome"]]
 
+  model_info <- .format_model_info_string(
+    list(
+      Approach = "Statistical",
+      Method = cs_method,
+      "N (original)" = n_original,
+      "N (used)" = n_used,
+      "Percent used" = insight::format_percent(n_used / n_original),
+      "Cutoff type" = cutoff_type,
+      "Cutoff" = cutoff_value
+    )
+  )
+
   # Print output
-  output_fun <- function() {
-    cli::cli_h2("Clinical Significance Results")
-    cli::cli_text(
-      "Statistical approach of clinical significance using the {.strong {cs_method}} method for calculating the population cutoff."
-    )
-    cli::cat_line()
-    cli::cli_text(
-      "There were {.strong {n_original}} participants in the whole dataset of which {.strong {n_used}} {.strong ({pct}%)} could be included in the analysis."
-    )
-    cli::cat_line()
-    cli::cli_text(
-      "The cutoff type was {.strong {cutoff_type}} with a value of {.strong {cutoff_value}} based on the following sumamry statistics:"
-    )
-    cli::cat_line()
-    cli::cli_h3("Population Characteristics")
-    cli::cli_verbatim(cutoff_descriptives)
-    cli::cat_line()
-    cli::cli_h3("Individual Level Results")
-    cli::cli_verbatim(insight::export_table(summary_table_formatted))
-  }
-  output_fun()
+  .print_strings(
+    model_info,
+    cutoff_descriptives,
+    summary_table
+  )
 }
