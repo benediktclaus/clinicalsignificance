@@ -470,12 +470,14 @@ print.cs_anchor_group_within <- function(x, ...) {
       "Upper]" = "upper",
       "Category" = "category"
     )
+
   if (.has_group(summary_table_formatted)) {
     summary_table_formatted <- dplyr::rename(
       summary_table_formatted,
       "Group" = "group"
     )
   }
+
   if (!x[["bayesian"]]) {
     summary_table_formatted <- dplyr::rename(
       summary_table_formatted,
@@ -488,33 +490,29 @@ print.cs_anchor_group_within <- function(x, ...) {
     )
   }
 
-  mid_improvement <- x[["mid_improvement"]]
-  direction <- x[["direction"]]
+  summary_table <- .format_summary_table(summary_table_formatted)
 
-  if (direction == -1) {
-    dir_improvement <- "decrease"
+  mid_improvement <- x[["mid_improvement"]]
+
+  if (x[["direction"]] == -1) {
+    direction <- "Lower"
   } else {
-    dir_improvement <- "increase"
+    direction <- "Higher"
   }
-  if (direction == -1) {
-    dir_deterioration <- "increase"
-  } else {
-    dir_deterioration <- "decrease"
-  }
+
+  model_info <- .format_model_info_string(
+    list(
+      Approach = "Anchor-based (within groups)",
+      "MID Improvement" = mid_improvement,
+      "Better is" = direction
+    )
+  )
 
   # Print output
-  output_fun <- function() {
-    cli::cli_h2("Clinical Significance Results")
-    cli::cli_text(
-      "Groupwise anchor-based approach ({.strong within} groups) with a {.strong {mid_improvement} point} {dir_improvement} in instrument scores indicating a clinical significant improvement."
-    )
-    cli::cat_line()
-    cli::cli_verbatim(insight::export_table(
-      summary_table_formatted,
-      align = "left"
-    ))
-  }
-  output_fun()
+  .print_strings(
+    model_info,
+    summary_table
+  )
 }
 
 
@@ -565,33 +563,29 @@ print.cs_anchor_group_between <- function(x, ...) {
     )
   }
 
-  mid_improvement <- x[["mid_improvement"]]
-  direction <- x[["direction"]]
+  summary_table <- .format_summary_table(summary_table_formatted)
 
-  if (direction == -1) {
-    dir_improvement <- "decrease"
+  mid_improvement <- x[["mid_improvement"]]
+
+  if (x[["direction"]] == -1) {
+    direction <- "Lower"
   } else {
-    dir_improvement <- "increase"
+    direction <- "Higher"
   }
-  if (direction == -1) {
-    dir_deterioration <- "increase"
-  } else {
-    dir_deterioration <- "decrease"
-  }
+
+  model_info <- .format_model_info_string(
+    list(
+      Approach = "Anchor-based (between groups)",
+      "MID (Improvement)" = mid_improvement,
+      "Better is" = direction
+    )
+  )
 
   # Print output
-  output_fun <- function() {
-    cli::cli_h2("Clinical Significance Results")
-    cli::cli_text(
-      "Groupwise anchor-based approach ({.strong between} groups) with a {.strong {mid_improvement} point} {dir_improvement} in instrument scores indicating a clinical significant improvement."
-    )
-    cli::cat_line()
-    cli::cli_verbatim(insight::export_table(
-      summary_table_formatted,
-      align = "left"
-    ))
-  }
-  output_fun()
+  .print_strings(
+    model_info,
+    summary_table
+  )
 }
 
 
@@ -675,7 +669,6 @@ summary.cs_anchor_individual_within <- function(object, ...) {
 #'
 #' summary(cs_results)
 summary.cs_anchor_group_within <- function(object, ...) {
-  # Get necessary information from object
   summary_table_formatted <- object[["anchor_results"]] |>
     dplyr::rename(
       "Difference" = "difference",
@@ -684,6 +677,8 @@ summary.cs_anchor_group_within <- function(object, ...) {
       "Upper]" = "upper",
       "Category" = "category"
     )
+
+  # Get necessary information from object
   if (.has_group(summary_table_formatted)) {
     summary_table_formatted <- dplyr::rename(
       summary_table_formatted,
@@ -691,44 +686,39 @@ summary.cs_anchor_group_within <- function(object, ...) {
     )
   }
 
+  summary_table <- .format_summary_table(summary_table_formatted)
+
   mid_improvement <- object[["mid_improvement"]]
   n_original <- cs_get_n(object, "original")[[1]]
   n_used <- cs_get_n(object, "used")[[1]]
   pct <- round(n_used / n_original, digits = 3) * 100
   direction <- object[["direction"]]
 
-  if (direction == -1) {
-    dir_improvement <- "decrease"
+  if (object[["direction"]] == -1) {
+    direction <- "Lower"
   } else {
-    dir_improvement <- "increase"
-  }
-  if (direction == -1) {
-    dir_deterioration <- "increase"
-  } else {
-    dir_deterioration <- "decrease"
+    direction <- "Higher"
   }
 
   outcome <- object[["outcome"]]
 
-  # Print output
-  output_fun <- function() {
-    cli::cli_h2("Clinical Significance Results")
-    cli::cli_text(c(
-      "Groupwise anchor-based analysis of clinical significance ({.strong within} groups) with a {.strong {mid_improvement} point} {dir_improvement} in instrument scores ({.strong {outcome}}) indicating a clinical significant improvement."
-    ))
-    cli::cat_line()
-    cli::cli_text(
-      "There were {.strong {n_original}} participants in the whole dataset of which {.strong {n_used}} {.strong ({pct}%)} could be included in the analysis."
+  model_info <- .format_model_info_string(
+    list(
+      Approach = "Anchor-based (between groups)",
+      "MID Improvement" = mid_improvement,
+      "N (original)" = n_original,
+      "N (used)" = n_used,
+      "Percent used" = insight::format_percent(n_used / n_original),
+      "Better is" = direction,
+      Outcome = outcome
     )
-    cli::cat_line()
-    cli::cli_h3("Group Level Results")
-    cli::cat_line()
-    cli::cli_verbatim(insight::export_table(
-      summary_table_formatted,
-      align = "left"
-    ))
-  }
-  output_fun()
+  )
+
+  # Print output
+  .print_strings(
+    model_info,
+    summary_table
+  )
 }
 
 
@@ -780,35 +770,30 @@ summary.cs_anchor_group_between <- function(object, ...) {
     )
   }
 
-  mid_improvement <- object[["mid_improvement"]]
-  direction <- object[["direction"]]
+  summary_table <- .format_summary_table(summary_table_formatted)
 
-  if (direction == -1) {
-    dir_improvement <- "decrease"
+  mid_improvement <- object[["mid_improvement"]]
+
+  if (object[["direction"]] == -1) {
+    direction <- "Lower"
   } else {
-    dir_improvement <- "increase"
-  }
-  if (direction == -1) {
-    dir_deterioration <- "increase"
-  } else {
-    dir_deterioration <- "decrease"
+    direction <- "Higher"
   }
 
   outcome <- object[["outcome"]]
 
+  model_info <- .format_model_info_string(
+    list(
+      Approach = "Anchor-based (between groups)",
+      "MID (Improvement)" = mid_improvement,
+      "Better is" = direction,
+      Outcome = outcome
+    )
+  )
+
   # Print output
-  output_fun <- function() {
-    cli::cli_h2("Clinical Significance Results")
-    cli::cli_text(c(
-      "Groupwise anchor-based analysis of clinical significance ({.strong between} groups) with a {.strong {mid_improvement} point} {dir_improvement} in instrument scores ({.strong {outcome}}) indicating a clinical significant improvement."
-    ))
-    cli::cat_line()
-    cli::cli_h3("Group Level Results")
-    cli::cat_line()
-    cli::cli_verbatim(insight::export_table(
-      summary_table_formatted,
-      align = "left"
-    ))
-  }
-  output_fun()
+  .print_strings(
+    model_info,
+    summary_table
+  )
 }
