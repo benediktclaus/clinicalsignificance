@@ -271,13 +271,6 @@ print.cs_percentage <- function(x, ...) {
   )
 
   # Print output
-  # output_fun <- function() {
-  #   cli::cli_h2("Clinical Significance Results")
-  #   cli::cli_text(c("Percentage-change approach with a ", pct_string))
-  #   cli::cat_line()
-  #   cli::cli_verbatim(insight::export_table(summary_table_formatted))
-  # }
-  # output_fun()
 }
 
 
