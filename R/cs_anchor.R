@@ -414,44 +414,30 @@ cs_anchor <- function(
 #'   cs_distribution(id, time, hamd, pre = 1, post = 4, reliability = 0.8)
 #' cs_results
 print.cs_anchor_individual_within <- function(x, ...) {
-  summary_table <- x[["summary_table"]]
+  summary_table <- .format_summary_table(x[["summary_table"]])
   mid_improvement <- x[["mid_improvement"]]
   mid_deterioration <- x[["mid_deterioration"]]
-  direction <- x[["direction"]]
 
-  if (direction == -1) {
-    dir_improvement <- "decrease"
+  if (x[["direction"]] == -1) {
+    direction <- "Lower"
   } else {
-    dir_improvement <- "increase"
-  }
-  if (direction == -1) {
-    dir_deterioration <- "increase"
-  } else {
-    dir_deterioration <- "decrease"
+    direction <- "Higher"
   }
 
-  outcome <- x[["outcome"]]
-
-  if (mid_improvement == mid_deterioration) {
-    pct_string <- "{.strong {mid_improvement} point} {dir_improvement} in instrument scores indicating a clinical significant improvement."
-  } else {
-    pct_string <- "{.strong {mid_improvement} point} {dir_improvement} in instrument scores indicating a clinical significant improvement and a {.strong {mid_deterioration} point} {dir_deterioration} in instrument scores indicating a clinical significant deterioration."
-  }
-
-  summary_table_formatted <- summary_table |>
-    dplyr::mutate(
-      dplyr::across(dplyr::contains("percent"), \(a) insight::format_percent(a))
-    ) |>
-    dplyr::rename_with(snakecase::to_title_case)
+  model_info <- .format_model_info_string(
+    list(
+      Approach = "Anchor-based",
+      "MID Improvement" = mid_improvement,
+      "MID Deterioration" = mid_deterioration,
+      "Better is" = direction
+    )
+  )
 
   # Print output
-  output_fun <- function() {
-    cli::cli_h2("Clinical Significance Results")
-    cli::cli_text(c("Individual anchor-based approach with a ", pct_string))
-    cli::cat_line()
-    cli::cli_verbatim(insight::export_table(summary_table_formatted))
-  }
-  output_fun()
+  .print_strings(
+    model_info,
+    summary_table
+  )
 }
 
 
@@ -631,55 +617,39 @@ print.cs_anchor_group_between <- function(x, ...) {
 #' cs_results
 summary.cs_anchor_individual_within <- function(object, ...) {
   # Get necessary information from object
-  summary_table <- object[["summary_table"]] |>
-    dplyr::mutate(
-      dplyr::across(dplyr::contains("percent"), \(a) insight::format_percent(a))
-    ) |>
-    dplyr::rename_with(snakecase::to_title_case)
-
+  summary_table <- .format_summary_table(object[["summary_table"]])
   mid_improvement <- object[["mid_improvement"]]
   mid_deterioration <- object[["mid_deterioration"]]
   n_original <- cs_get_n(object, "original")[[1]]
   n_used <- cs_get_n(object, "used")[[1]]
   pct <- round(n_used / n_original, digits = 3) * 100
-  direction <- object[["direction"]]
 
-  if (direction == -1) {
-    dir_improvement <- "decrease"
+  if (object[["direction"]] == -1) {
+    direction <- "Lower"
   } else {
-    dir_improvement <- "increase"
-  }
-  if (direction == -1) {
-    dir_deterioration <- "increase"
-  } else {
-    dir_deterioration <- "decrease"
+    direction <- "Higher"
   }
 
   outcome <- object[["outcome"]]
 
-  if (mid_improvement == mid_deterioration) {
-    pct_string <- "{.strong {mid_improvement} point} {dir_improvement} in instrument scores ({.strong {outcome}}) indicating a clinical significant improvement."
-  } else {
-    pct_string <- "{.strong {mid_improvement} point} {dir_improvement} in instrument scores ({.strong {outcome}}) indicating a clinical significant improvement and a {.strong {mid_deterioration} point} {dir_deterioration} in instrument scores indicating a clinical significant deterioration."
-  }
+  model_info <- .format_model_info_string(
+    list(
+      Approach = "Anchor-based",
+      "MID Improvement" = mid_improvement,
+      "MID Deterioration" = mid_deterioration,
+      "N (original)" = n_original,
+      "N (used)" = n_used,
+      "Percent (used)" = insight::format_percent(n_used / n_original),
+      "Better is" = direction,
+      Outcome = outcome
+    )
+  )
 
   # Print output
-  output_fun <- function() {
-    cli::cli_h2("Clinical Significance Results")
-    cli::cli_text(c(
-      "Individual anchor-based analysis of clinical significance with a ",
-      pct_string
-    ))
-    cli::cat_line()
-    cli::cli_text(
-      "There were {.strong {n_original}} participants in the whole dataset of which {.strong {n_used}} {.strong ({pct}%)} could be included in the analysis."
-    )
-    cli::cat_line()
-    cli::cli_h3("Individual Level Results")
-    cli::cat_line()
-    cli::cli_verbatim(insight::export_table(summary_table))
-  }
-  output_fun()
+  .print_strings(
+    model_info,
+    summary_table
+  )
 }
 
 
