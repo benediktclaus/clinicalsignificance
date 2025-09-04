@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">clinicalsignificance</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0.9003</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/pedscience/clinicalsignificance/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/benediktclaus/clinicalsignificance/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -68,7 +68,7 @@
             
             <h4 data-toc-skip class="date">September 26, 2023</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/pedscience/clinicalsignificance/blob/HEAD/vignettes/anchor-based-approach.Rmd" class="external-link"><code>vignettes/anchor-based-approach.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/benediktclaus/clinicalsignificance/blob/HEAD/vignettes/anchor-based-approach.Rmd" class="external-link"><code>vignettes/anchor-based-approach.Rmd</code></a></small>
       <div class="d-none name"><code>anchor-based-approach.Rmd</code></div>
     </div>
 
@@ -196,11 +196,14 @@ lacks clear pre-post measurement labels.</p>
 <code class="sourceCode R"><span><span class="co"># Print the results</span></span>
 <span><span class="va">anchor_results</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Individual anchor-based approach with a <span style="font-weight: bold;">7 point</span> decrease in instrument scores</span></span>
-<span><span class="co">#&gt; indicating a clinical significant improvement.</span></span>
-<span><span class="co">#&gt; Category     |   n | Percent</span></span>
+<span><span class="co">#&gt; Approach:          Anchor-based</span></span>
+<span><span class="co">#&gt; MID Improvement:   7</span></span>
+<span><span class="co">#&gt; MID Deterioration: 7</span></span>
+<span><span class="co">#&gt; Better is:         Lower</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Category     |   N | Percent</span></span>
 <span><span class="co">#&gt; ----------------------------</span></span>
 <span><span class="co">#&gt; Improved     | 331 |  59.64%</span></span>
 <span><span class="co">#&gt; Unchanged    | 157 |  28.29%</span></span>
@@ -209,16 +212,18 @@ lacks clear pre-post measurement labels.</p>
 <span><span class="co"># Get a summary</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">anchor_results</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Individual anchor-based analysis of clinical significance with a <span style="font-weight: bold;">7 point</span></span></span>
-<span><span class="co">#&gt; decrease in instrument scores (<span style="font-weight: bold;">mom_di</span>) indicating a clinical significant</span></span>
-<span><span class="co">#&gt; improvement.</span></span>
-<span><span class="co">#&gt; There were <span style="font-weight: bold;">555</span> participants in the whole dataset of which <span style="font-weight: bold;">555</span> <span style="font-weight: bold;">(100%)</span> could be</span></span>
-<span><span class="co">#&gt; included in the analysis.</span></span>
+<span><span class="co">#&gt; Approach:          Anchor-based</span></span>
+<span><span class="co">#&gt; MID Improvement:   7</span></span>
+<span><span class="co">#&gt; MID Deterioration: 7</span></span>
+<span><span class="co">#&gt; N (original):      555</span></span>
+<span><span class="co">#&gt; N (used):          555</span></span>
+<span><span class="co">#&gt; Percent (used):    100.00%</span></span>
+<span><span class="co">#&gt; Better is:         Lower</span></span>
+<span><span class="co">#&gt; Outcome:           mom_di</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── Individual Level Results</span></span>
-<span><span class="co">#&gt; Category     |   n | Percent</span></span>
+<span><span class="co">#&gt; Category     |   N | Percent</span></span>
 <span><span class="co">#&gt; ----------------------------</span></span>
 <span><span class="co">#&gt; Improved     | 331 |  59.64%</span></span>
 <span><span class="co">#&gt; Unchanged    | 157 |  28.29%</span></span>
@@ -256,16 +261,18 @@ and post parameters.</p>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">claus_results</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Individual anchor-based analysis of clinical significance with a <span style="font-weight: bold;">7 point</span></span></span>
-<span><span class="co">#&gt; decrease in instrument scores (<span style="font-weight: bold;">bdi</span>) indicating a clinical significant</span></span>
-<span><span class="co">#&gt; improvement.</span></span>
-<span><span class="co">#&gt; There were <span style="font-weight: bold;">43</span> participants in the whole dataset of which <span style="font-weight: bold;">40</span> <span style="font-weight: bold;">(93%)</span> could be</span></span>
-<span><span class="co">#&gt; included in the analysis.</span></span>
+<span><span class="co">#&gt; Approach:          Anchor-based</span></span>
+<span><span class="co">#&gt; MID Improvement:   7</span></span>
+<span><span class="co">#&gt; MID Deterioration: 7</span></span>
+<span><span class="co">#&gt; N (original):      43</span></span>
+<span><span class="co">#&gt; N (used):          40</span></span>
+<span><span class="co">#&gt; Percent (used):    93.02%</span></span>
+<span><span class="co">#&gt; Better is:         Lower</span></span>
+<span><span class="co">#&gt; Outcome:           bdi</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── Individual Level Results</span></span>
-<span><span class="co">#&gt; Category     |  n | Percent</span></span>
+<span><span class="co">#&gt; Category     |  N | Percent</span></span>
 <span><span class="co">#&gt; ---------------------------</span></span>
 <span><span class="co">#&gt; Improved     | 25 |  62.50%</span></span>
 <span><span class="co">#&gt; Unchanged    | 11 |  27.50%</span></span>
@@ -293,18 +300,21 @@ for the provided groups.</p>
 <span></span>
 <span><span class="va">anchor_results_grouped</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Individual anchor-based approach with a <span style="font-weight: bold;">7 point</span> decrease in instrument scores</span></span>
-<span><span class="co">#&gt; indicating a clinical significant improvement.</span></span>
-<span><span class="co">#&gt; Group |     Category |  n | Percent</span></span>
-<span><span class="co">#&gt; -----------------------------------</span></span>
-<span><span class="co">#&gt; TAU   |     Improved |  8 |  20.00%</span></span>
-<span><span class="co">#&gt; TAU   |    Unchanged |  7 |  17.50%</span></span>
-<span><span class="co">#&gt; TAU   | Deteriorated |  4 |  10.00%</span></span>
-<span><span class="co">#&gt; PA    |     Improved | 17 |  42.50%</span></span>
-<span><span class="co">#&gt; PA    |    Unchanged |  4 |  10.00%</span></span>
-<span><span class="co">#&gt; PA    | Deteriorated |  0 |   0.00%</span></span>
+<span><span class="co">#&gt; Approach:          Anchor-based</span></span>
+<span><span class="co">#&gt; MID Improvement:   7</span></span>
+<span><span class="co">#&gt; MID Deterioration: 7</span></span>
+<span><span class="co">#&gt; Better is:         Lower</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Group |     Category |  N | Percent | Percent by Group</span></span>
+<span><span class="co">#&gt; ------------------------------------------------------</span></span>
+<span><span class="co">#&gt; TAU   |     Improved |  8 |  20.00% |           42.11%</span></span>
+<span><span class="co">#&gt; TAU   |    Unchanged |  7 |  17.50% |           36.84%</span></span>
+<span><span class="co">#&gt; TAU   | Deteriorated |  4 |  10.00% |           21.05%</span></span>
+<span><span class="co">#&gt; PA    |     Improved | 17 |  42.50% |           80.95%</span></span>
+<span><span class="co">#&gt; PA    |    Unchanged |  4 |  10.00% |           19.05%</span></span>
+<span><span class="co">#&gt; PA    | Deteriorated |  0 |   0.00% |            0.00%</span></span>
 <span></span>
 <span><span class="co"># And plot the groups</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">anchor_results_grouped</span><span class="op">)</span></span></code></pre></div>
@@ -331,11 +341,14 @@ better. Suppose the MID is 4 in this case.</p>
 <span></span>
 <span><span class="va">anchor_results_who</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Individual anchor-based approach with a <span style="font-weight: bold;">4 point</span> increase in instrument scores</span></span>
-<span><span class="co">#&gt; indicating a clinical significant improvement.</span></span>
-<span><span class="co">#&gt; Category     |  n | Percent</span></span>
+<span><span class="co">#&gt; Approach:          Anchor-based</span></span>
+<span><span class="co">#&gt; MID Improvement:   4</span></span>
+<span><span class="co">#&gt; MID Deterioration: 4</span></span>
+<span><span class="co">#&gt; Better is:         Higher</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Category     |  N | Percent</span></span>
 <span><span class="co">#&gt; ---------------------------</span></span>
 <span><span class="co">#&gt; Improved     | 15 |  37.50%</span></span>
 <span><span class="co">#&gt; Unchanged    | 25 |  62.50%</span></span>
@@ -373,18 +386,19 @@ treatment comparisons. Let’s explore this approach.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">anchor_results_group_level</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Groupwise anchor-based analysis of clinical significance (<span style="font-weight: bold;">within</span> groups) with a</span></span>
-<span><span class="co">#&gt; <span style="font-weight: bold;">7 point</span> decrease in instrument scores (<span style="font-weight: bold;">bdi</span>) indicating a clinical significant</span></span>
-<span><span class="co">#&gt; improvement.</span></span>
-<span><span class="co">#&gt; There were <span style="font-weight: bold;">43</span> participants in the whole dataset of which <span style="font-weight: bold;">40</span> <span style="font-weight: bold;">(93%)</span> could be</span></span>
-<span><span class="co">#&gt; included in the analysis.</span></span>
+<span><span class="co">#&gt; Approach:        Anchor-based (between groups)</span></span>
+<span><span class="co">#&gt; MID Improvement: 7</span></span>
+<span><span class="co">#&gt; N (original):    43</span></span>
+<span><span class="co">#&gt; N (used):        40</span></span>
+<span><span class="co">#&gt; Percent used:    93.02%</span></span>
+<span><span class="co">#&gt; Better is:       Lower</span></span>
+<span><span class="co">#&gt; Outcome:         bdi</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── Group Level Results</span></span>
-<span><span class="co">#&gt; Difference | [Lower | Upper] | CI-Level | n  | Category                              </span></span>
-<span><span class="co">#&gt; -------------------------------------------------------------------------------------</span></span>
-<span><span class="co">#&gt; -9.40      | -12.87 | -5.79  | 0.95     | 40 | Probably clinically significant effect</span></span></code></pre></div>
+<span><span class="co">#&gt; Difference |  Lower | Upper | Ci Level |  N |                               Category</span></span>
+<span><span class="co">#&gt; ------------------------------------------------------------------------------------</span></span>
+<span><span class="co">#&gt; -9.40      | -12.87 | -5.79 |     0.95 | 40 | Probably clinically significant effect</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="analysis-for-different-groups">Analysis for Different Groups<a class="anchor" aria-label="anchor" href="#analysis-for-different-groups"></a>
@@ -402,14 +416,16 @@ treatment comparisons. Let’s explore this approach.</p>
 <span>    group <span class="op">=</span> <span class="va">treatment</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Groupwise anchor-based approach (<span style="font-weight: bold;">within</span> groups) with a <span style="font-weight: bold;">7 point</span> decrease in</span></span>
-<span><span class="co">#&gt; instrument scores indicating a clinical significant improvement.</span></span>
-<span><span class="co">#&gt; Group | Median Difference | [Lower | Upper] | CI-Level | n  | Category                           </span></span>
-<span><span class="co">#&gt; -------------------------------------------------------------------------------------------------</span></span>
-<span><span class="co">#&gt; TAU   | -4.18             | -9.11  | 0.46   | 0.95     | 19 | Statistically not significant      </span></span>
-<span><span class="co">#&gt; PA    | -13.72            | -18.03 | -9.08  | 0.95     | 21 | Large clinically significant effect</span></span></code></pre></div>
+<span><span class="co">#&gt; Approach:        Anchor-based (within groups)</span></span>
+<span><span class="co">#&gt; MID Improvement: 7</span></span>
+<span><span class="co">#&gt; Better is:       Lower</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Group | Median Difference |  Lower | Upper | Ci Level |  N |                            Category</span></span>
+<span><span class="co">#&gt; ------------------------------------------------------------------------------------------------</span></span>
+<span><span class="co">#&gt; TAU   |             -4.18 |  -9.11 |  0.46 |     0.95 | 19 |       Statistically not significant</span></span>
+<span><span class="co">#&gt; PA    |            -13.72 | -18.03 | -9.08 |     0.95 | 21 | Large clinically significant effect</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="comparing-groups">Comparing Groups<a class="anchor" aria-label="anchor" href="#comparing-groups"></a>
@@ -427,17 +443,15 @@ treatment comparisons. Let’s explore this approach.</p>
 <span>    effect <span class="op">=</span> <span class="st">"between"</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Groupwise anchor-based approach (<span style="font-weight: bold;">between</span> groups) with a <span style="font-weight: bold;">7 point</span> decrease in</span></span>
-<span><span class="co">#&gt; instrument scores indicating a clinical significant improvement.</span></span>
-<span><span class="co">#&gt; Group 1 | Group 2 | Median Difference | [Lower | Upper] | CI-Level | n (1)</span></span>
-<span><span class="co">#&gt; --------------------------------------------------------------------------</span></span>
-<span><span class="co">#&gt; TAU     | PA      | -10.24            | -18.22 | -2.51  | 0.95     | 19   </span></span>
+<span><span class="co">#&gt; Approach:          Anchor-based (between groups)</span></span>
+<span><span class="co">#&gt; MID (Improvement): 7</span></span>
+<span><span class="co">#&gt; Better is:         Lower</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Group 1 | n (2) | Category                              </span></span>
-<span><span class="co">#&gt; --------------------------------------------------------</span></span>
-<span><span class="co">#&gt; TAU     | 21    | Probably clinically significant effect</span></span></code></pre></div>
+<span><span class="co">#&gt; Group 1 | Group 2 | Median Difference |  Lower | Upper | Ci Level | N 1 | N 2 |                               Category</span></span>
+<span><span class="co">#&gt; ----------------------------------------------------------------------------------------------------------------------</span></span>
+<span><span class="co">#&gt; TAU     |      PA |            -10.24 | -18.22 | -2.51 |     0.95 |  19 |  21 | Probably clinically significant effect</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">

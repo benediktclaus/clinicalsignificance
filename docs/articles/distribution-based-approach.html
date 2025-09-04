@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">clinicalsignificance</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0.9003</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/pedscience/clinicalsignificance/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/benediktclaus/clinicalsignificance/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -67,7 +67,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Distribution-Based Approach</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/pedscience/clinicalsignificance/blob/HEAD/vignettes/distribution-based-approach.Rmd" class="external-link"><code>vignettes/distribution-based-approach.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/benediktclaus/clinicalsignificance/blob/HEAD/vignettes/distribution-based-approach.Rmd" class="external-link"><code>vignettes/distribution-based-approach.Rmd</code></a></small>
       <div class="d-none name"><code>distribution-based-approach.Rmd</code></div>
     </div>
 
@@ -154,13 +154,15 @@ and want to set a reliability threshold of 0.80.</p>
 <span><span class="va">antidepressants</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/cs_distribution.html">cs_distribution</a></span><span class="op">(</span><span class="va">patient</span>, <span class="va">measurement</span>, <span class="va">mom_di</span>, reliability <span class="op">=</span> <span class="fl">0.80</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Your "Before" was set as pre measurement and and your "After" as post.</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Distribution-based approach using the <span style="font-weight: bold;">JT</span> method.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> If that is not correct, please specify the pre measurement with the argument</span></span>
 <span><span class="co">#&gt;   "pre".</span></span>
-<span><span class="co">#&gt; Category     |   n | Percent</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Approach:   Distribution-based</span></span>
+<span><span class="co">#&gt; RCI Method: JT</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Category     |   N | Percent</span></span>
 <span><span class="co">#&gt; ----------------------------</span></span>
 <span><span class="co">#&gt; Improved     | 274 |  49.37%</span></span>
 <span><span class="co">#&gt; Unchanged    | 237 |  42.70%</span></span>
@@ -190,16 +192,17 @@ lacks clear pre-post measurement labels.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cs_results</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Distribution-based analysis of clinical significance using the <span style="font-weight: bold;">JT</span> method for</span></span>
-<span><span class="co">#&gt; calculating the RCI.</span></span>
-<span><span class="co">#&gt; There were <span style="font-weight: bold;">555</span> participants in the whole dataset of which <span style="font-weight: bold;">555</span> <span style="font-weight: bold;">(100%)</span> could be</span></span>
-<span><span class="co">#&gt; included in the analysis.</span></span>
-<span><span class="co">#&gt; The outcome was <span style="font-weight: bold;">mom_di</span> and the reliability was set to <span style="font-weight: bold;">0.8</span>.</span></span>
+<span><span class="co">#&gt; Approach:     Distribution-based</span></span>
+<span><span class="co">#&gt; RCI Method:   JT</span></span>
+<span><span class="co">#&gt; N (original): 555</span></span>
+<span><span class="co">#&gt; N (used):     555</span></span>
+<span><span class="co">#&gt; Percent used: 100.00%</span></span>
+<span><span class="co">#&gt; Outcome:      mom_di</span></span>
+<span><span class="co">#&gt; Reliability:  0.8</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── Individual Level Results</span></span>
-<span><span class="co">#&gt; Category     |   n | Percent</span></span>
+<span><span class="co">#&gt; Category     |   N | Percent</span></span>
 <span><span class="co">#&gt; ----------------------------</span></span>
 <span><span class="co">#&gt; Improved     | 274 |  49.37%</span></span>
 <span><span class="co">#&gt; Unchanged    | 237 |  42.70%</span></span>
@@ -231,26 +234,29 @@ and post parameters.</p>
 <span><span class="co"># Display the results</span></span>
 <span><span class="va">cs_results</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Distribution-based approach using the <span style="font-weight: bold;">JT</span> method.</span></span>
-<span><span class="co">#&gt; Category     |  n | Percent</span></span>
+<span><span class="co">#&gt; Approach:   Distribution-based</span></span>
+<span><span class="co">#&gt; RCI Method: JT</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Category     |  N | Percent</span></span>
 <span><span class="co">#&gt; ---------------------------</span></span>
 <span><span class="co">#&gt; Improved     | 29 |  72.50%</span></span>
 <span><span class="co">#&gt; Unchanged    | 10 |  25.00%</span></span>
 <span><span class="co">#&gt; Deteriorated |  1 |   2.50%</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cs_results</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Distribution-based analysis of clinical significance using the <span style="font-weight: bold;">JT</span> method for</span></span>
-<span><span class="co">#&gt; calculating the RCI.</span></span>
-<span><span class="co">#&gt; There were <span style="font-weight: bold;">43</span> participants in the whole dataset of which <span style="font-weight: bold;">40</span> <span style="font-weight: bold;">(93%)</span> could be</span></span>
-<span><span class="co">#&gt; included in the analysis.</span></span>
-<span><span class="co">#&gt; The outcome was <span style="font-weight: bold;">hamd</span> and the reliability was set to <span style="font-weight: bold;">0.8</span>.</span></span>
+<span><span class="co">#&gt; Approach:     Distribution-based</span></span>
+<span><span class="co">#&gt; RCI Method:   JT</span></span>
+<span><span class="co">#&gt; N (original): 43</span></span>
+<span><span class="co">#&gt; N (used):     40</span></span>
+<span><span class="co">#&gt; Percent used: 93.02%</span></span>
+<span><span class="co">#&gt; Outcome:      hamd</span></span>
+<span><span class="co">#&gt; Reliability:  0.8</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── Individual Level Results</span></span>
-<span><span class="co">#&gt; Category     |  n | Percent</span></span>
+<span><span class="co">#&gt; Category     |  N | Percent</span></span>
 <span><span class="co">#&gt; ---------------------------</span></span>
 <span><span class="co">#&gt; Improved     | 29 |  72.50%</span></span>
 <span><span class="co">#&gt; Unchanged    | 10 |  25.00%</span></span>
@@ -280,16 +286,17 @@ method.</p>
 <span><span class="co"># Display the results</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cs_results_ha</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Distribution-based analysis of clinical significance using the <span style="font-weight: bold;">HA</span> method for</span></span>
-<span><span class="co">#&gt; calculating the RCI.</span></span>
-<span><span class="co">#&gt; There were <span style="font-weight: bold;">43</span> participants in the whole dataset of which <span style="font-weight: bold;">40</span> <span style="font-weight: bold;">(93%)</span> could be</span></span>
-<span><span class="co">#&gt; included in the analysis.</span></span>
-<span><span class="co">#&gt; The outcome was <span style="font-weight: bold;">hamd</span> and the reliability was set to <span style="font-weight: bold;">0.8</span>.</span></span>
+<span><span class="co">#&gt; Approach:     Distribution-based</span></span>
+<span><span class="co">#&gt; RCI Method:   HA</span></span>
+<span><span class="co">#&gt; N (original): 43</span></span>
+<span><span class="co">#&gt; N (used):     40</span></span>
+<span><span class="co">#&gt; Percent used: 93.02%</span></span>
+<span><span class="co">#&gt; Outcome:      hamd</span></span>
+<span><span class="co">#&gt; Reliability:  0.8</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── Individual Level Results</span></span>
-<span><span class="co">#&gt; Category     |  n | Percent</span></span>
+<span><span class="co">#&gt; Category     |  N | Percent</span></span>
 <span><span class="co">#&gt; ---------------------------</span></span>
 <span><span class="co">#&gt; Improved     | 32 |  80.00%</span></span>
 <span><span class="co">#&gt; Unchanged    |  7 |  17.50%</span></span>
@@ -319,23 +326,24 @@ categories.</p>
 <span><span class="co"># Display the results</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cs_results_grouped</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Distribution-based analysis of clinical significance using the <span style="font-weight: bold;">JT</span> method for</span></span>
-<span><span class="co">#&gt; calculating the RCI.</span></span>
-<span><span class="co">#&gt; There were <span style="font-weight: bold;">43</span> participants in the whole dataset of which <span style="font-weight: bold;">40</span> <span style="font-weight: bold;">(93%)</span> could be</span></span>
-<span><span class="co">#&gt; included in the analysis.</span></span>
-<span><span class="co">#&gt; The outcome was <span style="font-weight: bold;">hamd</span> and the reliability was set to <span style="font-weight: bold;">0.8</span>.</span></span>
+<span><span class="co">#&gt; Approach:     Distribution-based</span></span>
+<span><span class="co">#&gt; RCI Method:   JT</span></span>
+<span><span class="co">#&gt; N (original): 43</span></span>
+<span><span class="co">#&gt; N (used):     40</span></span>
+<span><span class="co">#&gt; Percent used: 93.02%</span></span>
+<span><span class="co">#&gt; Outcome:      hamd</span></span>
+<span><span class="co">#&gt; Reliability:  0.8</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── Individual Level Results</span></span>
-<span><span class="co">#&gt; Group |     Category |  n | Percent</span></span>
-<span><span class="co">#&gt; -----------------------------------</span></span>
-<span><span class="co">#&gt; TAU   |     Improved |  9 |  22.50%</span></span>
-<span><span class="co">#&gt; TAU   |    Unchanged |  9 |  22.50%</span></span>
-<span><span class="co">#&gt; TAU   | Deteriorated |  1 |   2.50%</span></span>
-<span><span class="co">#&gt; PA    |     Improved | 20 |  50.00%</span></span>
-<span><span class="co">#&gt; PA    |    Unchanged |  1 |   2.50%</span></span>
-<span><span class="co">#&gt; PA    | Deteriorated |  0 |   0.00%</span></span>
+<span><span class="co">#&gt; Group |     Category |  N | Percent | Percent by Group</span></span>
+<span><span class="co">#&gt; ------------------------------------------------------</span></span>
+<span><span class="co">#&gt; TAU   |     Improved |  9 |  22.50% |           47.37%</span></span>
+<span><span class="co">#&gt; TAU   |    Unchanged |  9 |  22.50% |           47.37%</span></span>
+<span><span class="co">#&gt; TAU   | Deteriorated |  1 |   2.50% |            5.26%</span></span>
+<span><span class="co">#&gt; PA    |     Improved | 20 |  50.00% |           95.24%</span></span>
+<span><span class="co">#&gt; PA    |    Unchanged |  1 |   2.50% |            4.76%</span></span>
+<span><span class="co">#&gt; PA    | Deteriorated |  0 |   0.00% |            0.00%</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cs_results_grouped</span><span class="op">)</span></span></code></pre></div>
 <p><img src="distribution-based-approach_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
 </div>
@@ -360,10 +368,12 @@ better. Suppose the reliability for the WHO-5 is 0.85.</p>
 <span></span>
 <span><span class="va">distribution_results_who</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Distribution-based approach using the <span style="font-weight: bold;">JT</span> method.</span></span>
-<span><span class="co">#&gt; Category     |  n | Percent</span></span>
+<span><span class="co">#&gt; Approach:   Distribution-based</span></span>
+<span><span class="co">#&gt; RCI Method: JT</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Category     |  N | Percent</span></span>
 <span><span class="co">#&gt; ---------------------------</span></span>
 <span><span class="co">#&gt; Improved     | 21 |  52.50%</span></span>
 <span><span class="co">#&gt; Unchanged    | 18 |  45.00%</span></span>
@@ -392,16 +402,17 @@ Hierarchical Linear Modeling (HLM) method, you can specify the
 <span><span class="co"># Display the results</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cs_results_hlm</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span></span>
+<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Distribution-based analysis of clinical significance using the <span style="font-weight: bold;">HLM</span> method for</span></span>
-<span><span class="co">#&gt; calculating the RCI.</span></span>
-<span><span class="co">#&gt; There were <span style="font-weight: bold;">43</span> participants in the whole dataset of which <span style="font-weight: bold;">40</span> <span style="font-weight: bold;">(93%)</span> could be</span></span>
-<span><span class="co">#&gt; included in the analysis.</span></span>
-<span><span class="co">#&gt; The outcome was <span style="font-weight: bold;">hamd</span>.</span></span>
+<span><span class="co">#&gt; Approach:     Distribution-based</span></span>
+<span><span class="co">#&gt; RCI Method:   HLM</span></span>
+<span><span class="co">#&gt; N (original): 43</span></span>
+<span><span class="co">#&gt; N (used):     40</span></span>
+<span><span class="co">#&gt; Percent used: 93.02%</span></span>
+<span><span class="co">#&gt; Outcome:      hamd</span></span>
+<span><span class="co">#&gt; Reliability:  ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ── Individual Level Results</span></span>
-<span><span class="co">#&gt; Category     |  n | Percent</span></span>
+<span><span class="co">#&gt; Category     |  N | Percent</span></span>
 <span><span class="co">#&gt; ---------------------------</span></span>
 <span><span class="co">#&gt; Improved     | 11 |  27.50%</span></span>
 <span><span class="co">#&gt; Unchanged    | 20 |  50.00%</span></span>

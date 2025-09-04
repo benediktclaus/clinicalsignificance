@@ -7,7 +7,7 @@ percent points, this change is then deemed clinically significant."><meta proper
 significance of intervention studies employing the percentage-change
 approach. For this, each individuals relative change compared to the pre
 intervention measurement and if this change exceeds a predefined change in
-percent points, this change is then deemed clinically significant."><meta property="og:image" content="/logo.png"></head><body>
+percent points, this change is then deemed clinically significant."><meta property="og:image" content="https://benediktclaus.github.io/clinicalsignificance/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -15,7 +15,7 @@ percent points, this change is then deemed clinically significant."><meta proper
 
     <a class="navbar-brand me-2" href="../index.html">clinicalsignificance</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0.9003</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +35,7 @@ percent points, this change is then deemed clinically significant."><meta proper
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/pedscience/clinicalsignificance/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/benediktclaus/clinicalsignificance/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -44,7 +44,7 @@ percent points, this change is then deemed clinically significant."><meta proper
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Percentage-Change Analysis of Clinical Significance</h1>
-      <small class="dont-index">Source: <a href="https://github.com/pedscience/clinicalsignificance/blob/HEAD/R/cs_percentage.R" class="external-link"><code>R/cs_percentage.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/benediktclaus/clinicalsignificance/blob/HEAD/R/cs_percentage.R" class="external-link"><code>R/cs_percentage.R</code></a></small>
       <div class="d-none name"><code>cs_percentage.Rd</code></div>
     </div>
 
@@ -189,35 +189,39 @@ group to compare group differences.</p>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">cs_results</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Percentage-change approach with a <span style="font-weight: bold;">30%</span> decrease in instrument scores indicating</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> a clinical significant improvement.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Category     |  n | Percent</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ---------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Improved     | 25 |  62.50%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Unchanged    | 15 |  37.50%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Deteriorated |  0 |   0.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---- Clinical Significance Results ----</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Approach:                 Percentage-based</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percentage Improvement:   30.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percentage Deterioration: 30.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Better is:                Lower</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Category     |  N | Percent</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Improved     | 25 |  62.50%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Unchanged    | 15 |  37.50%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Deteriorated |  0 |   0.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cs_results</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Percentage-change analysis of clinical significance with a <span style="font-weight: bold;">30%</span> decrease in</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> instrument scores indicating a clinical significant improvement.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> There were <span style="font-weight: bold;">43</span> participants in the whole dataset of which <span style="font-weight: bold;">40</span> <span style="font-weight: bold;">(93%)</span> could be</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> included in the analysis.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---- Clinical Significance Results ----</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Individual Level Results </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Approach:                 Percentage-based</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percentage Improvement:   30.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percentage Deterioration: 30.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Better is:                Lower</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N (original):             43</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N (used):                 40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percent used:             93.02%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Outcome:                  hamd</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Category     |  n | Percent</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ---------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Improved     | 25 |  62.50%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Unchanged    | 15 |  37.50%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Deteriorated |  0 |   0.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Category     |  N | Percent</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Improved     | 25 |  62.50%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Unchanged    | 15 |  37.50%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Deteriorated |  0 |   0.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cs_results</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="cs_percentage-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
@@ -235,37 +239,39 @@ group to compare group differences.</p>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">cs_results_2</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Percentage-change approach with a <span style="font-weight: bold;">30%</span> decrease in instrument scores indicating</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> a clinical significant improvement and a <span style="font-weight: bold;">20%</span> increase in instrument scores</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> indicating a clinical significant deterioration.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Category     |  n | Percent</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ---------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Improved     | 25 |  62.50%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Unchanged    | 14 |  35.00%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Deteriorated |  1 |   2.50%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---- Clinical Significance Results ----</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Approach:                 Percentage-based</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percentage Improvement:   30.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percentage Deterioration: 20.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Better is:                Lower</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Category     |  N | Percent</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Improved     | 25 |  62.50%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Unchanged    | 14 |  35.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Deteriorated |  1 |   2.50%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cs_results_2</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Percentage-change analysis of clinical significance with a <span style="font-weight: bold;">30%</span> decrease in</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> instrument scores indicating a clinical significant improvement and a <span style="font-weight: bold;">20%</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> increase in instrument scores indicating a clinical significant deterioration.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> There were <span style="font-weight: bold;">43</span> participants in the whole dataset of which <span style="font-weight: bold;">40</span> <span style="font-weight: bold;">(93%)</span> could be</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> included in the analysis.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---- Clinical Significance Results ----</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Individual Level Results </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Approach:                 Percentage-based</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percentage Improvement:   30.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percentage Deterioration: 20.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Better is:                Lower</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N (original):             43</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N (used):                 40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percent used:             93.02%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Outcome:                  hamd</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Category     |  n | Percent</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ---------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Improved     | 25 |  62.50%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Unchanged    | 14 |  35.00%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Deteriorated |  1 |   2.50%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Category     |  N | Percent</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Improved     | 25 |  62.50%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Unchanged    | 14 |  35.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Deteriorated |  1 |   2.50%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cs_results_2</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="cs_percentage-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
@@ -283,41 +289,45 @@ group to compare group differences.</p>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">cs_results_grouped</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Percentage-change approach with a <span style="font-weight: bold;">30%</span> decrease in instrument scores indicating</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> a clinical significant improvement.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Group |     Category |  n | Percent</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> -----------------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> TAU   |     Improved |  6 |  15.00%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> TAU   |    Unchanged | 13 |  32.50%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> TAU   | Deteriorated |  0 |   0.00%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> PA    |     Improved | 19 |  47.50%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> PA    |    Unchanged |  2 |   5.00%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> PA    | Deteriorated |  0 |   0.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---- Clinical Significance Results ----</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Approach:                 Percentage-based</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percentage Improvement:   30.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percentage Deterioration: 30.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Better is:                Lower</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Group |     Category |  N | Percent | Percent by Group</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TAU   |     Improved |  6 |  15.00% |           31.58%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TAU   |    Unchanged | 13 |  32.50% |           68.42%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TAU   | Deteriorated |  0 |   0.00% |            0.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PA    |     Improved | 19 |  47.50% |           90.48%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PA    |    Unchanged |  2 |   5.00% |            9.52%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PA    | Deteriorated |  0 |   0.00% |            0.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cs_results_grouped</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Percentage-change analysis of clinical significance with a <span style="font-weight: bold;">30%</span> decrease in</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> instrument scores indicating a clinical significant improvement.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> There were <span style="font-weight: bold;">43</span> participants in the whole dataset of which <span style="font-weight: bold;">40</span> <span style="font-weight: bold;">(93%)</span> could be</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> included in the analysis.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---- Clinical Significance Results ----</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Individual Level Results </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Approach:                 Percentage-based</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percentage Improvement:   30.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percentage Deterioration: 30.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Better is:                Lower</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N (original):             43</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N (used):                 40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percent used:             93.02%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Outcome:                  hamd</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Group |     Category |  n | Percent</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> -----------------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> TAU   |     Improved |  6 |  15.00%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> TAU   |    Unchanged | 13 |  32.50%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> TAU   | Deteriorated |  0 |   0.00%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> PA    |     Improved | 19 |  47.50%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> PA    |    Unchanged |  2 |   5.00%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> PA    | Deteriorated |  0 |   0.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Group |     Category |  N | Percent | Percent by Group</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TAU   |     Improved |  6 |  15.00% |           31.58%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TAU   |    Unchanged | 13 |  32.50% |           68.42%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TAU   | Deteriorated |  0 |   0.00% |            0.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PA    |     Improved | 19 |  47.50% |           90.48%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PA    |    Unchanged |  2 |   5.00% |            9.52%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PA    | Deteriorated |  0 |   0.00% |            0.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cs_results_grouped</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="cs_percentage-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
@@ -336,35 +346,39 @@ group to compare group differences.</p>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">cs_results_who</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Percentage-change approach with a <span style="font-weight: bold;">30%</span> increase in instrument scores indicating</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> a clinical significant improvement.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Category     |  n | Percent</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ---------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Improved     | 28 |  70.00%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Unchanged    |  9 |  22.50%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Deteriorated |  3 |   7.50%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---- Clinical Significance Results ----</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Approach:                 Percentage-based</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percentage Improvement:   30.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percentage Deterioration: 30.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Better is:                Higher</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Category     |  N | Percent</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Improved     | 28 |  70.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Unchanged    |  9 |  22.50%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Deteriorated |  3 |   7.50%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cs_results_who</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Percentage-change analysis of clinical significance with a <span style="font-weight: bold;">30%</span> increase in</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> instrument scores indicating a clinical significant improvement.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> There were <span style="font-weight: bold;">43</span> participants in the whole dataset of which <span style="font-weight: bold;">40</span> <span style="font-weight: bold;">(93%)</span> could be</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> included in the analysis.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---- Clinical Significance Results ----</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Individual Level Results </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Approach:                 Percentage-based</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percentage Improvement:   30.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percentage Deterioration: 30.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Better is:                Higher</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N (original):             43</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N (used):                 40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percent used:             93.02%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Outcome:                  who</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Category     |  n | Percent</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ---------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Improved     | 28 |  70.00%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Unchanged    |  9 |  22.50%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Deteriorated |  3 |   7.50%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Category     |  N | Percent</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Improved     | 28 |  70.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Unchanged    |  9 |  22.50%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Deteriorated |  3 |   7.50%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cs_results_who</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="cs_percentage-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cs_results_who</span>, show <span class="op">=</span> <span class="va">category</span><span class="op">)</span></span></span>

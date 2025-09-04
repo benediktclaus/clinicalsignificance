@@ -11,7 +11,7 @@ predefined minimally important difference (MID) for an instrument is known
 that corresponds to an important symptom improvement for patients. The data
 can then be analyzed on the individual as well as the group level to
 estimate, if the change because of an intervention is clinically
-significant."><meta property="og:image" content="/logo.png"></head><body>
+significant."><meta property="og:image" content="https://benediktclaus.github.io/clinicalsignificance/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -19,7 +19,7 @@ significant."><meta property="og:image" content="/logo.png"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">clinicalsignificance</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0.9003</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +39,7 @@ significant."><meta property="og:image" content="/logo.png"></head><body>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/pedscience/clinicalsignificance/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/benediktclaus/clinicalsignificance/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -48,7 +48,7 @@ significant."><meta property="og:image" content="/logo.png"></head><body>
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Anchor-Based Analysis of Clinical Significance</h1>
-      <small class="dont-index">Source: <a href="https://github.com/pedscience/clinicalsignificance/blob/HEAD/R/cs_anchor.R" class="external-link"><code>R/cs_anchor.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/benediktclaus/clinicalsignificance/blob/HEAD/R/cs_anchor.R" class="external-link"><code>R/cs_anchor.R</code></a></small>
       <div class="d-none name"><code>cs_anchor.Rd</code></div>
     </div>
 
@@ -269,17 +269,20 @@ around effect estimates. Brazilian Journal of Physical Therapy, 23(4),
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   "pre".</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">cs_results</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Individual anchor-based approach with a <span style="font-weight: bold;">8 point</span> decrease in instrument scores</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> indicating a clinical significant improvement.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Category     |   n | Percent</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ----------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Improved     | 316 |  56.94%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Unchanged    | 175 |  31.53%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Deteriorated |  64 |  11.53%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---- Clinical Significance Results ----</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Approach:          Anchor-based</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MID Improvement:   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MID Deterioration: 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Better is:         Lower</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Category     |   N | Percent</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Improved     | 316 |  56.94%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Unchanged    | 175 |  31.53%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Deteriorated |  64 |  11.53%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cs_results</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="cs_anchor-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
@@ -306,38 +309,39 @@ around effect estimates. Brazilian Journal of Physical Therapy, 23(4),
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">cs_results_with_deterioration</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Individual anchor-based approach with a <span style="font-weight: bold;">8 point</span> decrease in instrument scores</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> indicating a clinical significant improvement and a <span style="font-weight: bold;">5 point</span> increase in</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> instrument scores indicating a clinical significant deterioration.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Category     |   n | Percent</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ----------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Improved     | 316 |  56.94%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Unchanged    | 152 |  27.39%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Deteriorated |  87 |  15.68%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---- Clinical Significance Results ----</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Approach:          Anchor-based</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MID Improvement:   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MID Deterioration: 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Better is:         Lower</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Category     |   N | Percent</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Improved     | 316 |  56.94%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Unchanged    | 152 |  27.39%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Deteriorated |  87 |  15.68%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cs_results_with_deterioration</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Individual anchor-based analysis of clinical significance with a <span style="font-weight: bold;">8 point</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> decrease in instrument scores (<span style="font-weight: bold;">mom_di</span>) indicating a clinical significant</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> improvement and a <span style="font-weight: bold;">5 point</span> increase in instrument scores indicating a clinical</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> significant deterioration.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> There were <span style="font-weight: bold;">555</span> participants in the whole dataset of which <span style="font-weight: bold;">555</span> <span style="font-weight: bold;">(100%)</span> could be</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> included in the analysis.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---- Clinical Significance Results ----</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Individual Level Results </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Approach:          Anchor-based</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MID Improvement:   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MID Deterioration: 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N (original):      555</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N (used):          555</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percent (used):    100.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Better is:         Lower</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Outcome:           mom_di</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Category     |   n | Percent</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ----------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Improved     | 316 |  56.94%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Unchanged    | 152 |  27.39%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Deteriorated |  87 |  15.68%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Category     |   N | Percent</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Improved     | 316 |  56.94%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Unchanged    | 152 |  27.39%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Deteriorated |  87 |  15.68%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cs_results_with_deterioration</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="cs_anchor-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
@@ -355,56 +359,57 @@ around effect estimates. Brazilian Journal of Physical Therapy, 23(4),
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">cs_results_grouped</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Individual anchor-based approach with a <span style="font-weight: bold;">8 point</span> decrease in instrument scores</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> indicating a clinical significant improvement and a <span style="font-weight: bold;">5 point</span> increase in</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> instrument scores indicating a clinical significant deterioration.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Group            |     Category |   n | Percent</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List        |     Improved |  27 |   4.86%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List        |    Unchanged |  65 |  11.71%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List        | Deteriorated |  60 |  10.81%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Inactive Placebo |     Improved |  71 |  12.79%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Inactive Placebo |    Unchanged |  41 |   7.39%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Inactive Placebo | Deteriorated |  18 |   3.24%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Active Placebo   |     Improved |  98 |  17.66%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Active Placebo   |    Unchanged |  20 |   3.60%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Active Placebo   | Deteriorated |   3 |   0.54%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Antidepressant   |     Improved | 120 |  21.62%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Antidepressant   |    Unchanged |  26 |   4.68%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Antidepressant   | Deteriorated |   6 |   1.08%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---- Clinical Significance Results ----</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Approach:          Anchor-based</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MID Improvement:   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MID Deterioration: 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Better is:         Lower</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Group            |     Category |   N | Percent | Percent by Group</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ------------------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List        |     Improved |  27 |   4.86% |           17.76%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List        |    Unchanged |  65 |  11.71% |           42.76%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List        | Deteriorated |  60 |  10.81% |           39.47%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Inactive Placebo |     Improved |  71 |  12.79% |           54.62%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Inactive Placebo |    Unchanged |  41 |   7.39% |           31.54%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Inactive Placebo | Deteriorated |  18 |   3.24% |           13.85%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Active Placebo   |     Improved |  98 |  17.66% |           80.99%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Active Placebo   |    Unchanged |  20 |   3.60% |           16.53%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Active Placebo   | Deteriorated |   3 |   0.54% |            2.48%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Antidepressant   |     Improved | 120 |  21.62% |           78.95%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Antidepressant   |    Unchanged |  26 |   4.68% |           17.11%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Antidepressant   | Deteriorated |   6 |   1.08% |            3.95%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cs_results_grouped</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Individual anchor-based analysis of clinical significance with a <span style="font-weight: bold;">8 point</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> decrease in instrument scores (<span style="font-weight: bold;">mom_di</span>) indicating a clinical significant</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> improvement and a <span style="font-weight: bold;">5 point</span> increase in instrument scores indicating a clinical</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> significant deterioration.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> There were <span style="font-weight: bold;">555</span> participants in the whole dataset of which <span style="font-weight: bold;">555</span> <span style="font-weight: bold;">(100%)</span> could be</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> included in the analysis.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---- Clinical Significance Results ----</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Individual Level Results </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Approach:          Anchor-based</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MID Improvement:   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MID Deterioration: 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N (original):      555</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N (used):          555</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percent (used):    100.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Better is:         Lower</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Outcome:           mom_di</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Group            |     Category |   n | Percent</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List        |     Improved |  27 |   4.86%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List        |    Unchanged |  65 |  11.71%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List        | Deteriorated |  60 |  10.81%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Inactive Placebo |     Improved |  71 |  12.79%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Inactive Placebo |    Unchanged |  41 |   7.39%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Inactive Placebo | Deteriorated |  18 |   3.24%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Active Placebo   |     Improved |  98 |  17.66%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Active Placebo   |    Unchanged |  20 |   3.60%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Active Placebo   | Deteriorated |   3 |   0.54%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Antidepressant   |     Improved | 120 |  21.62%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Antidepressant   |    Unchanged |  26 |   4.68%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Antidepressant   | Deteriorated |   6 |   1.08%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Group            |     Category |   N | Percent | Percent by Group</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ------------------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List        |     Improved |  27 |   4.86% |           17.76%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List        |    Unchanged |  65 |  11.71% |           42.76%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List        | Deteriorated |  60 |  10.81% |           39.47%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Inactive Placebo |     Improved |  71 |  12.79% |           54.62%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Inactive Placebo |    Unchanged |  41 |   7.39% |           31.54%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Inactive Placebo | Deteriorated |  18 |   3.24% |           13.85%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Active Placebo   |     Improved |  98 |  17.66% |           80.99%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Active Placebo   |    Unchanged |  20 |   3.60% |           16.53%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Active Placebo   | Deteriorated |   3 |   0.54% |            2.48%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Antidepressant   |     Improved | 120 |  21.62% |           78.95%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Antidepressant   |    Unchanged |  26 |   4.68% |           17.11%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Antidepressant   | Deteriorated |   6 |   1.08% |            3.95%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cs_results_grouped</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="cs_anchor-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
@@ -427,32 +432,33 @@ around effect estimates. Brazilian Journal of Physical Therapy, 23(4),
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">cs_results_groupwise</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Groupwise anchor-based approach (<span style="font-weight: bold;">within</span> groups) with a <span style="font-weight: bold;">8 point</span> decrease in</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> instrument scores indicating a clinical significant improvement.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Median Difference | [Lower | Upper] | CI-Level | n   | Category                           </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ------------------------------------------------------------------------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> -9.78             | -10.88 | -8.63  | 0.95     | 555 | Large clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---- Clinical Significance Results ----</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Approach:        Anchor-based (within groups)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MID Improvement: 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Better is:       Lower</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Median Difference |  Lower | Upper | Ci Level |   N |                            Category</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -9.78             | -10.88 | -8.63 |     0.95 | 555 | Large clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cs_results_groupwise</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Groupwise anchor-based analysis of clinical significance (<span style="font-weight: bold;">within</span> groups) with a</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">8 point</span> decrease in instrument scores (<span style="font-weight: bold;">mom_di</span>) indicating a clinical</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> significant improvement.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> There were <span style="font-weight: bold;">555</span> participants in the whole dataset of which <span style="font-weight: bold;">555</span> <span style="font-weight: bold;">(100%)</span> could be</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> included in the analysis.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---- Clinical Significance Results ----</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Group Level Results </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Approach:        Anchor-based (between groups)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MID Improvement: 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N (original):    555</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N (used):        555</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percent used:    100.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Better is:       Lower</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Outcome:         mom_di</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Difference | [Lower | Upper] | CI-Level | n   | Category                           </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> -----------------------------------------------------------------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> -9.78      | -10.88 | -8.63  | 0.95     | 555 | Large clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Difference |  Lower | Upper | Ci Level |   N |                            Category</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -9.78      | -10.88 | -8.63 |     0.95 | 555 | Large clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cs_results_groupwise</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="cs_anchor-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
@@ -470,38 +476,39 @@ around effect estimates. Brazilian Journal of Physical Therapy, 23(4),
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">cs_results_groupwise_condition</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Groupwise anchor-based approach (<span style="font-weight: bold;">within</span> groups) with a <span style="font-weight: bold;">8 point</span> decrease in</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> instrument scores indicating a clinical significant improvement.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Group            | Median Difference | [Lower | Upper] | CI-Level | n   | Category                                             </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> -------------------------------------------------------------------------------------------------------------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List        | 1.81              | 0.19   | 3.42   | 0.95     | 152 | Statistically significant but not clinically relevant</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Inactive Placebo | -9.37             | -11.48 | -7.22  | 0.95     | 130 | Probably clinically significant effect               </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Active Placebo   | -17.01            | -18.95 | -15.02 | 0.95     | 121 | Large clinically significant effect                  </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Antidepressant   | -15.82            | -17.64 | -14.03 | 0.95     | 152 | Large clinically significant effect                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---- Clinical Significance Results ----</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Approach:        Anchor-based (within groups)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MID Improvement: 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Better is:       Lower</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Group            | Median Difference |  Lower |  Upper | Ci Level |   N |                                              Category</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -------------------------------------------------------------------------------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List        |              1.81 |   0.19 |   3.42 |     0.95 | 152 | Statistically significant but not clinically relevant</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Inactive Placebo |             -9.37 | -11.48 |  -7.22 |     0.95 | 130 |                Probably clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Active Placebo   |            -17.01 | -18.95 | -15.02 |     0.95 | 121 |                   Large clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Antidepressant   |            -15.82 | -17.64 | -14.03 |     0.95 | 152 |                   Large clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cs_results_groupwise_condition</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Groupwise anchor-based analysis of clinical significance (<span style="font-weight: bold;">within</span> groups) with a</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">8 point</span> decrease in instrument scores (<span style="font-weight: bold;">mom_di</span>) indicating a clinical</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> significant improvement.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> There were <span style="font-weight: bold;">555</span> participants in the whole dataset of which <span style="font-weight: bold;">555</span> <span style="font-weight: bold;">(100%)</span> could be</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> included in the analysis.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---- Clinical Significance Results ----</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Group Level Results </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Approach:        Anchor-based (between groups)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MID Improvement: 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N (original):    555</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N (used):        555</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percent used:    100.00%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Better is:       Lower</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Outcome:         mom_di</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Group            | Difference | [Lower | Upper] | CI-Level | n   | Category                                             </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ------------------------------------------------------------------------------------------------------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List        | 1.81       | 0.19   | 3.42   | 0.95     | 152 | Statistically significant but not clinically relevant</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Inactive Placebo | -9.37      | -11.48 | -7.22  | 0.95     | 130 | Probably clinically significant effect               </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Active Placebo   | -17.01     | -18.95 | -15.02 | 0.95     | 121 | Large clinically significant effect                  </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Antidepressant   | -15.82     | -17.64 | -14.03 | 0.95     | 152 | Large clinically significant effect                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Group            | Difference |  Lower |  Upper | Ci Level |   N |                                              Category</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ------------------------------------------------------------------------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List        |       1.81 |   0.19 |   3.42 |     0.95 | 152 | Statistically significant but not clinically relevant</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Inactive Placebo |      -9.37 | -11.48 |  -7.22 |     0.95 | 130 |                Probably clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Active Placebo   |     -17.01 | -18.95 | -15.02 |     0.95 | 121 |                   Large clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Antidepressant   |     -15.82 | -17.64 | -14.03 |     0.95 | 152 |                   Large clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cs_results_groupwise_condition</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="cs_anchor-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
@@ -520,45 +527,46 @@ around effect estimates. Brazilian Journal of Physical Therapy, 23(4),
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">cs_results_groupwise_between</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Groupwise anchor-based approach (<span style="font-weight: bold;">between</span> groups) with a <span style="font-weight: bold;">8 point</span> decrease in</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> instrument scores indicating a clinical significant improvement.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Group 1   | Group 2          | Median Difference | [Lower | Upper] | CI-Level</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> -----------------------------------------------------------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List | Inactive Placebo | -11.71            | -13.37 | -10.17 | 0.95    </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List | Active Placebo   | -17.72            | -19.46 | -15.91 | 0.95    </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List | Antidepressant   | -18.43            | -20.18 | -16.71 | 0.95    </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Group 1   | n (1) | n (2) | Category                           </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List | 152   | 130   | Large clinically significant effect</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List | 152   | 121   | Large clinically significant effect</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List | 152   | 152   | Large clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---- Clinical Significance Results ----</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Approach:          Anchor-based (between groups)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MID (Improvement): 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Better is:         Lower</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Group 1   |          Group 2 | Median Difference |  Lower |  Upper | Ci Level</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List | Inactive Placebo |            -11.71 | -13.37 | -10.17 |     0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List |   Active Placebo |            -17.72 | -19.46 | -15.91 |     0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List |   Antidepressant |            -18.43 | -20.18 | -16.71 |     0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Group 1   | N 1 | N 2 |                            Category</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List | 152 | 130 | Large clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List | 152 | 121 | Large clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List | 152 | 152 | Large clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cs_results_groupwise_between</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Groupwise anchor-based analysis of clinical significance (<span style="font-weight: bold;">between</span> groups) with</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> a <span style="font-weight: bold;">8 point</span> decrease in instrument scores (<span style="font-weight: bold;">mom_di</span>) indicating a clinical</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> significant improvement.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Group Level Results </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---- Clinical Significance Results ----</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Group 1   | Group 2          | Median Difference | [Lower | Upper] | CI-Level</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> -----------------------------------------------------------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List | Inactive Placebo | -11.71            | -13.37 | -10.17 | 0.95    </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List | Active Placebo   | -17.72            | -19.46 | -15.91 | 0.95    </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List | Antidepressant   | -18.43            | -20.18 | -16.71 | 0.95    </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Group 1   | n (1) | n (2) | Category                           </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List | 152   | 130   | Large clinically significant effect</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List | 152   | 121   | Large clinically significant effect</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List | 152   | 152   | Large clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Approach:          Anchor-based (between groups)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MID (Improvement): 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Better is:         Lower</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Outcome:           mom_di</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Group 1   |          Group 2 | Median Difference |  Lower |  Upper | Ci Level</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List | Inactive Placebo |            -11.71 | -13.37 | -10.17 |     0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List |   Active Placebo |            -17.72 | -19.46 | -15.91 |     0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List |   Antidepressant |            -18.43 | -20.18 | -16.71 |     0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Group 1   | N 1 | N 2 |                            Category</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List | 152 | 130 | Large clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List | 152 | 121 | Large clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List | 152 | 152 | Large clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cs_results_groupwise_between</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="cs_anchor-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
@@ -578,45 +586,46 @@ around effect estimates. Brazilian Journal of Physical Therapy, 23(4),
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">cs_results_groupwise_between_freq</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Groupwise anchor-based approach (<span style="font-weight: bold;">between</span> groups) with a <span style="font-weight: bold;">8 point</span> decrease in</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> instrument scores indicating a clinical significant improvement.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Group 1   | Group 2          | Mean Difference | [Lower | Upper] | CI-Level</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List | Inactive Placebo | -11.81          | -13.44 | -10.18 | 0.95    </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List | Active Placebo   | -17.79          | -19.54 | -16.05 | 0.95    </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List | Antidepressant   | -18.52          | -20.25 | -16.79 | 0.95    </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Group 1   | n (1) | n (2) | Category                           </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List | 152   | 130   | Large clinically significant effect</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List | 152   | 121   | Large clinically significant effect</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List | 152   | 152   | Large clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---- Clinical Significance Results ----</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Approach:          Anchor-based (between groups)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MID (Improvement): 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Better is:         Lower</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Group 1   |          Group 2 | Mean Difference |  Lower |  Upper | Ci Level</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List | Inactive Placebo |          -11.81 | -13.44 | -10.18 |     0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List |   Active Placebo |          -17.79 | -19.54 | -16.05 |     0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List |   Antidepressant |          -18.52 | -20.25 | -16.79 |     0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Group 1   | N 1 | N 2 |                            Category</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List | 152 | 130 | Large clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List | 152 | 121 | Large clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List | 152 | 152 | Large clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cs_results_groupwise_between_freq</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Clinical Significance Results</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Groupwise anchor-based analysis of clinical significance (<span style="font-weight: bold;">between</span> groups) with</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> a <span style="font-weight: bold;">8 point</span> decrease in instrument scores (<span style="font-weight: bold;">mom_di</span>) indicating a clinical</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> significant improvement.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Group Level Results </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---- Clinical Significance Results ----</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Group 1   | Group 2          | Mean Difference | [Lower | Upper] | CI-Level</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List | Inactive Placebo | -11.81          | -13.44 | -10.18 | 0.95    </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List | Active Placebo   | -17.79          | -19.54 | -16.05 | 0.95    </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List | Antidepressant   | -18.52          | -20.25 | -16.79 | 0.95    </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Group 1   | n (1) | n (2) | Category                           </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List | 152   | 130   | Large clinically significant effect</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List | 152   | 121   | Large clinically significant effect</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Wait List | 152   | 152   | Large clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Approach:          Anchor-based (between groups)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MID (Improvement): 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Better is:         Lower</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Outcome:           mom_di</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Group 1   |          Group 2 | Mean Difference |  Lower |  Upper | Ci Level</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List | Inactive Placebo |          -11.81 | -13.44 | -10.18 |     0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List |   Active Placebo |          -17.79 | -19.54 | -16.05 |     0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List |   Antidepressant |          -18.52 | -20.25 | -16.79 |     0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Group 1   | N 1 | N 2 |                            Category</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List | 152 | 130 | Large clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List | 152 | 121 | Large clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Wait List | 152 | 152 | Large clinically significant effect</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cs_results_groupwise_between_freq</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="cs_anchor-8.png" alt="" width="700" height="433"></span>
 </code></pre></div>

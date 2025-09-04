@@ -1,5 +1,7 @@
+url: https://benediktclaus.github.io/clinicalsignificance/
 template:
   bootstrap: 5
+  bootswatch: "lumen"
 home:
   title: An R-Package for Clinical Significance Analyses
   description: A Toolbox for Clinical Significance Analyses in Intervention Studies
