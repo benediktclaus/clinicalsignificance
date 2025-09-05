@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Combined Approach • clinicalsignificance</title>
+<title>Analyzing Clinical Significance: The Combined Approach • clinicalsignificance</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
 <link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
@@ -15,7 +15,7 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Combined Approach">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Analyzing Clinical Significance: The Combined Approach">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">clinicalsignificance</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0.9003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0.9004</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,11 +38,11 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/anchor-based-approach.html">Anchor-Based Approaches</a></li>
-    <li><a class="dropdown-item" href="../articles/combined-approach.html">Combined Approach</a></li>
-    <li><a class="dropdown-item" href="../articles/distribution-based-approach.html">Distribution-Based Approach</a></li>
-    <li><a class="dropdown-item" href="../articles/percentage-change-approach.html">Percentage-Change Approach to Clinical Significance in R</a></li>
-    <li><a class="dropdown-item" href="../articles/statistical-approach.html">Statistical Approach</a></li>
+<li><a class="dropdown-item" href="../articles/anchor-based-approach.html">Analyzing Clinical Significance: The Anchor-Based Approach</a></li>
+    <li><a class="dropdown-item" href="../articles/combined-approach.html">Analyzing Clinical Significance: The Combined Approach</a></li>
+    <li><a class="dropdown-item" href="../articles/distribution-based-approach.html">Analyzing Clinical Significance: The Distribution-Based Approach</a></li>
+    <li><a class="dropdown-item" href="../articles/percentage-change-approach.html">Analyzing Clinical Significance: The Percentage-Change Approach</a></li>
+    <li><a class="dropdown-item" href="../articles/statistical-approach.html">Analyzing Clinical Significance: The Statistical Approach</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -64,8 +64,9 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../logo.png" class="logo" alt=""><h1>Combined Approach</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>Analyzing Clinical Significance: The Combined Approach</h1>
             
+            <h4 data-toc-skip class="date">2025-09-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/benediktclaus/clinicalsignificance/blob/main/vignettes/combined-approach.Rmd" class="external-link"><code>vignettes/combined-approach.Rmd</code></a></small>
       <div class="d-none name"><code>combined-approach.Rmd</code></div>
@@ -76,245 +77,159 @@
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>In this tutorial, we will explore the combined approach to clinical
-significance using R. The combined approaches use the anchor- or
-distribution-based approach in addition to the statistical approach.
-This is obviously stricter than the two methods on their own, but offers
-a more detailed interpretation. We will be working with the
-<code>antidepressants</code> and the <code>claus_2020</code> datasets,
-and the <code><a href="../reference/cs_combined.html">cs_combined()</a></code> function to demonstrate various
-aspects of this approach.</p>
-<div class="section level3">
-<h3 id="prerequisites">Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"></a>
-</h3>
-<p>Before we begin, ensure that you have the following prerequisites in
-place:</p>
-<ul>
-<li>R installed on your computer.</li>
-<li>Basic understanding of R programming concepts.</li>
-</ul>
-</div>
-<div class="section level3">
-<h3 id="looking-at-the-datasets">Looking at the Datasets<a class="anchor" aria-label="anchor" href="#looking-at-the-datasets"></a>
-</h3>
-<p>First, let’s have a look at the datasets, which come with the
-package.</p>
+<p>The combined approach represents the most rigorous method for
+assessing clinical significance. It provides a more nuanced picture of
+patient outcomes by requiring <strong>two criteria</strong> to be met
+simultaneously:</p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>Magnitude of Change</strong>: The change must be
+sufficiently large, either by being statistically reliable
+(distribution-based) or practically meaningful (anchor-based).</li>
+<li>
+<strong>End-State Functioning</strong>: The patient must cross the
+threshold from a dysfunctional or “clinical” population to a functional
+or “non-clinical” one (statistical approach).</li>
+</ol>
+<p>This dual requirement allows for a richer classification of outcomes,
+distinguishing between patients who have merely “Improved” and those who
+have truly “Recovered”. This vignette demonstrates how to use the
+<code><a href="../reference/cs_combined.html">cs_combined()</a></code> function to apply these powerful models.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://benediktclaus.github.io/clinicalsignificance/">clinicalsignificance</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">antidepressants</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1,110 × 4</span></span></span>
-<span><span class="co">#&gt;    patient condition measurement mom_di</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> S001    Wait List Before          50</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> S001    Wait List After           36</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> S002    Wait List Before          40</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> S002    Wait List After           32</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> S003    Wait List Before          38</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> S003    Wait List After           41</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> S004    Wait List Before          29</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> S004    Wait List After           44</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> S005    Wait List Before          37</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> S005    Wait List After           45</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1,100 more rows</span></span></span>
-<span><span class="va">claus_2020</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 172 × 9</span></span></span>
-<span><span class="co">#&gt;       id   age sex    treatment  time   bdi shaps   who  hamd</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1    54 Male   TAU           1    33     9     0    25</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     1    54 Male   TAU           2    28     6     3    17</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     1    54 Male   TAU           3    28     9     7    13</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     1    54 Male   TAU           4    27     8     3    13</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     2    52 Female PA            1    26    11     2    15</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     2    52 Female PA            2    26    10     0    16</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     2    52 Female PA            3    25    10     0     7</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     2    52 Female PA            4    19     9     3    11</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     3    54 Male   PA            1    15     2     0    28</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>     3    54 Male   PA            2    13     5     9    17</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 162 more rows</span></span></span></code></pre></div>
-</div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://benediktclaus.github.io/clinicalsignificance/">clinicalsignificance</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="claus-wager-bonnet-approach">Claus, Wager &amp; Bonnet Approach<a class="anchor" aria-label="anchor" href="#claus-wager-bonnet-approach"></a>
+<h2 id="the-classic-jacobson-truax-jt-approach">The Classic Jacobson &amp; Truax (JT) Approach<a class="anchor" aria-label="anchor" href="#the-classic-jacobson-truax-jt-approach"></a>
 </h2>
-<p>This approach combines the statistical and anchor-based approach. The
-<code>cs_combinedl()</code> function is a tool for assessing clinical
-significance in this way. It allows you to determine if changes in
-patient outcomes are practically significant. Let’s go through the basic
-usage and some advanced features of this function.</p>
+<p>The most common combined method, proposed by Jacobson and Truax
+(1991), integrates the <strong>distribution-based</strong> and
+<strong>statistical</strong> approaches. A patient’s change is
+considered clinically significant if:</p>
+<ol style="list-style-type: decimal">
+<li>The change is <strong>reliable</strong> (i.e., it exceeds the
+measurement error of the instrument).</li>
+<li>The patient’s final score falls within the range of a functional
+population.</li>
+</ol>
 <div class="section level3">
-<h3 id="basic-analysis">Basic Analysis<a class="anchor" aria-label="anchor" href="#basic-analysis"></a>
+<h3 id="example-analysis">Example Analysis<a class="anchor" aria-label="anchor" href="#example-analysis"></a>
 </h3>
-<p>Let’s start with a basic statistical clinical significance analysis
-using the <code>antidepressants</code> dataset. We are interested in the
-Mind over Mood Depression Inventory (<code>mom_di</code>) measurements.
-For the statistical approach, a functional population must be defined.
-Suppose, we collected data from a non-clinical sample and determined a
-mean of 7 points and a standard deviation of also 7 points. Furthermore,
-an MID of 8 points will be regarded as minimally important.</p>
+<p>We will again use the <code>claus_2020</code> dataset. To perform
+this analysis, we need summary statistics for a functional
+(non-clinical) population on the BDI-II (<code>m_functional</code>,
+<code>sd_functional</code>) and an estimate of the instrument’s
+reliability.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">combined_results</span> <span class="op">&lt;-</span> <span class="va">antidepressants</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="../reference/cs_combined.html">cs_combined</a></span><span class="op">(</span></span>
-<span>    id <span class="op">=</span> <span class="va">patient</span>,</span>
-<span>    time <span class="op">=</span> <span class="va">measurement</span>,</span>
-<span>    outcome <span class="op">=</span> <span class="va">mom_di</span>,</span>
-<span>    m_functional <span class="op">=</span> <span class="fl">7</span>,</span>
-<span>    sd_functional <span class="op">=</span> <span class="fl">7</span>,</span>
-<span>    cutoff_type <span class="op">=</span> <span class="st">"c"</span>,</span>
-<span>    mid_improvement <span class="op">=</span> <span class="fl">8</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Your "Before" was set as pre measurement and and your "After" as post.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> If that is not correct, please specify the pre measurement with the argument</span></span>
-<span><span class="co">#&gt;   "pre".</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="handling-warnings">Handling Warnings<a class="anchor" aria-label="anchor" href="#handling-warnings"></a>
-</h3>
-<p>Sometimes, as in the example above, you may encounter warnings when
-using this function. You can turn off the warning by explicitly
-specifying the pre-measurement time point using the pre parameter. This
-can be helpful when your data lacks clear pre-post measurement
-labels.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Turning off the warning by specifying pre-measurement time</span></span>
-<span><span class="va">combined_results</span> <span class="op">&lt;-</span> <span class="va">antidepressants</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="../reference/cs_combined.html">cs_combined</a></span><span class="op">(</span></span>
-<span>    id <span class="op">=</span> <span class="va">patient</span>,</span>
-<span>    time <span class="op">=</span> <span class="va">measurement</span>,</span>
-<span>    outcome <span class="op">=</span> <span class="va">mom_di</span>,</span>
-<span>    pre <span class="op">=</span> <span class="st">"Before"</span>,</span>
-<span>    m_functional <span class="op">=</span> <span class="fl">7</span>,</span>
-<span>    sd_functional <span class="op">=</span> <span class="fl">7</span>,</span>
-<span>    cutoff_type <span class="op">=</span> <span class="st">"c"</span>,</span>
-<span>    mid_improvement <span class="op">=</span> <span class="fl">8</span></span>
-<span>  <span class="op">)</span></span></code></pre></div>
-<p>Here’s a breakdown of the code:</p>
-<ul>
-<li>
-<code>patient</code>, <code>measurement</code>, and
-<code>mom_di</code> represent the patient identifier, assessment time
-points, and HAM-D scores, respectively.</li>
-<li>
-<code>pre</code> and <code>post</code> specify the time points for
-the pre and post-assessment.</li>
-<li>
-<code>m_functional</code> and <code>sd_functional</code> define the
-functional population’s mean and standard deviation. This information is
-used to calculate the population cutoff.</li>
-<li>
-<code>"c"</code> specifies the population cutoff of choice.</li>
-<li>
-<code>mid_improvement</code> sets the for improvement to 8.</li>
-</ul>
-</div>
-<div class="section level3">
-<h3 id="printing-and-summarizing-the-results">Printing and Summarizing the Results<a class="anchor" aria-label="anchor" href="#printing-and-summarizing-the-results"></a>
-</h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Print the results</span></span>
-<span><span class="va">combined_results</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Approach:  Combined</span></span>
-<span><span class="co">#&gt; Method:    CWB</span></span>
-<span><span class="co">#&gt; Better is: Lower</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Category     |   N | Percent</span></span>
-<span><span class="co">#&gt; ----------------------------</span></span>
-<span><span class="co">#&gt; Recovered    | 166 |  29.91%</span></span>
-<span><span class="co">#&gt; Improved     | 150 |  27.03%</span></span>
-<span><span class="co">#&gt; Unchanged    | 175 |  31.53%</span></span>
-<span><span class="co">#&gt; Deteriorated |  52 |   9.37%</span></span>
-<span><span class="co">#&gt; Harmed       |  12 |   2.16%</span></span>
-<span></span>
-<span><span class="co"># Get a summary</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">combined_results</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Approach:            Distribution-based</span></span>
-<span><span class="co">#&gt; RCI Method:          CWB</span></span>
-<span><span class="co">#&gt; N (original):        555</span></span>
-<span><span class="co">#&gt; N (used):            555</span></span>
-<span><span class="co">#&gt; Percent used:        100.00%</span></span>
-<span><span class="co">#&gt; Outcome:             mom_di</span></span>
-<span><span class="co">#&gt; Cutoff Type:         c</span></span>
-<span><span class="co">#&gt; Cutoff:              19.72</span></span>
-<span><span class="co">#&gt; Outcome:             mom_di</span></span>
-<span><span class="co">#&gt; MID (Improvement):   8</span></span>
-<span><span class="co">#&gt; MID (Deterioration): 8</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; -- Cutoff Descriptives</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; M Clinical | SD Clinical | M Functional | SD Functional</span></span>
-<span><span class="co">#&gt; -------------------------------------------------------</span></span>
-<span><span class="co">#&gt; 34.73      |        8.26 |            7 |             7</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; -- Results</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Category     |   N | Percent</span></span>
-<span><span class="co">#&gt; ----------------------------</span></span>
-<span><span class="co">#&gt; Recovered    | 166 |  29.91%</span></span>
-<span><span class="co">#&gt; Improved     | 150 |  27.03%</span></span>
-<span><span class="co">#&gt; Unchanged    | 175 |  31.53%</span></span>
-<span><span class="co">#&gt; Deteriorated |  52 |   9.37%</span></span>
-<span><span class="co">#&gt; Harmed       |  12 |   2.16%</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="visualizing-the-results">Visualizing the Results<a class="anchor" aria-label="anchor" href="#visualizing-the-results"></a>
-</h3>
-<p>Visualizing the results can help you better understand the clinical
-significance of changes in patient outcomes.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Plot the results</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">combined_results</span><span class="op">)</span></span></code></pre></div>
-<p><img src="combined-approach_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="co"># Show clinical significance categories</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">combined_results</span>, show <span class="op">=</span> <span class="va">category</span><span class="op">)</span></span></code></pre></div>
-<p><img src="combined-approach_files/figure-html/unnamed-chunk-6-2.png" width="700"></p>
-</div>
-<div class="section level3">
-<h3 id="data-with-more-than-two-measurements">Data with More Than Two Measurements<a class="anchor" aria-label="anchor" href="#data-with-more-than-two-measurements"></a>
-</h3>
-<p>When working with data that has more than two measurements, you must
-explicitly define the pre and post measurement time points using the
-<code>pre</code> and <code>post</code> parameters.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Clinical significance distribution analysis with more than two measurements</span></span>
-<span><span class="va">cs_results</span> <span class="op">&lt;-</span> <span class="va">claus_2020</span> <span class="op">|&gt;</span></span>
+<code class="sourceCode R"><span><span class="co"># Perform the JT combined analysis</span></span>
+<span><span class="va">jt_combined</span> <span class="op">&lt;-</span> <span class="va">claus_2020</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/cs_combined.html">cs_combined</a></span><span class="op">(</span></span>
 <span>    id <span class="op">=</span> <span class="va">id</span>,</span>
 <span>    time <span class="op">=</span> <span class="va">time</span>,</span>
 <span>    outcome <span class="op">=</span> <span class="va">bdi</span>,</span>
 <span>    pre <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>    post <span class="op">=</span> <span class="fl">4</span>,</span>
-<span>    m_functional <span class="op">=</span> <span class="fl">7</span>,</span>
-<span>    sd_functional <span class="op">=</span> <span class="fl">7</span>,</span>
-<span>    cutoff_type <span class="op">=</span> <span class="st">"c"</span>,</span>
-<span>    mid_improvement <span class="op">=</span> <span class="fl">8</span></span>
+<span>    m_functional <span class="op">=</span> <span class="fl">7.69</span>,</span>
+<span>    sd_functional <span class="op">=</span> <span class="fl">7.52</span>,</span>
+<span>    reliability <span class="op">=</span> <span class="fl">0.801</span></span>
 <span>  <span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Display the results</span></span>
-<span><span class="va">cs_results</span></span>
+<span><span class="co"># Display the summary of results</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">jt_combined</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Approach:  Combined</span></span>
-<span><span class="co">#&gt; Method:    CWB</span></span>
-<span><span class="co">#&gt; Better is: Lower</span></span>
+<span><span class="co">#&gt; Approach:     Distribution-based</span></span>
+<span><span class="co">#&gt; RCI Method:   JT</span></span>
+<span><span class="co">#&gt; N (original): 43</span></span>
+<span><span class="co">#&gt; N (used):     40</span></span>
+<span><span class="co">#&gt; Percent used: 93.02%</span></span>
+<span><span class="co">#&gt; Outcome:      bdi</span></span>
+<span><span class="co">#&gt; Cutoff Type:  a</span></span>
+<span><span class="co">#&gt; Cutoff:       19.16</span></span>
+<span><span class="co">#&gt; Outcome:      bdi</span></span>
+<span><span class="co">#&gt; Reliability:  0.801</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; -- Cutoff Descriptives</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; M Clinical | SD Clinical | M Functional | SD Functional</span></span>
+<span><span class="co">#&gt; -------------------------------------------------------</span></span>
+<span><span class="co">#&gt; 35.48      |        8.16 |         7.69 |          7.52</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; -- Results</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Category     |  N | Percent</span></span>
 <span><span class="co">#&gt; ---------------------------</span></span>
-<span><span class="co">#&gt; Recovered    | 11 |  27.50%</span></span>
-<span><span class="co">#&gt; Improved     |  9 |  22.50%</span></span>
-<span><span class="co">#&gt; Unchanged    | 17 |  42.50%</span></span>
-<span><span class="co">#&gt; Deteriorated |  3 |   7.50%</span></span>
-<span><span class="co">#&gt; Harmed       |  0 |   0.00%</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cs_results</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Recovered    | 10 |  25.00%</span></span>
+<span><span class="co">#&gt; Improved     |  8 |  20.00%</span></span>
+<span><span class="co">#&gt; Unchanged    | 22 |  55.00%</span></span>
+<span><span class="co">#&gt; Deteriorated |  0 |   0.00%</span></span>
+<span><span class="co">#&gt; Harmed       |  0 |   0.00%</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="visualizing-the-jt-approach">Visualizing the JT Approach<a class="anchor" aria-label="anchor" href="#visualizing-the-jt-approach"></a>
+</h3>
+<p>The plot for a combined analysis is particularly informative. It
+includes both the shaded area for reliable change (from the
+distribution-based approach) and the cutoff lines for population status
+(from the statistical approach).</p>
+<ul>
+<li>
+<strong>Dashed Lines</strong>: The cutoff separating the clinical
+(right/top) and functional (left/bottom) populations.</li>
+<li>
+<strong>Shaded Area</strong>: The zone of “no reliable change”.</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">jt_combined</span>, show_group <span class="op">=</span> <span class="st">"category"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="combined-approach_files/figure-html/jt-combined-plot-1.png" width="672" style="display: block; margin: auto;"></p>
+<p>The resulting categories are interpreted as follows: -
+<strong>Recovered</strong> (blue): Patients who showed a reliable
+improvement <em>and</em> ended up in the functional range. -
+<strong>Improved</strong> (light green): Patients who showed a reliable
+improvement but remained in the clinical range. -
+<strong>Unchanged</strong> (yellow): Patients with no reliable change,
+regardless of their population status. - <strong>Deteriorated</strong>
+(orange): Patients who showed a reliable worsening but remained in the
+clinical range. - <strong>Harmed</strong> (dark green): Patients who
+showed a reliable worsening <em>and</em> moved from the functional to
+the clinical range.</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="the-claus-wager-bonnet-cwb-approach">The Claus, Wager &amp; Bonnet (CWB) Approach<a class="anchor" aria-label="anchor" href="#the-claus-wager-bonnet-cwb-approach"></a>
+</h2>
+<p>As an alternative, <code>clinicalsignificance</code> allows you to
+combine the <strong>anchor-based</strong> and
+<strong>statistical</strong> approaches. This method is useful when a
+well-established Minimal Important Difference (MID) is available and may
+offer a more practically interpretable criterion for change than
+statistical reliability.</p>
+<p>Here, a patient’s change is clinically significant if: 1. The change
+is <strong>meaningful</strong> (i.e., it meets or exceeds the MID). 2.
+The patient’s final score falls within the range of a functional
+population.</p>
+<div class="section level3">
+<h3 id="example-analysis-1">Example Analysis<a class="anchor" aria-label="anchor" href="#example-analysis-1"></a>
+</h3>
+<p>We use the same functional population data as before but replace the
+<code>reliability</code> argument with <code>mid_improvement</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Perform the anchor-based combined analysis</span></span>
+<span><span class="va">anchor_combined</span> <span class="op">&lt;-</span> <span class="va">claus_2020</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/cs_combined.html">cs_combined</a></span><span class="op">(</span></span>
+<span>    id <span class="op">=</span> <span class="va">id</span>,</span>
+<span>    time <span class="op">=</span> <span class="va">time</span>,</span>
+<span>    outcome <span class="op">=</span> <span class="va">bdi</span>,</span>
+<span>    pre <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    post <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>    m_functional <span class="op">=</span> <span class="fl">7.69</span>,</span>
+<span>    sd_functional <span class="op">=</span> <span class="fl">7.52</span>,</span>
+<span>    mid_improvement <span class="op">=</span> <span class="fl">7</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Display the summary of results</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">anchor_combined</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -324,183 +239,59 @@ explicitly define the pre and post measurement time points using the
 <span><span class="co">#&gt; N (used):            40</span></span>
 <span><span class="co">#&gt; Percent used:        93.02%</span></span>
 <span><span class="co">#&gt; Outcome:             bdi</span></span>
-<span><span class="co">#&gt; Cutoff Type:         c</span></span>
-<span><span class="co">#&gt; Cutoff:              20.15</span></span>
+<span><span class="co">#&gt; Cutoff Type:         a</span></span>
+<span><span class="co">#&gt; Cutoff:              19.16</span></span>
 <span><span class="co">#&gt; Outcome:             bdi</span></span>
-<span><span class="co">#&gt; MID (Improvement):   8</span></span>
-<span><span class="co">#&gt; MID (Deterioration): 8</span></span>
+<span><span class="co">#&gt; MID (Improvement):   7</span></span>
+<span><span class="co">#&gt; MID (Deterioration): 7</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; -- Cutoff Descriptives</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; M Clinical | SD Clinical | M Functional | SD Functional</span></span>
 <span><span class="co">#&gt; -------------------------------------------------------</span></span>
-<span><span class="co">#&gt; 35.48      |        8.16 |            7 |             7</span></span>
+<span><span class="co">#&gt; 35.48      |        8.16 |         7.69 |          7.52</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; -- Results</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Category     |  N | Percent</span></span>
 <span><span class="co">#&gt; ---------------------------</span></span>
-<span><span class="co">#&gt; Recovered    | 11 |  27.50%</span></span>
-<span><span class="co">#&gt; Improved     |  9 |  22.50%</span></span>
-<span><span class="co">#&gt; Unchanged    | 17 |  42.50%</span></span>
-<span><span class="co">#&gt; Deteriorated |  3 |   7.50%</span></span>
-<span><span class="co">#&gt; Harmed       |  0 |   0.00%</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cs_results</span><span class="op">)</span></span></code></pre></div>
-<p><img src="combined-approach_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
-</div>
-<div class="section level3">
-<h3 id="grouped-analysis">Grouped Analysis<a class="anchor" aria-label="anchor" href="#grouped-analysis"></a>
-</h3>
-<p>You can also perform a grouped analysis by providing a group column
-from the data. This is useful when comparing treatment groups or other
-categories.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">cs_results_grouped</span> <span class="op">&lt;-</span> <span class="va">claus_2020</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../reference/cs_combined.html">cs_combined</a></span><span class="op">(</span></span>
-<span>    id <span class="op">=</span> <span class="va">id</span>,</span>
-<span>    time <span class="op">=</span> <span class="va">time</span>,</span>
-<span>    outcome <span class="op">=</span> <span class="va">bdi</span>,</span>
-<span>    pre <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>    post <span class="op">=</span> <span class="fl">4</span>,</span>
-<span>    m_functional <span class="op">=</span> <span class="fl">7</span>,</span>
-<span>    sd_functional <span class="op">=</span> <span class="fl">7</span>,</span>
-<span>    cutoff_type <span class="op">=</span> <span class="st">"c"</span>,</span>
-<span>    mid_improvement <span class="op">=</span> <span class="fl">8</span>,</span>
-<span>    group <span class="op">=</span> <span class="va">treatment</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Display and visualize the results</span></span>
-<span><span class="va">cs_results_grouped</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Approach:  Combined</span></span>
-<span><span class="co">#&gt; Method:    CWB</span></span>
-<span><span class="co">#&gt; Better is: Lower</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Group |     Category |  N | Percent | Percent by Group</span></span>
-<span><span class="co">#&gt; ------------------------------------------------------</span></span>
-<span><span class="co">#&gt; TAU   |    Recovered |  4 |  10.00% |           21.05%</span></span>
-<span><span class="co">#&gt; TAU   |     Improved |  2 |   5.00% |           10.53%</span></span>
-<span><span class="co">#&gt; TAU   |    Unchanged | 10 |  25.00% |           52.63%</span></span>
-<span><span class="co">#&gt; TAU   | Deteriorated |  3 |   7.50% |           15.79%</span></span>
-<span><span class="co">#&gt; TAU   |       Harmed |  0 |   0.00% |            0.00%</span></span>
-<span><span class="co">#&gt; PA    |    Recovered |  7 |  17.50% |           33.33%</span></span>
-<span><span class="co">#&gt; PA    |     Improved |  7 |  17.50% |           33.33%</span></span>
-<span><span class="co">#&gt; PA    |    Unchanged |  7 |  17.50% |           33.33%</span></span>
-<span><span class="co">#&gt; PA    | Deteriorated |  0 |   0.00% |            0.00%</span></span>
-<span><span class="co">#&gt; PA    |       Harmed |  0 |   0.00% |            0.00%</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cs_results_grouped</span><span class="op">)</span></span></code></pre></div>
-<p><img src="combined-approach_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
-</div>
-<div class="section level3">
-<h3 id="analyzing-positive-outcomes">Analyzing Positive Outcomes<a class="anchor" aria-label="anchor" href="#analyzing-positive-outcomes"></a>
-</h3>
-<p>In some cases, higher values of an outcome may be considered better.
-You can specify this using the <code>better_is</code> argument. Let’s
-see an example with the WHO-5 score where higher values are considered
-better.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Clinical significance analysis for outcomes where higher values are better</span></span>
-<span><span class="va">cs_results_who</span> <span class="op">&lt;-</span> <span class="va">claus_2020</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../reference/cs_combined.html">cs_combined</a></span><span class="op">(</span></span>
-<span>    <span class="va">id</span>,</span>
-<span>    <span class="va">time</span>,</span>
-<span>    <span class="va">who</span>,</span>
-<span>    pre <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>    post <span class="op">=</span> <span class="fl">4</span>,</span>
-<span>    m_functional <span class="op">=</span> <span class="fl">7</span>,</span>
-<span>    sd_functional <span class="op">=</span> <span class="fl">7</span>,</span>
-<span>    cutoff_type <span class="op">=</span> <span class="st">"c"</span>,</span>
-<span>    mid_improvement <span class="op">=</span> <span class="fl">8</span>,</span>
-<span>    better_is <span class="op">=</span> <span class="st">"higher"</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Display the results</span></span>
-<span><span class="va">cs_results_who</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Approach:  Combined</span></span>
-<span><span class="co">#&gt; Method:    CWB</span></span>
-<span><span class="co">#&gt; Better is: Higher</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Category     |  N | Percent</span></span>
-<span><span class="co">#&gt; ---------------------------</span></span>
-<span><span class="co">#&gt; Recovered    | 10 |  25.00%</span></span>
-<span><span class="co">#&gt; Improved     |  1 |   2.50%</span></span>
-<span><span class="co">#&gt; Unchanged    | 29 |  72.50%</span></span>
-<span><span class="co">#&gt; Deteriorated |  0 |   0.00%</span></span>
+<span><span class="co">#&gt; Recovered    | 13 |  32.50%</span></span>
+<span><span class="co">#&gt; Improved     | 12 |  30.00%</span></span>
+<span><span class="co">#&gt; Unchanged    | 11 |  27.50%</span></span>
+<span><span class="co">#&gt; Deteriorated |  4 |  10.00%</span></span>
 <span><span class="co">#&gt; Harmed       |  0 |   0.00%</span></span></code></pre></div>
+<p>Notice the subtle shift in classifications: with the MID as the
+criterion, more patients are categorized as “Improved” or “Recovered”
+compared to the stricter reliability criterion of the JT approach in
+this specific example.</p>
+</div>
+<div class="section level3">
+<h3 id="visualizing-the-cwb-approach">Visualizing the CWB Approach<a class="anchor" aria-label="anchor" href="#visualizing-the-cwb-approach"></a>
+</h3>
+<p>The plot is interpreted similarly, but the shaded area is now defined
+by the MID instead of the Reliable Change Index.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">anchor_combined</span>, show_group <span class="op">=</span> <span class="st">"category"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="combined-approach_files/figure-html/anchor-combined-plot-1.png" width="672" style="display: block; margin: auto;"></p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="jacobson-truax-approach">Jacobson &amp; Truax Approach<a class="anchor" aria-label="anchor" href="#jacobson-truax-approach"></a>
+<h2 id="summary-and-next-steps">Summary and Next Steps<a class="anchor" aria-label="anchor" href="#summary-and-next-steps"></a>
 </h2>
-<p>The Jacobson &amp; Truax approach combines the statistical with the
-distribution-based approach. For this, let’s suppose that the
-reliability of the MoM-DI is 0.80.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">jt_results</span> <span class="op">&lt;-</span> <span class="va">antidepressants</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="../reference/cs_combined.html">cs_combined</a></span><span class="op">(</span></span>
-<span>    id <span class="op">=</span> <span class="va">patient</span>,</span>
-<span>    time <span class="op">=</span> <span class="va">measurement</span>,</span>
-<span>    outcome <span class="op">=</span> <span class="va">mom_di</span>,</span>
-<span>    pre <span class="op">=</span> <span class="st">"Before"</span>,</span>
-<span>    m_functional <span class="op">=</span> <span class="fl">7</span>,</span>
-<span>    sd_functional <span class="op">=</span> <span class="fl">7</span>,</span>
-<span>    cutoff_type <span class="op">=</span> <span class="st">"c"</span>,</span>
-<span>    reliability <span class="op">=</span> <span class="fl">0.80</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Summarize and visualize the results</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">jt_results</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Approach:     Distribution-based</span></span>
-<span><span class="co">#&gt; RCI Method:   JT</span></span>
-<span><span class="co">#&gt; N (original): 555</span></span>
-<span><span class="co">#&gt; N (used):     555</span></span>
-<span><span class="co">#&gt; Percent used: 100.00%</span></span>
-<span><span class="co">#&gt; Outcome:      mom_di</span></span>
-<span><span class="co">#&gt; Cutoff Type:  c</span></span>
-<span><span class="co">#&gt; Cutoff:       19.72</span></span>
-<span><span class="co">#&gt; Outcome:      mom_di</span></span>
-<span><span class="co">#&gt; Reliability:  0.8</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; -- Cutoff Descriptives</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; M Clinical | SD Clinical | M Functional | SD Functional</span></span>
-<span><span class="co">#&gt; -------------------------------------------------------</span></span>
-<span><span class="co">#&gt; 34.73      |        8.26 |            7 |             7</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; -- Results</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Category     |   N | Percent</span></span>
-<span><span class="co">#&gt; ----------------------------</span></span>
-<span><span class="co">#&gt; Recovered    | 159 |  28.65%</span></span>
-<span><span class="co">#&gt; Improved     | 115 |  20.72%</span></span>
-<span><span class="co">#&gt; Unchanged    | 237 |  42.70%</span></span>
-<span><span class="co">#&gt; Deteriorated |  34 |   6.13%</span></span>
-<span><span class="co">#&gt; Harmed       |  10 |   1.80%</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">jt_results</span><span class="op">)</span></span></code></pre></div>
-<p><img src="combined-approach_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">jt_results</span>, show <span class="op">=</span> <span class="va">category</span><span class="op">)</span></span></code></pre></div>
-<p><img src="combined-approach_files/figure-html/unnamed-chunk-10-2.png" width="700"></p>
-</div>
-<div class="section level2">
-<h2 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
-</h2>
-<p>In this tutorial, you’ve learned how to perform clinical significance
-analysis using the <code><a href="../reference/cs_combined.html">cs_combined()</a></code> function in R. This
-analysis may be crucial for determining the practical importance of
-changes in patient outcomes. By adjusting thresholds and considering
-grouped analyses, you can gain valuable insights for healthcare and
-clinical research applications.</p>
+<p>The combined approach offers a powerful and nuanced assessment of
+treatment outcomes by considering both the magnitude of change and the
+patient’s final functional status.</p>
+<ul>
+<li>The <strong>Jacobson &amp; Truax (JT) approach</strong> is the
+classic standard, requiring a reliable change and a shift in population
+status.</li>
+<li>The <strong>Claus, Wager &amp; Bonnet (CWB) approach</strong> is a
+valuable alternative when a meaningful MID is known, defining change in
+practical rather than purely statistical terms.</li>
+</ul>
+<p>Choosing between them depends on the available information
+(reliability vs. MID) and the specific research question.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
