@@ -29,7 +29,7 @@ ggplot2::theme_set(ggplot2::theme_light())
 <!-- badges: start -->
 ```{r, echo=FALSE, results='asis'}
 cat(
-  '[!CRAN status](https://www.r-pkg.org/badges/version/clinicalsignificance)',
+  '[![CRAN status](https://img.shields.io/cran/v/clinicalsignificance.svg)](https://CRAN.R-project.org/package=clinicalsignificance)',
   '[![CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/clinicalsignificance)](https://cran.r-project.org/package=clinicalsignificance)',
   '[![R-CMD-check](https://github.com/pedscience/clinicalsignificance/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pedscience/clinicalsignificance/actions/workflows/R-CMD-check.yaml)'
 )
@@ -153,3 +153,4 @@ This package is released under the GNU General Public License v3.0. You are free
 ---
 
 Thank you for using the **clinicalsignificance** R package! We hope it proves to be a valuable tool for your research. If you find it helpful, please consider giving us a star on [GitHub](https://github.com/pedscience/clinicalsignificance).
+

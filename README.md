@@ -5,8 +5,8 @@
 
 <!-- badges: start -->
 
-[!CRAN
-status](https://www.r-pkg.org/badges/version/clinicalsignificance)
+[![CRAN
+status](https://img.shields.io/cran/v/clinicalsignificance.svg)](https://CRAN.R-project.org/package=clinicalsignificance)
 [![CRAN
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/clinicalsignificance)](https://cran.r-project.org/package=clinicalsignificance)
 [![R-CMD-check](https://github.com/pedscience/clinicalsignificance/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pedscience/clinicalsignificance/actions/workflows/R-CMD-check.yaml)
