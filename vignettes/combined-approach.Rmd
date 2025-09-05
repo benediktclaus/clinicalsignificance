@@ -1,8 +1,9 @@
 ---
-title: "Combined Approach"
+title: "Analyzing Clinical Significance: The Combined Approach"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Combined Approach}
+  %\VignetteIndexEntry{5. Combined Approach}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
@@ -12,198 +13,119 @@ editor_options:
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.width = 7,
+  fig.height = 5,
+  fig.align = "center"
 )
 ```
 
-# Introduction
-In this tutorial, we will explore the combined approach to clinical significance using R. The combined approaches use the anchor- or distribution-based approach in addition to the statistical approach. This is obviously stricter than the two methods on their own, but offers a more detailed interpretation. We will be working with the `antidepressants` and the `claus_2020` datasets, and the `cs_combined()` function to demonstrate various aspects of this approach.
+## Introduction
 
+The combined approach represents the most rigorous method for assessing clinical significance. It provides a more nuanced picture of patient outcomes by requiring **two criteria** to be met simultaneously:
 
-## Prerequisites
-Before we begin, ensure that you have the following prerequisites in place:
+1.  **Magnitude of Change**: The change must be sufficiently large, either by being statistically reliable (distribution-based) or practically meaningful (anchor-based).
+2.  **End-State Functioning**: The patient must cross the threshold from a dysfunctional or "clinical" population to a functional or "non-clinical" one (statistical approach).
 
-- R installed on your computer.
-- Basic understanding of R programming concepts.
+This dual requirement allows for a richer classification of outcomes, distinguishing between patients who have merely "Improved" and those who have truly "Recovered". This vignette demonstrates how to use the `cs_combined()` function to apply these powerful models.
 
-
-## Looking at the Datasets
-First, let's have a look at the datasets, which come with the package.
-
-```{r}
+```{r setup}
 library(clinicalsignificance)
-
-antidepressants
-claus_2020
 ```
 
+## The Classic Jacobson & Truax (JT) Approach
 
-# Claus, Wager & Bonnet Approach
-This approach combines the statistical and anchor-based approach. 
-The `cs_combinedl()` function is a tool for assessing clinical significance in this way. It allows you to determine if changes in patient outcomes are practically significant. Let's go through the basic usage and some advanced features of this function.
+The most common combined method, proposed by Jacobson and Truax (1991), integrates the **distribution-based** and **statistical** approaches. A patient's change is considered clinically significant if:
 
+1.  The change is **reliable** (i.e., it exceeds the measurement error of the instrument).
+2.  The patient's final score falls within the range of a functional population.
 
-## Basic Analysis
-Let's start with a basic statistical clinical significance analysis using the `antidepressants` dataset. We are interested in the Mind over Mood Depression Inventory (`mom_di`) measurements. For the statistical approach, a functional population must be defined. Suppose, we collected data from a non-clinical sample and determined a mean of 7 points and a standard deviation of also 7 points. Furthermore, an MID of 8 points will be regarded as minimally important.
+### Example Analysis
 
-```{r}
-combined_results <- antidepressants |> 
-  cs_combined(
-    id = patient,
-    time = measurement,
-    outcome = mom_di,
-    m_functional = 7,
-    sd_functional = 7,
-    cutoff_type = "c",
-    mid_improvement = 8
-  )
-```
+We will again use the `claus_2020` dataset. To perform this analysis, we need summary statistics for a functional (non-clinical) population on the BDI-II (`m_functional`, `sd_functional`) and an estimate of the instrument's reliability.
 
-
-## Handling Warnings
-Sometimes, as in the example above, you may encounter warnings when using this function. You can turn off the warning by explicitly specifying the pre-measurement time point using the pre parameter. This can be helpful when your data lacks clear pre-post measurement labels.
-
-
-```{r}
-# Turning off the warning by specifying pre-measurement time
-combined_results <- antidepressants |> 
-  cs_combined(
-    id = patient,
-    time = measurement,
-    outcome = mom_di,
-    pre = "Before",
-    m_functional = 7,
-    sd_functional = 7,
-    cutoff_type = "c",
-    mid_improvement = 8
-  )
-```
-
-Here's a breakdown of the code:
-
-- `patient`, `measurement`, and `mom_di` represent the patient identifier, assessment time points, and HAM-D scores, respectively.
-- `pre` and `post` specify the time points for the pre and post-assessment.
-- `m_functional` and `sd_functional` define the functional population's mean and standard deviation. This information is used to calculate the population cutoff.
-- `"c"` specifies the population cutoff of choice.
-- `mid_improvement` sets the  for improvement to 8.
-
-
-## Printing and Summarizing the Results
-```{r}
-# Print the results
-combined_results
-
-# Get a summary
-summary(combined_results)
-```
-
-
-## Visualizing the Results
-Visualizing the results can help you better understand the clinical significance of changes in patient outcomes.
-```{r}
-# Plot the results
-plot(combined_results)
-
-# Show clinical significance categories
-plot(combined_results, show = category)
-```
-
-
-## Data with More Than Two Measurements
-When working with data that has more than two measurements, you must explicitly define the pre and post measurement time points using the `pre` and `post` parameters.
-
-```{r}
-# Clinical significance distribution analysis with more than two measurements
-cs_results <- claus_2020 |>
+```{r jt-combined}
+# Perform the JT combined analysis
+jt_combined <- claus_2020 |>
   cs_combined(
     id = id,
     time = time,
     outcome = bdi,
     pre = 1,
     post = 4,
-    m_functional = 7,
-    sd_functional = 7,
-    cutoff_type = "c",
-    mid_improvement = 8
+    m_functional = 7.69,
+    sd_functional = 7.52,
+    reliability = 0.801
   )
 
-# Display the results
-cs_results
-summary(cs_results)
-plot(cs_results)
+# Display the summary of results
+summary(jt_combined)
 ```
 
+### Visualizing the JT Approach
 
-## Grouped Analysis
-You can also perform a grouped analysis by providing a group column from the data. This is useful when comparing treatment groups or other categories.
-```{r}
-cs_results_grouped <- claus_2020 |>
+The plot for a combined analysis is particularly informative. It includes both the shaded area for reliable change (from the distribution-based approach) and the cutoff lines for population status (from the statistical approach).
+
+* **Dashed Lines**: The cutoff separating the clinical (right/top) and functional (left/bottom) populations.
+* **Shaded Area**: The zone of "no reliable change".
+
+```{r jt-combined-plot}
+plot(jt_combined, show_group = "category")
+```
+
+The resulting categories are interpreted as follows:
+- **Recovered** (blue): Patients who showed a reliable improvement *and* ended up in the functional range.
+- **Improved** (light green): Patients who showed a reliable improvement but remained in the clinical range.
+- **Unchanged** (yellow): Patients with no reliable change, regardless of their population status.
+- **Deteriorated** (orange): Patients who showed a reliable worsening but remained in the clinical range.
+- **Harmed** (dark green): Patients who showed a reliable worsening *and* moved from the functional to the clinical range.
+
+
+## The Claus, Wager & Bonnet (CWB) Approach
+
+As an alternative, `clinicalsignificance` allows you to combine the **anchor-based** and **statistical** approaches. This method is useful when a well-established Minimal Important Difference (MID) is available and may offer a more practically interpretable criterion for change than statistical reliability.
+
+Here, a patient's change is clinically significant if:
+1. The change is **meaningful** (i.e., it meets or exceeds the MID).
+2. The patient's final score falls within the range of a functional population.
+
+### Example Analysis
+
+We use the same functional population data as before but replace the `reliability` argument with `mid_improvement`.
+
+```{r anchor-combined}
+# Perform the anchor-based combined analysis
+anchor_combined <- claus_2020 |>
   cs_combined(
     id = id,
     time = time,
     outcome = bdi,
     pre = 1,
     post = 4,
-    m_functional = 7,
-    sd_functional = 7,
-    cutoff_type = "c",
-    mid_improvement = 8,
-    group = treatment
+    m_functional = 7.69,
+    sd_functional = 7.52,
+    mid_improvement = 7
   )
 
-# Display and visualize the results
-cs_results_grouped
-plot(cs_results_grouped)
+# Display the summary of results
+summary(anchor_combined)
 ```
 
+Notice the subtle shift in classifications: with the MID as the criterion, more patients are categorized as "Improved" or "Recovered" compared to the stricter reliability criterion of the JT approach in this specific example.
 
-## Analyzing Positive Outcomes
-In some cases, higher values of an outcome may be considered better. You can specify this using the `better_is` argument. Let's see an example with the WHO-5 score where higher values are considered better.
+### Visualizing the CWB Approach
 
-```{r}
-# Clinical significance analysis for outcomes where higher values are better
-cs_results_who <- claus_2020 |>
-  cs_combined(
-    id,
-    time,
-    who,
-    pre = 1,
-    post = 4,
-    m_functional = 7,
-    sd_functional = 7,
-    cutoff_type = "c",
-    mid_improvement = 8,
-    better_is = "higher"
-  )
+The plot is interpreted similarly, but the shaded area is now defined by the MID instead of the Reliable Change Index.
 
-# Display the results
-cs_results_who
+```{r anchor-combined-plot}
+plot(anchor_combined, show_group = "category")
 ```
 
+## Summary and Next Steps
 
-# Jacobson & Truax Approach
-The Jacobson & Truax approach combines the statistical with the distribution-based approach. For this, let's suppose that the reliability of the MoM-DI is 0.80.
+The combined approach offers a powerful and nuanced assessment of treatment outcomes by considering both the magnitude of change and the patient's final functional status.
 
-```{r}
-jt_results <- antidepressants |> 
-  cs_combined(
-    id = patient,
-    time = measurement,
-    outcome = mom_di,
-    pre = "Before",
-    m_functional = 7,
-    sd_functional = 7,
-    cutoff_type = "c",
-    reliability = 0.80
-  )
+* The **Jacobson & Truax (JT) approach** is the classic standard, requiring a reliable change and a shift in population status.
+* The **Claus, Wager & Bonnet (CWB) approach** is a valuable alternative when a meaningful MID is known, defining change in practical rather than purely statistical terms.
 
-# Summarize and visualize the results
-summary(jt_results)
-plot(jt_results)
-plot(jt_results, show = category)
-```
-
-
-
-# Conclusion
-In this tutorial, you've learned how to perform clinical significance analysis using the `cs_combined()` function in R. This analysis may be crucial for determining the practical importance of changes in patient outcomes. By adjusting thresholds and considering grouped analyses, you can gain valuable insights for healthcare and clinical research applications.
+Choosing between them depends on the available information (reliability vs. MID) and the specific research question.

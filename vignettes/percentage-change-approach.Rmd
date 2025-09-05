@@ -1,8 +1,9 @@
 ---
-title: "Percentage-Change Approach to Clinical Significance in R"
+title: "Analyzing Clinical Significance: The Percentage-Change Approach"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Percentage-Change Approach to Clinical Significance in R}
+  %\VignetteIndexEntry{3. Percentage-Change Approach}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
@@ -12,177 +13,97 @@ editor_options:
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.width = 7,
+  fig.height = 5,
+  fig.align = "center"
 )
 ```
 
-# Introduction
-In this tutorial, we will explore the percentage-change approach to clinical significance using R. The percentage-change approach is centered around a predefined relative change, expressed in percent, that needs to be achieved in order to inferr a clinically significant change. If, for instance, the percentage-change cutoff is believed to be 30%, and a patient demonstrated a score change of at least 30%, then this change is believed to be clinically significant. We will be working with the `antidepressants` and `claus_2020` datasets, and the `cs_percentage()` function to demonstrate various aspects of this approach.
+## Introduction
 
+The percentage-change approach defines clinical significance based on the **relative change** in a patient's score from baseline. This method is common in clinical trials where a specific reduction in symptoms, such as "a 50% improvement," is a primary endpoint for defining treatment response.
 
-## Prerequisites
-Before we begin, ensure that you have the following prerequisites in place:
+A change is considered clinically significant if it meets or exceeds a predefined **Percentage-Change Cutoff (PCC)**. For example, if the PCC is 50% (or 0.5), any patient who shows at least a 50% reduction in symptoms would be classified as "Improved".
 
-- R installed on your computer.
-- Basic understanding of R programming concepts.
+A key consideration for this method is that it is **highly dependent on the patient's baseline score**. A 10-point drop is a 50% improvement for a patient starting at 20 points, but only a 25% improvement for a patient starting at 40 points. This characteristic should be kept in mind when interpreting the results.
 
+This vignette demonstrates how to use the `cs_percentage()` function to apply this approach.
 
-## Looking at the Datasets
-First, let's have a look at the datasets, which come with the package.
-
-```{r}
+```{r setup}
 library(clinicalsignificance)
-
-antidepressants
-claus_2020
 ```
-
-
-# Percentage-Change Approach
-The `cs_percentage()` function is a tool for assessing clinical significance. It allows you to determine if changes in patient outcomes are practically significant. Let's go through the basic usage and some advanced features of this function.
-
 
 ## Basic Analysis
-Let's start with a basic clinical significance distribution analysis using the `antidepressants` dataset. We are interested in the Mind over Mood Depression Inventory (`mom_di`) measurements and want to set the percentage cutoff for an improvement to a value of 0.3.
-```{r}
-pct_results <- antidepressants |> 
+
+Let's analyze the `claus_2020` dataset. A common benchmark for depression treatment trials is a 50% reduction in symptom scores. We will set this as our `pct_improvement` cutoff.
+
+```{r pct-basic}
+# Analyze change using a 50% improvement cutoff
+pct_results <- claus_2020 |>
   cs_percentage(
-    id = patient,
-    time = measurement,
-    outcome = mom_di,
-    pct_improvement = 0.3
-  )
-```
-
-
-## Handling Warnings
-Sometimes, as in the example above, you may encounter warnings when using this function. You can turn off the warning by explicitly specifying the pre-measurement time point using the pre parameter. This can be helpful when your data lacks clear pre-post measurement labels.
-
-
-```{r}
-# Turning off the warning by specifying pre-measurement time
-pct_results <- antidepressants |>
-  cs_percentage(
-    id = patient,
-    time = measurement,
-    outcome = mom_di,
-    pre = "Before",
+    id = id,
+    time = time,
+    outcome = bdi,
+    pre = 1,
+    post = 4,
     pct_improvement = 0.5
   )
-```
 
-Here's a breakdown of the code:
-
-- `patient`, `measurement`, and `mom_di` represent the patient identifier, assessment time points, and HAM-D scores, respectively.
-- `pre` and `post` specify the time points for the pre and post-assessment.
-- `pct_improvement` sets the percentage change threshold for improvement to 30%.
-
-
-## Printing and Summarizing the Results
-```{r}
-# Print the results
-pct_results
-
-# Get a summary
 summary(pct_results)
 ```
 
+The summary shows that based on this 50% criterion, about 28% of patients are classified as having improved.
 
-## Visualizing the Results
-Visualizing the results can help you better understand the clinical significance of changes in patient outcomes.
-```{r}
-# Plot the results
+### Visualizing the Results
+
+The plot for the percentage-change approach looks similar to those for the anchor- and distribution-based methods. However, the shaded area is now determined by the percentage-change cutoff relative to each individual's starting score. This means the boundaries of the "unchanged" area are not parallel lines.
+
+```{r pct-basic-plot}
 plot(pct_results)
-
-# Show clinical significance categories
-plot(pct_results, show = category)
 ```
-
-
-## Data with More Than Two Measurements
-When working with data that has more than two measurements, you must explicitly define the pre and post measurement time points using the `pre` and `post` parameters.
-
-```{r}
-# Clinical significance distribution analysis with more than two measurements
-cs_results <- claus_2020 |>
-  cs_percentage(
-    id,
-    time,
-    bdi,
-    pre = 1,
-    post = 4,
-    pct_improvement = 0.3
-  )
-
-# Display the results
-cs_results
-summary(cs_results)
-plot(cs_results)
-```
-
-
-## Setting Different Thresholds
-You can set different thresholds for improvement and deterioration by adjusting the `pct_deterioration` argument Let's see an example:
-```{r}
-# Clinical significance analysis with different improvement and deterioration thresholds
-cs_results_2 <- claus_2020 |>
-  cs_percentage(
-    id = id,
-    time = time,
-    outcome = hamd,
-    pre = 1,
-    post = 4,
-    pct_improvement = 0.3,
-    pct_deterioration = 0.2
-  )
-
-# Display the results
-cs_results_2
-
-# Visualize the results
-plot(cs_results_2)
-```
-
 
 ## Grouped Analysis
-You can also perform a grouped analysis by providing a group column from the data. This is useful when comparing treatment groups or other categories.
-```{r}
-cs_results_grouped <- claus_2020 |>
+
+We can also explore if the proportion of "responders" differs between the treatment groups (TAU vs. PA).
+
+```{r pct-grouped}
+# Grouped analysis with a 50% improvement cutoff
+pct_grouped <- claus_2020 |>
   cs_percentage(
     id = id,
     time = time,
-    outcome = hamd,
+    outcome = bdi,
     pre = 1,
     post = 4,
-    pct_improvement = 0.3,
+    pct_improvement = 0.5,
     group = treatment
   )
 
-# Display and visualize the results
-cs_results_grouped
-plot(cs_results_grouped)
+summary(pct_grouped)
+```
+The results suggest that a much higher proportion of patients in the Placebo Amplification (PA) group (42.9%) achieved a 50% symptom reduction compared to the Treatment as Usual (TAU) group (10.5%).
+
+The plot clearly visualizes this difference:
+```{r pct-grouped-plot}
+plot(pct_grouped)
 ```
 
 
-## Analyzing Positive Outcomes
-In some cases, higher values of an outcome may be considered better. You can specify this using the `better_is` argument. Let's see an example with the WHO-5 score where higher values are considered better.
-```{r}
-# Clinical significance analysis for outcomes where higher values are better
-cs_results_who <- claus_2020 |>
+## Using Different Cutoffs for Improvement and Deterioration
+
+A useful feature of `cs_percentage()` is the ability to set different cutoffs for improvement and deterioration via the `pct_deterioration` argument. For instance, in some contexts, a small worsening of symptoms (e.g., 20%) might already be considered a significant deterioration, while a larger change (e.g., 50%) is required for improvement.
+
+```{r pct-different-cutoffs}
+pct_asymmetric <- claus_2020 |>
   cs_percentage(
     id = id,
     time = time,
-    outcome = who,
+    outcome = bdi,
     pre = 1,
     post = 4,
-    pct_improvement = 0.3,
-    better_is = "higher"
+    pct_improvement = 0.5,
+    pct_deterioration = 0.2 # A smaller threshold for worsening
   )
 
-# Display the results
-cs_results_who
-```
-
-
-# Conclusion
-In this tutorial, you've learned how to perform clinical significance analysis using the `cs_percentage()` function in R. This analysis may be crucial for determining the practical importance of changes in patient outcomes. By adjusting thresholds and considering grouped analyses, you can gain valuable insights for healthcare and clinical research applications.
+summary(pct_asymmetric)

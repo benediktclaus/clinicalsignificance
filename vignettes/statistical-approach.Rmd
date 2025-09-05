@@ -1,8 +1,9 @@
 ---
-title: "Statistical Approach"
+title: "Analyzing Clinical Significance: The Statistical Approach"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Statistical Approach}
+  %\VignetteIndexEntry{4. Statistical Approach}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
@@ -12,167 +13,105 @@ editor_options:
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.width = 7,
+  fig.height = 5,
+  fig.align = "center"
 )
 ```
 
-# Introduction
-In this tutorial, we will explore the statistical approach to clinical significance using R. The statistical approach is based on the assumption that patients and healthy individuals form two distinct distributions on the same continuum. A clinical significant change is believed to have occurred, if a patients, that belonged to the clinical population before an intervention belongs to the functional/non-clinical population after that intervention. For this, a cutoff between the two distributions can be calculated, which needs to be crossed to fulfill this population change criterion. We will be working with the `antidepressants` and the `claus_2020` datasets, and the `cs_statistical()` function to demonstrate various aspects of this approach.
+## Introduction
 
+The statistical approach to clinical significance evaluates whether a patient has **moved from a dysfunctional ("clinical") population to a functional ("non-clinical") population** as a result of an intervention. This method is based on the idea that a meaningful change involves not just a reduction in symptoms, but a transition to a state of healthy functioning.
 
-## Prerequisites
-Before we begin, ensure that you have the following prerequisites in place:
+To apply this method, we must first define the score distributions of both the clinical and functional populations. From these, we calculate a **cutoff score** that optimally separates the two groups. A patient is then considered to have made a clinically significant change if they were in the clinical range before treatment and in the functional range after treatment.
 
-- R installed on your computer.
-- Basic understanding of R programming concepts.
+This vignette demonstrates how to use the `cs_statistical()` function to perform this analysis. It's important to note that this method is a key component of the powerful **Combined Approach**, which is often the most informative way to assess clinical significance.
 
-
-## Looking at the Datasets
-First, let's have a look at the datasets, which come with the package.
-
-```{r}
+```{r setup}
 library(clinicalsignificance)
-
-antidepressants
-claus_2020
 ```
 
+## Defining Populations and Calculating a Cutoff
 
-# Statistical Approach
-The `cs_statistical()` function is a tool for assessing clinical significance. It allows you to determine if changes in patient outcomes are practically significant. Let's go through the basic usage and some advanced features of this function.
+The most crucial step in this approach is defining the functional population. This requires obtaining summary statistics (mean and standard deviation) for the outcome measure from a relevant non-clinical or healthy sample.
 
+For our example using the BDI-II from the `claus_2020` dataset, we will use normative data from Kühner et al. (2007), who reported a mean of 7.69 and a standard deviation of 7.52 for a German non-clinical sample.
 
-## Basic Analysis
-Let's start with a basic statistical clinical significance analysis using the `antidepressants` dataset. We are interested in the Mind over Mood Depression Inventory (`mom_di`) measurements. For the statistical approach, a functional population must be defined. Suppose, we collected data from a non-clinical sample and determined a mean of 7 points and a standard deviation of also 7 points.
+The `clinicalsignificance` package provides three methods for calculating the cutoff, specified by the `cutoff_type` argument:
+- **`"a"`**: Based only on the clinical sample's distribution.
+- **`"b"`**: Based on the functional sample's mean and the clinical sample's standard deviation.
+- **`"c"`**: **(Recommended)** Incorporates the mean and standard deviation from *both* the clinical and functional populations to find an optimal midway point. This is generally the most robust and objective choice.
 
-```{r}
-stat_results <- antidepressants |> 
+### Example Analysis
+
+Let's perform the analysis using the recommended cutoff type "c". The function will automatically calculate the mean and standard deviation for the clinical sample from the `claus_2020` pre-treatment data.
+
+```{r stat-basic}
+# Perform the statistical analysis
+stat_results <- claus_2020 |>
   cs_statistical(
-    id = patient,
-    time = measurement,
-    outcome = mom_di,
-    m_functional = 7,
-    sd_functional = 7,
+    id = id,
+    time = time,
+    outcome = bdi,
+    pre = 1,
+    post = 4,
+    m_functional = 7.69,
+    sd_functional = 7.52,
     cutoff_type = "c"
   )
-```
 
-
-## Handling Warnings
-Sometimes, as in the example above, you may encounter warnings when using this function. You can turn off the warning by explicitly specifying the pre-measurement time point using the pre parameter. This can be helpful when your data lacks clear pre-post measurement labels.
-
-
-```{r}
-# Turning off the warning by specifying pre-measurement time
-stat_results <- antidepressants |>
-  cs_statistical(
-    id = patient,
-    time = measurement,
-    outcome = mom_di,
-    pre = "Before",
-    m_functional = 7,
-    sd_functional = 7,
-    cutoff_type = "c"
-  )
-```
-
-Here's a breakdown of the code:
-
-- `patient`, `measurement`, and `mom_di` represent the patient identifier, assessment time points, and HAM-D scores, respectively.
-- `pre` and `post` specify the time points for the pre and post-assessment.
-- `m_functional` and `sd_functional` define the functional population's mean and standard deviation. This information is used to calculate the population cutoff.
-- `"c"` specifies the population cutoff of choice.
-
-
-## Printing and Summarizing the Results
-```{r}
-# Print the results
-stat_results
-
-# Get a summary
 summary(stat_results)
 ```
+The summary tells us that the calculated cutoff score is 21.6. Based on this, 32.5% of patients were classified as "Improved," meaning they started above this cutoff (in the clinical range) and ended below it (in the functional range).
 
+### Visualizing the Results
 
-## Visualizing the Results
-Visualizing the results can help you better understand the clinical significance of changes in patient outcomes.
-```{r}
-# Plot the results
+The plot for the statistical approach is unique. It features two dashed lines representing the cutoff score on both the pre-treatment (x-axis) and post-treatment (y-axis). These lines divide the plot into four quadrants:
+
+* **Top-Right**: Clinical before and after (Unchanged).
+* **Bottom-Left**: Functional before and after (Unchanged).
+* **Bottom-Right**: Clinical before, functional after (Improved).
+* **Top-Left**: Functional before, clinical after (Deteriorated).
+
+```{r stat-basic-plot}
 plot(stat_results)
-
-# Show clinical significance categories
-plot(stat_results, show = category)
 ```
-
-
-## Data with More Than Two Measurements
-When working with data that has more than two measurements, you must explicitly define the pre and post measurement time points using the `pre` and `post` parameters.
-
-```{r}
-# Clinical significance distribution analysis with more than two measurements
-cs_results <- claus_2020 |>
-  cs_statistical(
-    id = id,
-    time = time,
-    outcome = bdi,
-    pre = 1,
-    post = 4,
-    m_functional = 7,
-    sd_functional = 7,
-    cutoff_type = "c"
-  )
-
-# Display the results
-cs_results
-summary(cs_results)
-plot(cs_results)
-```
-
 
 ## Grouped Analysis
-You can also perform a grouped analysis by providing a group column from the data. This is useful when comparing treatment groups or other categories.
-```{r}
-cs_results_grouped <- claus_2020 |>
+
+We can also investigate if the proportion of patients who transitioned to the functional population differs between the treatment groups (TAU vs. PA).
+
+```{r stat-grouped}
+# Grouped statistical analysis
+stat_grouped <- claus_2020 |>
   cs_statistical(
     id = id,
     time = time,
     outcome = bdi,
     pre = 1,
     post = 4,
-    m_functional = 7,
-    sd_functional = 7,
+    m_functional = 7.69,
+    sd_functional = 7.52,
     cutoff_type = "c",
     group = treatment
   )
 
-# Display and visualize the results
-cs_results_grouped
-plot(cs_results_grouped)
+summary(stat_grouped)
+```
+The analysis reveals a substantial difference: 47.6% of patients in the Placebo Amplification (PA) group moved into the functional range, compared to only 15.8% in the Treatment as Usual (TAU) group.
+
+The plot makes this difference visually apparent:
+```{r stat-grouped-plot}
+plot(stat_grouped)
 ```
 
+## Summary and Next Steps
 
-## Analyzing Positive Outcomes
-In some cases, higher values of an outcome may be considered better. You can specify this using the `better_is` argument. Let's see an example with the WHO-5 score where higher values are considered better.
+The statistical approach provides a powerful criterion for clinical significance by focusing on a patient's **end-state functioning**.
 
-```{r}
-# Clinical significance analysis for outcomes where higher values are better
-cs_results_who <- claus_2020 |>
-  cs_statistical(
-    id,
-    time,
-    who,
-    pre = 1,
-    post = 4,
-    m_functional = 7,
-    sd_functional = 7,
-    cutoff_type = "c",
-    better_is = "higher"
-  )
+* **Strength**: It defines recovery in an absolute sense (return to normality) rather than just relative change.
+* **Limitation**: It requires reliable normative data for a functional population, which may not always be available. Also, it doesn't consider the *magnitude* of change for patients who do not cross the cutoff.
 
-# Display the results
-cs_results_who
-```
+This is why the statistical approach is most powerful when used as part of a **Combined Approach**, where it is paired with a measure of reliable or meaningful change. We highly recommend reviewing the vignette on the **Combined Approach** to see how to integrate these concepts for the most comprehensive assessment of patient outcomes.
 
-
-# Conclusion
-In this tutorial, you've learned how to perform clinical significance analysis using the `cs_statistical()` function in R. This analysis may be crucial for determining the practical importance of changes in patient outcomes. By adjusting thresholds and considering grouped analyses, you can gain valuable insights for healthcare and clinical research applications.
