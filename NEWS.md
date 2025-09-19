@@ -4,6 +4,7 @@
 
 ## Features
 - Calculate group-wise percentages in `cs_anchor()`, `cs_percentage()`, `cs_distribution()`, `cs_statistical()`, `cs_combined()` if the argument `group` is given
+- Include new datasets to showcase the various methods (`garden_club`, `trackmania`, `columbo`)
 
 ## Minor fixes
 - The formatting of percentages for summary tables via `print()` or `summary()` was moved to the respective print and summary functions. Thusly, `cs_get_summary()` now returns raw numbers, which is useful for further analyses and plotting, e.g., in sensitivity analyses
