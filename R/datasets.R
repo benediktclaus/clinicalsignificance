@@ -182,3 +182,115 @@
 #'  Chronic Pain: Randomized Controlled Trial of Efficacy and Economic Effects.
 #'  Pain, 155(1), 118–128. https://doi.org/10.1016/j.pain.2013.09.015
 "hechler_2014"
+
+
+#' Fictional "Garden Club" Pre-Post Intervention Data
+#'
+#' A simulated dataset from a linear mixed-effects model (LMM) representing a
+#' standard two-group (CBT vs. Antienvyssant) pre-post intervention study. The
+#' data is ideal for demonstrating the analysis of longitudinal data with
+#' repeated measures.
+#'
+#' @format
+#' A tibble with 150 rows and 6 variables:
+#' \describe{
+#'   \item{id}{An integer representing the unique participant identifier.}
+#'   \item{group}{A character vector indicating the treatment group (`"CBT"` or `"Antienvyssant"`).}
+#'   \item{age}{An integer representing the participant's age.}
+#'   \item{gender}{A character vector for the participant's gender (`"m"`, `"f"`, or `"d"`).}
+#'   \item{time}{An integer for the measurement occasion (`0` = pre-test, `1` = post-test).}
+#'   \item{gei_score}{A numeric value for the outcome, the score on the fictional Gardener Envy Inventory (GEI), ranging from 0 to 50.}
+#' }
+#'
+#' @source
+#' Simulated data based on a linear mixed-effects model (LMM) with fixed
+#' effects for group and time, and random intercepts and slopes for participants.
+#'
+#' @seealso
+#' \code{\link{garden_club_sensitive}} for a dataset designed for sensitivity analysis.
+#'
+#' @keywords datasets
+"garden_club"
+
+
+#' Fictional "Garden Club" Data for MID Sensitivity Analysis
+#'
+#' A simulated dataset specifically designed to be "sensitive" to the choice
+#' of a Minimal Important Difference (MID). The mean change score is
+#' deliberately set to be near common MID thresholds, with a small standard
+#' deviation, making it perfect for demonstrating MID-based sensitivity analyses.
+#'
+#' @format
+#' A tibble with 200 rows and 3 variables:
+#' \describe{
+#'   \item{id}{An integer representing the unique participant identifier.}
+#'   \item{time}{A numeric value for the measurement occasion (`1` = pre, `2` = post).}
+#'   \item{gei_score}{A numeric value for the outcome, the score on the fictional Gardener Envy Inventory (GEI).}
+#' }
+#'
+#' @source
+#' Simulated data where the mean change score is precisely calibrated to fall
+#' within a range of plausible Minimal Important Difference (MID) values.
+#'
+#' @seealso
+#' \code{\link{garden_club}} for a more standard pre-post dataset.
+#'
+#' @keywords datasets
+"garden_club_sensitive"
+
+
+#' Fictional "Trackmania" Racing Data for Interrupted Time-Series
+#'
+#' A simulated dataset for an interrupted time-series (ITS) design. The data
+#' follows two groups of race car drivers ("Training" and "Control") over 10
+#' lap attempts. An intervention occurs after the 5th attempt, designed to
+#' affect both the immediate performance (jump) and the subsequent learning
+#' rate (slope change) of the Training group.
+#'
+#' @format
+#' A tibble with 400 rows and 4 variables:
+#' \describe{
+#'   \item{driver_id}{An integer representing the unique identifier for each driver.}
+#'   \item{group}{A character vector indicating the experimental group (`"Training"` or `"Control"`).}
+#'   \item{attempt}{An integer representing the lap attempt number (from 1 to 10).}
+#'   \item{lap_time_sec}{A numeric value for the outcome, the lap time in seconds.}
+#' }
+#'
+#' @source
+#' Simulated data from a time-series model including fixed effects for a
+#' pre-intervention slope, a post-intervention jump, and a post-intervention
+#' slope change, plus random effects for driver talent (intercept) and
+#' learning rate (slope).
+#'
+#' @keywords datasets
+"trackmania"
+
+
+#' Fictional "Columbo's Detectives" Data with Missing Values
+#'
+#' A simulated dataset from a fictional study evaluating a special training
+#' program by Lieutenant Columbo for detectives. This dataset is specifically
+#' designed to demonstrate the handling of missing data. Missing values were
+#' introduced into the post-intervention outcome using a Missing At Random
+#' (MAR) mechanism.
+#'
+#' @format
+#' A tibble with 160 rows and 7 variables:
+#' \describe{
+#'   \item{detective_id}{An integer representing the unique identifier for each detective.}
+#'   \item{group}{A factor indicating the training group (`"Columbo's Training"` or `"Control"`).}
+#'   \item{age}{An integer representing the detective's age.}
+#'   \item{gender}{A factor for the detective's gender (`"m"`, `"f"`, or `"d"`).}
+#'   \item{job_frustration}{A numeric score from 0-10 indicating job frustration.}
+#'   \item{time}{A factor for the measurement occasion (`"pre"` or `"post"`).}
+#'   \item{clearance}{A numeric value for the outcome, the Case Clearance Rate (in %). This variable contains `NA` values.}
+#' }
+#'
+#' @source
+#' Simulated data where missing values in the post-intervention outcome were
+#' introduced via a Missing At Random (MAR) mechanism. The probability of
+#' missingness depends on observed variables (higher `job_frustration` and
+#' lower post-intervention scores increase the likelihood of data being missing).
+#'
+#' @keywords datasets
+"columbo"
