@@ -3,3 +3,44 @@ template:
   bootstrap: 5
   bootswatch: sandstone
 
+reference:
+  - title: "Core Analysis Functions"
+    desc: >
+      The starting point for your workflow. Use these functions to perform the
+      core analyses of clinical significance.
+    contents:
+      - cs_anchor
+      - cs_percentage
+      - cs_distribution
+      - cs_statistical
+      - cs_combined
+
+  - title: "Visualize and Summarize Results"
+    desc: >
+      Methods to visualize and summarize the results of your analyses.
+    contents:
+      - matches("^plot\\.")
+      - matches("^summary\\.")
+      - matches("^print\\.")
+
+  - title: "Extractor Functions"
+    desc: >
+      Helper functions to extract specific information and data from the
+      analysis objects.
+    contents:
+      - starts_with("cs_get_")
+
+  - title: "Included Datasets"
+    desc: >
+      Example datasets for demonstrating and testing the package functions.
+    contents:
+      - jacobson_1989
+      - claus_2020
+      - anxiety
+      - anxiety_complete
+      - antidepressants
+      - hechler_2014
+      - columbo
+      - garden_club
+      - garden_club_sensitive
+      - trackmania
