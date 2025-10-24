@@ -3,7 +3,7 @@ Type: Package
 Title: A Toolbox for Clinical Significance Analyses in Intervention Studies
 Version: 2.1.0.9005
 Authors@R: 
-    person("Benedikt", "Claus", , "b.claus@pedscience.de", role = c("aut", "cre"),
+    person("Benedikt", "Claus", , "benediktclaus@outlook.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9501-0954"))
 Description: A clinical significance analysis can be used to determine if an 
     intervention has a meaningful or practical effect for patients. You provide 
