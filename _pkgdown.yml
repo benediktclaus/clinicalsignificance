@@ -2,6 +2,7 @@ url: https://benediktclaus.github.io/clinicalsignificance/
 template:
   bootstrap: 5
   bootswatch: sandstone
+llm-docs: true
 
 reference:
   - title: "Core Analysis Functions"
