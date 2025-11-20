@@ -1,0 +1,320 @@
+# clinicalsignificance
+
+The **clinicalsignificance** R package provides a comprehensive and
+consistent framework for analyzing **clinical significance** in
+intervention studies. While *statistical* significance only indicates
+whether an effect is unlikely due to chance, clinical significance
+addresses the crucial question: Does an intervention lead to a
+**practically relevant or meaningful change** for the individual
+patient?
+
+This package is designed to help researchers and healthcare
+professionals assess the practical relevance of their findings and make
+more informed decisions.
+
+## Core Functions
+
+The package implements the most common methods for clinical significance
+analysis, each accessible through its own main function:
+
+- [`cs_anchor()`](https://benediktclaus.github.io/clinicalsignificance/reference/cs_anchor.md):
+  Evaluates change based on a predefined **minimal important difference
+  (MID)**.
+- [`cs_percentage()`](https://benediktclaus.github.io/clinicalsignificance/reference/cs_percentage.md):
+  Assesses the **percentage change** relative to the baseline score.
+- [`cs_distribution()`](https://benediktclaus.github.io/clinicalsignificance/reference/cs_distribution.md):
+  Determines if a change is **statistically reliable** and exceeds
+  measurement error (e.g., using the Reliable Change Index, RCI).
+- [`cs_statistical()`](https://benediktclaus.github.io/clinicalsignificance/reference/cs_statistical.md):
+  Determines if a patient has moved from a **clinical to a functional
+  population**.
+- [`cs_combined()`](https://benediktclaus.github.io/clinicalsignificance/reference/cs_combined.md):
+  Combines multiple approaches (e.g., distribution-based and
+  statistical) for a more rigorous and nuanced assessment.
+
+## Installation
+
+You can install the stable version of **clinicalsignificance** from
+CRAN:
+
+``` r
+install.packages("clinicalsignificance")
+```
+
+Or, install the development version from GitHub:
+
+``` r
+# install.packages("pak")
+pak::pak("benediktclaus/clinicalsignificance")
+```
+
+## Example: A Combined Approach
+
+Let’s demonstrate its use with the `Claus et al. (2020)` study included
+in the package. We will use the combined approach by Jacobson & Truax
+(1991), which assesses if a change is both reliable and crosses the
+cutoff into a functional population.
+
+For this, we need descriptive data from a functional (non-clinical)
+population for the instrument used (BDI-II) and a reliability estimate.
+
+``` r
+library(clinicalsignificance)
+library(ggplot2)
+
+# Perform the analysis using the combined approach
+results_combined <- claus_2020 |>
+  cs_combined(
+    id = id,
+    time = time,
+    outcome = bdi,
+    pre = 1,
+    post = 4,
+    reliability = 0.801,
+    m_functional = 7.69,
+    sd_functional = 7.52,
+    cutoff_type = "c"
+  )
+
+# Display a summary of the results
+summary(results_combined)
+#> 
+#> ---- Clinical Significance Results ----
+#> 
+#> Approach:     Distribution-based
+#> RCI Method:   JT
+#> N (original): 43
+#> N (used):     40
+#> Percent used: 93.02%
+#> Outcome:      bdi
+#> Cutoff Type:  c
+#> Cutoff:       21.02
+#> Outcome:      bdi
+#> Reliability:  0.801
+#> 
+#> -- Cutoff Descriptives
+#> 
+#> M Clinical | SD Clinical | M Functional | SD Functional
+#> -------------------------------------------------------
+#> 35.48      |        8.16 |         7.69 |          7.52
+#> 
+#> 
+#> -- Results
+#> 
+#> Category     |  N | Percent
+#> ---------------------------
+#> Recovered    | 10 |  25.00%
+#> Improved     |  8 |  20.00%
+#> Unchanged    | 22 |  55.00%
+#> Deteriorated |  0 |   0.00%
+#> Harmed       |  0 |   0.00%
+
+# Visualize the results
+plot(results_combined, show_group = "category")
+```
+
+![](reference/figures/README-example-1.png)
+
+The plot shows each patient as a point. The categories are clearly
+visible: - **Recovered**: Patients whose change was reliable AND who
+moved into the functional population range post-treatment. -
+**Improved**: Patients whose change was reliable but who remained within
+the clinical range. - **Unchanged**: Patients with no reliable change. -
+**Deteriorated**: Patients with a reliable worsening of symptoms.
+
+## Learn More
+
+- **Vignettes**: For a detailed introduction to the different methods
+  and their application, please see the package vignettes on the
+  [**package
+  website**](https://benediktclaus.github.io/clinicalsignificance/articles/).
+- **Publication**: The package and its underlying methods are described
+  in detail in the [**Journal of Statistical
+  Software**](https://doi.org/10.18637/jss.v111.i01).
+
+## Citation
+
+If you use this package in your research, please cite both the package
+and the accompanying JSS paper.
+
+``` r
+# You can get the citations directly in R
+citation("clinicalsignificance")
+```
+
+**For the JSS paper:**
+
+Claus, B. B., Wager, J., & Bonnet, U. (2024). clinicalsignificance:
+Clinical Significance Analyses of Intervention Studies in R. *Journal of
+Statistical Software*, *111*(1), 1–39.
+<https://doi.org/10.18637/jss.v111.i01>
+
+**BibTeX entries:**
+
+``` bibtex
+@article{JSS:v111:i01,
+  author = {Benedikt B. Claus and Julia Wager and Udo Bonnet},
+  title = {{clinicalsignificance}: Clinical Significance Analyses of Intervention Studies in {R}},
+  journal = {Journal of Statistical Software},
+  year = {2024},
+  volume = {111},
+  number = {1},
+  pages = {1--39},
+  doi = {10.18637/jss.v111.i01},
+}
+
+@manual{R-clinicalsignificance,
+  title = {clinicalsignificance: A Toolbox for Clinical Significance Analyses in Intervention Studies},
+  author = {Benedikt B. Claus},
+  year = {2024},
+  note = {R package version 2.1.0},
+  doi = {10.32614/CRAN.package.clinicalsignificance},
+  url = {[https://github.com/pedscience/clinicalsignificance/](https://github.com/pedscience/clinicalsignificance/)},
+}
+```
+
+## Contributing
+
+We welcome contributions from the community! If you find any bugs, have
+feature requests, or would like to contribute code, please open an
+[Issue](https://github.com/pedscience/clinicalsignificance/issues) or
+submit a Pull Request on GitHub.
+
+## License
+
+This package is released under the GNU General Public License v3.0. You
+are free to use and distribute it according to the terms of the license.
+
+------------------------------------------------------------------------
+
+Thank you for using the **clinicalsignificance** R package! We hope it
+proves to be a valuable tool for your research. If you find it helpful,
+please consider giving us a star on
+[GitHub](https://github.com/pedscience/clinicalsignificance).
+
+# Package index
+
+## Core Analysis Functions
+
+The starting point for your workflow. Use these functions to perform the
+core analyses of clinical significance.
+
+- [`cs_anchor()`](https://benediktclaus.github.io/clinicalsignificance/reference/cs_anchor.md)
+  : Anchor-Based Analysis of Clinical Significance
+- [`cs_percentage()`](https://benediktclaus.github.io/clinicalsignificance/reference/cs_percentage.md)
+  : Percentage-Change Analysis of Clinical Significance
+- [`cs_distribution()`](https://benediktclaus.github.io/clinicalsignificance/reference/cs_distribution.md)
+  : Distribution-Based Analysis of Clinical Significance
+- [`cs_statistical()`](https://benediktclaus.github.io/clinicalsignificance/reference/cs_statistical.md)
+  : Statistical Analysis of Clinical Significance
+- [`cs_combined()`](https://benediktclaus.github.io/clinicalsignificance/reference/cs_combined.md)
+  : Combined Analysis of Clinical Significance
+
+## Visualize and Summarize Results
+
+Methods to visualize and summarize the results of your analyses.
+
+- [`plot(`*`<cs_anchor_group_between>`*`)`](https://benediktclaus.github.io/clinicalsignificance/reference/plot.cs_anchor_group_between.md)
+  : Plot an Object of Class cs_anchor_group_between
+- [`plot(`*`<cs_anchor_group_within>`*`)`](https://benediktclaus.github.io/clinicalsignificance/reference/plot.cs_anchor_group_within.md)
+  : Plot an Object of Class cs_anchor_group_within
+- [`plot(`*`<cs_anchor_individual_within>`*`)`](https://benediktclaus.github.io/clinicalsignificance/reference/plot.cs_anchor_individual_within.md)
+  : Plot an Object of Class cs_anchor_individual_within
+- [`plot(`*`<cs_combined>`*`)`](https://benediktclaus.github.io/clinicalsignificance/reference/plot.cs_combined.md)
+  : Plot an Object of Class cs_combined
+- [`plot(`*`<cs_distribution>`*`)`](https://benediktclaus.github.io/clinicalsignificance/reference/plot.cs_distribution.md)
+  : Plot an Object of Class cs_distribution
+- [`plot(`*`<cs_percentage>`*`)`](https://benediktclaus.github.io/clinicalsignificance/reference/plot.cs_percentage.md)
+  : Plot an Object of Class cs_percentage
+- [`plot(`*`<cs_statistical>`*`)`](https://benediktclaus.github.io/clinicalsignificance/reference/plot.cs_statistical.md)
+  : Plot an Object of Class cs_statistical
+- [`summary(`*`<cs_anchor_group_between>`*`)`](https://benediktclaus.github.io/clinicalsignificance/reference/summary.cs_anchor_group_between.md)
+  : Summary Method for the Anchor-Based Approach for Groups (Between)
+- [`summary(`*`<cs_anchor_group_within>`*`)`](https://benediktclaus.github.io/clinicalsignificance/reference/summary.cs_anchor_group_within.md)
+  : Summary Method for the Anchor-Based Approach for Groups (Within)
+- [`summary(`*`<cs_anchor_individual_within>`*`)`](https://benediktclaus.github.io/clinicalsignificance/reference/summary.cs_anchor_individual_within.md)
+  : Summary Method for the Anchor-Based Approach
+- [`summary(`*`<cs_combined>`*`)`](https://benediktclaus.github.io/clinicalsignificance/reference/summary.cs_combined.md)
+  : Summary Method for the Combined Approach
+- [`summary(`*`<cs_distribution>`*`)`](https://benediktclaus.github.io/clinicalsignificance/reference/summary.cs_distribution.md)
+  : Summary Method for the Distribution-Based Approach
+- [`summary(`*`<cs_percentage>`*`)`](https://benediktclaus.github.io/clinicalsignificance/reference/summary.cs_percentage.md)
+  : Summary Method for the Percentage-Change Approach
+- [`summary(`*`<cs_statistical>`*`)`](https://benediktclaus.github.io/clinicalsignificance/reference/summary.cs_statistical.md)
+  : Summary Method for the Statistical Approach
+- [`print(`*`<cs_anchor_group_between>`*`)`](https://benediktclaus.github.io/clinicalsignificance/reference/print.cs_anchor_group_between.md)
+  : Print Method for the Anchor-Based Approach for Groups (Between)
+- [`print(`*`<cs_anchor_group_within>`*`)`](https://benediktclaus.github.io/clinicalsignificance/reference/print.cs_anchor_group_within.md)
+  : Print Method for the Anchor-Based Approach for Groups (Within)
+- [`print(`*`<cs_anchor_individual_within>`*`)`](https://benediktclaus.github.io/clinicalsignificance/reference/print.cs_anchor_individual_within.md)
+  : Print Method for the Anchor-Based Approach for Individuals
+- [`print(`*`<cs_combined>`*`)`](https://benediktclaus.github.io/clinicalsignificance/reference/print.cs_combined.md)
+  : Print Method for the Combined Approach
+- [`print(`*`<cs_distribution>`*`)`](https://benediktclaus.github.io/clinicalsignificance/reference/print.cs_distribution.md)
+  : Print Method for the Distribution-Based Approach
+- [`print(`*`<cs_percentage>`*`)`](https://benediktclaus.github.io/clinicalsignificance/reference/print.cs_percentage.md)
+  : Print Method for the Percentange-Change Approach
+- [`print(`*`<cs_statistical>`*`)`](https://benediktclaus.github.io/clinicalsignificance/reference/print.cs_statistical.md)
+  : Print Method for the Statistical Approach
+
+## Extractor Functions
+
+Helper functions to extract specific information and data from the
+analysis objects.
+
+- [`cs_get_augmented_data()`](https://benediktclaus.github.io/clinicalsignificance/reference/augmented_data.md)
+  : Extract Augmented Data from a cs_analysis Object
+- [`cs_get_cutoff()`](https://benediktclaus.github.io/clinicalsignificance/reference/cs_get_cutoff.md)
+  : Get Used Cutoff And Type From A cs_analysis Object
+- [`cs_get_cutoff_descriptives()`](https://benediktclaus.github.io/clinicalsignificance/reference/cs_get_cutoff_descriptives.md)
+  : Get Descriptives Used In The Cutoff Calculation
+- [`cs_get_data()`](https://benediktclaus.github.io/clinicalsignificance/reference/cs_get_data.md)
+  : Get Data From A cs_analysis Object
+- [`cs_get_model()`](https://benediktclaus.github.io/clinicalsignificance/reference/cs_get_model.md)
+  : Get The HLM Model From A cs_analysis Object
+- [`cs_get_n()`](https://benediktclaus.github.io/clinicalsignificance/reference/cs_get_n.md)
+  : Get Number Of Participants From A cs_analysis Object
+- [`cs_get_reliability()`](https://benediktclaus.github.io/clinicalsignificance/reference/cs_get_reliability.md)
+  : Get Reliability Of A cs_analysis Object
+- [`cs_get_summary()`](https://benediktclaus.github.io/clinicalsignificance/reference/summary_table.md)
+  : Get A Summary Table From A cs_analysis Object
+
+## Included Datasets
+
+Example datasets for demonstrating and testing the package functions.
+
+- [`jacobson_1989`](https://benediktclaus.github.io/clinicalsignificance/reference/jacobson_1989.md)
+  : Marital Therapy Data
+- [`claus_2020`](https://benediktclaus.github.io/clinicalsignificance/reference/claus_2020.md)
+  : Placebo Amplification Data
+- [`anxiety`](https://benediktclaus.github.io/clinicalsignificance/reference/anxiety.md)
+  : Anxiety Data
+- [`anxiety_complete`](https://benediktclaus.github.io/clinicalsignificance/reference/anxiety_complete.md)
+  : Anxiety Data (Complete)
+- [`antidepressants`](https://benediktclaus.github.io/clinicalsignificance/reference/antidepressants.md)
+  : Antidepressant Data
+- [`hechler_2014`](https://benediktclaus.github.io/clinicalsignificance/reference/hechler_2014.md)
+  : Chronic Pain Data
+- [`columbo`](https://benediktclaus.github.io/clinicalsignificance/reference/columbo.md)
+  : Fictional "Columbo's Detectives" Data with Missing Values
+- [`garden_club`](https://benediktclaus.github.io/clinicalsignificance/reference/garden_club.md)
+  : Fictional "Garden Club" Pre-Post Intervention Data
+- [`garden_club_sensitive`](https://benediktclaus.github.io/clinicalsignificance/reference/garden_club_sensitive.md)
+  : Fictional "Garden Club" Data for MID Sensitivity Analysis
+- [`trackmania`](https://benediktclaus.github.io/clinicalsignificance/reference/trackmania.md)
+  : Fictional "Trackmania" Racing Data for Interrupted Time-Series
+
+# Articles
+
+### All vignettes
+
+- [Analyzing Clinical Significance: The Anchor-Based
+  Approach](https://benediktclaus.github.io/clinicalsignificance/articles/anchor-based-approach.md):
+- [Analyzing Clinical Significance: The Combined
+  Approach](https://benediktclaus.github.io/clinicalsignificance/articles/combined-approach.md):
+- [Analyzing Clinical Significance: The Distribution-Based
+  Approach](https://benediktclaus.github.io/clinicalsignificance/articles/distribution-based-approach.md):
+- [Analyzing Clinical Significance: The Percentage-Change
+  Approach](https://benediktclaus.github.io/clinicalsignificance/articles/percentage-change-approach.md):
+- [Analyzing Clinical Significance: The Statistical
+  Approach](https://benediktclaus.github.io/clinicalsignificance/articles/statistical-approach.md):
