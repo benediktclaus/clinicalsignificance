@@ -7,3 +7,6 @@ inst/doc
 /doc/
 /Meta/
 docs
+
+/.quarto/
+**/*.quarto_ipynb
