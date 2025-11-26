@@ -5,7 +5,7 @@
 status](https://img.shields.io/cran/v/clinicalsignificance.svg)](https://CRAN.R-project.org/package=clinicalsignificance)
 [![CRAN
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/clinicalsignificance)](https://cran.r-project.org/package=clinicalsignificance)
-[![R-CMD-check](https://github.com/pedscience/clinicalsignificance/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pedscience/clinicalsignificance/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/benediktclaus/clinicalsignificance/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/benediktclaus/clinicalsignificance/actions/workflows/R-CMD-check.yaml)
 The **clinicalsignificance** R package provides a comprehensive toolkit
 for analyzing **clinical significance** in intervention studies.
 
@@ -169,7 +169,7 @@ Please cite both the package and the JSS paper if you use
   year = {2024},
   note = {R package version 2.1.0},
   doi = {10.32614/CRAN.package.clinicalsignificance},
-  url = {[https://github.com/pedscience/clinicalsignificance/](https://github.com/pedscience/clinicalsignificance/)},
+  url = {[https://github.com/benediktclaus/clinicalsignificance/](https://github.com/benediktclaus/clinicalsignificance/)},
 }
 ```
 
@@ -179,8 +179,8 @@ Please cite both the package and the JSS paper if you use
 
 Contributions are welcome! If you encounter bugs or have feature
 requests: 1. Check the [Issue
-Tracker](https://github.com/pedscience/clinicalsignificance/issues). 2.
-Submit a Pull Request.
+Tracker](https://github.com/benediktclaus/clinicalsignificance/issues).
+2. Submit a Pull Request.
 
 ------------------------------------------------------------------------
 
