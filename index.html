@@ -67,48 +67,48 @@
 <img src="logo.png" class="logo" alt=""><h1 id="clinicalsignificance-">clinicalsignificance <a class="anchor" aria-label="anchor" href="#clinicalsignificance-"></a>
 </h1>
 </div>
-<!-- badges: start -->
-
-<p>The <strong>clinicalsignificance</strong> R package provides a comprehensive and consistent framework for analyzing <strong>clinical significance</strong> in intervention studies. While <em>statistical</em> significance only indicates whether an effect is unlikely due to chance, clinical significance addresses the crucial question: Does an intervention lead to a <strong>practically relevant or meaningful change</strong> for the individual patient?</p>
-<p>This package is designed to help researchers and healthcare professionals assess the practical relevance of their findings and make more informed decisions.</p>
+<p><a href="https://CRAN.R-project.org/package=clinicalsignificance" class="external-link"><img src="https://img.shields.io/cran/v/clinicalsignificance.svg" alt="CRAN status"></a> <a href="https://cran.r-project.org/package=clinicalsignificance" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/clinicalsignificance" alt="CRAN downloads"></a> <a href="https://github.com/pedscience/clinicalsignificance/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/pedscience/clinicalsignificance/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> The <strong>clinicalsignificance</strong> R package provides a comprehensive toolkit for analyzing <strong>clinical significance</strong> in intervention studies.</p>
+<blockquote>
+<p><strong>Why this package?</strong> &gt; While <em>statistical</em> significance asks: <em>“Is this effect unlikely due to chance?”</em> &gt; Clinical significance asks: <strong>“Does this intervention make a meaningful difference for the patient?”</strong></p>
+</blockquote>
+<p>This package empowers researchers and practitioners to move beyond p-values and assess the practical relevance of treatment outcomes.</p>
 <div class="section level2">
-<h2 id="core-functions">Core Functions<a class="anchor" aria-label="anchor" href="#core-functions"></a>
+<h2 id="id_-core-functions">🛠 Core Functions<a class="anchor" aria-label="anchor" href="#id_-core-functions"></a>
 </h2>
-<p>The package implements the most common methods for clinical significance analysis, each accessible through its own main function:</p>
+<p>The package implements the most widely used methods for clinical significance analysis. Each approach answers a specific question:</p>
 <ul>
 <li>
-<code><a href="reference/cs_anchor.html">cs_anchor()</a></code>: Evaluates change based on a predefined <strong>minimal important difference (MID)</strong>.</li>
+<strong><code><a href="reference/cs_anchor.html">cs_anchor()</a></code></strong>: <em>Did the patient improve by a minimal amount?</em> Evaluates change based on a predefined <strong>Minimal Important Difference (MID)</strong>.</li>
 <li>
-<code><a href="reference/cs_percentage.html">cs_percentage()</a></code>: Assesses the <strong>percentage change</strong> relative to the baseline score.</li>
+<strong><code><a href="reference/cs_percentage.html">cs_percentage()</a></code></strong>: <em>Did the patient improve by a certain percentage?</em> Assesses change relative to the baseline score.</li>
 <li>
-<code><a href="reference/cs_distribution.html">cs_distribution()</a></code>: Determines if a change is <strong>statistically reliable</strong> and exceeds measurement error (e.g., using the Reliable Change Index, RCI).</li>
+<strong><code><a href="reference/cs_distribution.html">cs_distribution()</a></code></strong>: <em>Is the change reliable (beyond measurement error)?</em> Uses statistical distribution metrics like the <strong>Reliable Change Index (RCI)</strong>.</li>
 <li>
-<code><a href="reference/cs_statistical.html">cs_statistical()</a></code>: Determines if a patient has moved from a <strong>clinical to a functional population</strong>.</li>
+<strong><code><a href="reference/cs_statistical.html">cs_statistical()</a></code></strong>: <em>Did the patient return to a functional range?</em> Determines if a patient moved from a clinical to a <strong>functional population</strong>.</li>
 <li>
-<code><a href="reference/cs_combined.html">cs_combined()</a></code>: Combines multiple approaches (e.g., distribution-based and statistical) for a more rigorous and nuanced assessment.</li>
+<strong><code><a href="reference/cs_combined.html">cs_combined()</a></code></strong>: <em>The “Gold Standard” (e.g., Jacobson &amp; Truax).</em> Combines reliability and cutoff criteria for a robust assessment.</li>
 </ul>
 </div>
 <div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+<h2 id="id_-installation">📦 Installation<a class="anchor" aria-label="anchor" href="#id_-installation"></a>
 </h2>
-<p>You can install the stable version of <strong>clinicalsignificance</strong> from CRAN:</p>
+<p>Install the stable version from CRAN:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"clinicalsignificance"</span><span class="op">)</span></span></code></pre></div>
-<p>Or, install the development version from GitHub:</p>
+<p>Or the development version from GitHub:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"benediktclaus/clinicalsignificance"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="example-a-combined-approach">Example: A Combined Approach<a class="anchor" aria-label="anchor" href="#example-a-combined-approach"></a>
+<h2 id="id_-example-the-combined-approach">🚀 Example: The Combined Approach<a class="anchor" aria-label="anchor" href="#id_-example-the-combined-approach"></a>
 </h2>
-<p>Let’s demonstrate its use with the <code>Claus et al. (2020)</code> study included in the package. We will use the combined approach by Jacobson &amp; Truax (1991), which assesses if a change is both reliable and crosses the cutoff into a functional population.</p>
-<p>For this, we need descriptive data from a functional (non-clinical) population for the instrument used (BDI-II) and a reliability estimate.</p>
+<p>Let’s look at the <strong>combined approach</strong> (Jacobson &amp; Truax, 1991). We want to know if patients in the <code>claus_2020</code> dataset (included in the package) showed a <strong>reliable change</strong> AND moved into a <strong>functional population</strong> range.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://benediktclaus.github.io/clinicalsignificance/">clinicalsignificance</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Perform the analysis using the combined approach</span></span>
+<span><span class="co"># 1. Perform the analysis</span></span>
 <span><span class="va">results_combined</span> <span class="op">&lt;-</span> <span class="va">claus_2020</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="reference/cs_combined.html">cs_combined</a></span><span class="op">(</span></span>
 <span>    id <span class="op">=</span> <span class="va">id</span>,</span>
@@ -122,7 +122,14 @@
 <span>    cutoff_type <span class="op">=</span> <span class="st">"c"</span></span>
 <span>  <span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Display a summary of the results</span></span>
+<span><span class="co"># 2. Visualize the results</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">results_combined</span>, show_group <span class="op">=</span> <span class="st">"category"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Ignoring unknown labels:</span></span>
+<span><span class="co">#&gt; • colour : "Group"</span></span></code></pre></div>
+<p><img src="reference/figures/README-example-1.png" width="100%" style="display: block; margin: auto;"></p>
+<p><strong>Interpreting the Plot:</strong> * <strong>Recovered (Green):</strong> Reliable improvement + moved to functional range. * <strong>Improved (Blue):</strong> Reliable improvement, but still in clinical range. * <strong>Unchanged (Grey):</strong> No reliable change. * <strong>Deteriorated (Red):</strong> Reliable worsening.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># 3. Get a summary table</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">results_combined</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ---- Clinical Significance Results ----</span></span>
@@ -153,35 +160,27 @@
 <span><span class="co">#&gt; Improved     |  8 |  20.00%</span></span>
 <span><span class="co">#&gt; Unchanged    | 22 |  55.00%</span></span>
 <span><span class="co">#&gt; Deteriorated |  0 |   0.00%</span></span>
-<span><span class="co">#&gt; Harmed       |  0 |   0.00%</span></span>
-<span></span>
-<span><span class="co"># Visualize the results</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">results_combined</span>, show_group <span class="op">=</span> <span class="st">"category"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-example-1.png" width="100%" style="display: block; margin: auto;"></p>
-<p>The plot shows each patient as a point. The categories are clearly visible: - <strong>Recovered</strong>: Patients whose change was reliable AND who moved into the functional population range post-treatment. - <strong>Improved</strong>: Patients whose change was reliable but who remained within the clinical range. - <strong>Unchanged</strong>: Patients with no reliable change. - <strong>Deteriorated</strong>: Patients with a reliable worsening of symptoms.</p>
+<span><span class="co">#&gt; Harmed       |  0 |   0.00%</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="learn-more">Learn More<a class="anchor" aria-label="anchor" href="#learn-more"></a>
+<h2 id="id_-learn-more">📚 Learn More<a class="anchor" aria-label="anchor" href="#id_-learn-more"></a>
 </h2>
 <ul>
 <li>
-<strong>Vignettes</strong>: For a detailed introduction to the different methods and their application, please see the package vignettes on the <a href="https://benediktclaus.github.io/clinicalsignificance/articles/"><strong>package website</strong></a>.</li>
+<strong>Vignettes</strong>: Detailed tutorials on all methods are available on the <a href="https://benediktclaus.github.io/clinicalsignificance/articles/"><strong>package website</strong></a>.</li>
 <li>
-<strong>Publication</strong>: The package and its underlying methods are described in detail in the <a href="https://doi.org/10.18637/jss.v111.i01" class="external-link"><strong>Journal of Statistical Software</strong></a>.</li>
+<strong>Publication</strong>: For the theoretical background, check out our paper in the <a href="https://doi.org/10.18637/jss.v111.i01" class="external-link"><strong>Journal of Statistical Software</strong></a>.</li>
 </ul>
-<!-- NEW SECTION: Citation -->
 </div>
 <div class="section level2">
-<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+<h2 id="id_-citation">📄 Citation<a class="anchor" aria-label="anchor" href="#id_-citation"></a>
 </h2>
-<p>If you use this package in your research, please cite both the package and the accompanying JSS paper.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># You can get the citations directly in R</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"clinicalsignificance"</span><span class="op">)</span></span></code></pre></div>
-<p><strong>For the JSS paper:</strong></p>
+<p>Please cite both the package and the JSS paper if you use <code>clinicalsignificance</code> in your research.</p>
+<blockquote>
 <p>Claus, B. B., Wager, J., &amp; Bonnet, U. (2024). clinicalsignificance: Clinical Significance Analyses of Intervention Studies in R. <em>Journal of Statistical Software</em>, <em>111</em>(1), 1–39. <a href="https://doi.org/10.18637/jss.v111.i01" class="external-link uri">https://doi.org/10.18637/jss.v111.i01</a></p>
-<p><strong>BibTeX entries:</strong></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">JSS:v111:i01</span>,</span>
+</blockquote>
+<details><summary><strong>Click to show BibTeX</strong>
+</summary><div class="sourceCode" id="cb5"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">JSS:v111:i01</span>,</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="dt">author</span> = {Benedikt B. Claus and Julia Wager and Udo Bonnet},</span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="dt">title</span> = {{clinicalsignificance}: Clinical Significance Analyses of Intervention Studies in {R}},</span>
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="dt">journal</span> = {Journal of Statistical Software},</span>
@@ -200,19 +199,15 @@
 <span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a>  <span class="dt">doi</span> = {10.32614/CRAN.package.clinicalsignificance},</span>
 <span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a>  <span class="dt">url</span> = {[https://github.com/pedscience/clinicalsignificance/](https://github.com/pedscience/clinicalsignificance/)},</span>
 <span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a>}</span></code></pre></div>
-<!-- NEW SECTION: Contributing -->
+</details>
 </div>
 <div class="section level2">
-<h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
+<h2 id="id_-contributing">🤝 Contributing<a class="anchor" aria-label="anchor" href="#id_-contributing"></a>
 </h2>
-<p>We welcome contributions from the community! If you find any bugs, have feature requests, or would like to contribute code, please open an <a href="https://github.com/pedscience/clinicalsignificance/issues" class="external-link">Issue</a> or submit a Pull Request on GitHub.</p>
-</div>
-<div class="section level2">
-<h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
-</h2>
-<p>This package is released under the GNU General Public License v3.0. You are free to use and distribute it according to the terms of the license.</p>
+<p>Contributions are welcome! If you encounter bugs or have feature requests: 1. Check the <a href="https://github.com/pedscience/clinicalsignificance/issues" class="external-link">Issue Tracker</a>. 2. Submit a Pull Request.</p>
 <hr>
-<p>Thank you for using the <strong>clinicalsignificance</strong> R package! We hope it proves to be a valuable tool for your research. If you find it helpful, please consider giving us a star on <a href="https://github.com/pedscience/clinicalsignificance" class="external-link">GitHub</a>.</p>
+<p><strong>License:</strong> GNU General Public License v3.0<br>
+Built with ❤️ for better clinical research.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
@@ -247,14 +242,7 @@
 </ul>
 </div>
 
-<div class="dev-status">
-<h2 data-toc-skip>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://CRAN.R-project.org/package=clinicalsignificance" class="external-link"><img src="https://img.shields.io/cran/v/clinicalsignificance.svg" alt="CRAN status"></a></li>
-<li><a href="https://cran.r-project.org/package=clinicalsignificance" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/clinicalsignificance" alt="CRAN downloads"></a></li>
-<li><a href="https://github.com/pedscience/clinicalsignificance/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/pedscience/clinicalsignificance/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
-</ul>
-</div>
+
 
   </aside>
 </div>
