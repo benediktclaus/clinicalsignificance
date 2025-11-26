@@ -9,10 +9,9 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/clinicalsignificance)](
 The **clinicalsignificance** R package provides a comprehensive toolkit
 for analyzing **clinical significance** in intervention studies.
 
-> **Why this package?** \> While *statistical* significance asks: *“Is
-> this effect unlikely due to chance?”* \> Clinical significance asks:
-> **“Does this intervention make a meaningful difference for the
-> patient?”**
+> **Why this package?** While *statistical* significance asks: *“Is this
+> effect unlikely due to chance?”* Clinical significance asks: **“Does
+> this intervention make a meaningful difference for the patient?”**
 
 This package empowers researchers and practitioners to move beyond
 p-values and assess the practical relevance of treatment outcomes.
