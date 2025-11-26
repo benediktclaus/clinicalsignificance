@@ -1,15 +1,15 @@
 # clinicalsignificance (development version)
 ## Breaking changes
-- All `print()` and `summary()` methods have been updated to be much simpler and more maintainable. The printout no longer utilizes the `cli` package which is now only used for special messages during argument validation and calculation, i.e. warning and messages. The results are unaffected by this change. This is purely cosmetic and improves code readability.
+- `cs_get_summary()` now returns raw numeric values instead of formatted character strings (e.g., `0.5` instead of `"50.0%"`). This facilitates downstream analyses and plotting (e.g., in sensitivity analyses). Formatting is now handled exclusively by the respective `print()` and `summary()` methods.
+- Refactored `print()` and `summary()` methods to be lighter and more maintainable. The output no longer relies on the `cli` package, which is now used solely for messages and warnings. This is an internal change to improve code readability; calculation results remain unaffected.
 
-## Features
-- Calculate group-wise percentages in `cs_anchor()`, `cs_percentage()`, `cs_distribution()`, `cs_statistical()`, `cs_combined()` if the argument `group` is given
-- Include new datasets to showcase the various methods (`garden_club`, `trackmania`, `columbo`)
+## New features
+- All main functions (`cs_anchor()`, `cs_percentage()`, `cs_distribution()`, `cs_statistical()`, `cs_combined()`) now calculate group-wise statistics if the `group` argument is provided.
+- Added new datasets (`garden_club`, `trackmania`, `columbo`) to demonstrate various analysis methods.
 
-## Minor fixes
-- The formatting of percentages for summary tables via `print()` or `summary()` was moved to the respective print and summary functions. Thusly, `cs_get_summary()` now returns raw numbers, which is useful for further analyses and plotting, e.g., in sensitivity analyses
-- Display correct summary table for combined approaches
-- All vignettes are updated
+## Minor improvements and fixes
+- Fixed an issue where the summary table for combined approaches was not displayed correctly.
+- All vignettes have been updated to reflect the latest changes.
 
 # clinicalsignificance 2.1.0
 - I included the JSS article <doi:10.18637/jss.v111.i01> as a reference.
