@@ -1,7 +1,7 @@
 Package: clinicalsignificance
 Type: Package
 Title: A Toolbox for Clinical Significance Analyses in Intervention Studies
-Version: 2.1.0.9005
+Version: 3.0.0
 Authors@R: 
     person("Benedikt", "Claus", , "benediktclaus@outlook.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9501-0954"))
