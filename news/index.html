@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">clinicalsignificance</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0.9005</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,20 +40,20 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="clinicalsignificance-development-version">clinicalsignificance (development version)<a class="anchor" aria-label="anchor" href="#clinicalsignificance-development-version"></a></h2>
+<h2 class="pkg-version" data-toc-text="3.0.0" id="clinicalsignificance-300">clinicalsignificance 3.0.0<a class="anchor" aria-label="anchor" href="#clinicalsignificance-300"></a></h2>
 <div class="section level3">
-<h3 id="breaking-changes-development-version">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-development-version"></a></h3>
+<h3 id="breaking-changes-3-0-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-3-0-0"></a></h3>
 <ul><li>
 <code><a href="../reference/summary_table.html">cs_get_summary()</a></code> now returns raw numeric values instead of formatted character strings (e.g., <code>0.5</code> instead of <code>"50.0%"</code>). This facilitates downstream analyses and plotting (e.g., in sensitivity analyses). Formatting is now handled exclusively by the respective <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> and <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> methods.</li>
 <li>Refactored <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> and <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> methods to be lighter and more maintainable. The output no longer relies on the <code>cli</code> package, which is now used solely for messages and warnings. This is an internal change to improve code readability; calculation results remain unaffected.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="new-features-development-version">New features<a class="anchor" aria-label="anchor" href="#new-features-development-version"></a></h3>
+<h3 id="new-features-3-0-0">New features<a class="anchor" aria-label="anchor" href="#new-features-3-0-0"></a></h3>
 <ul><li>All main functions (<code><a href="../reference/cs_anchor.html">cs_anchor()</a></code>, <code><a href="../reference/cs_percentage.html">cs_percentage()</a></code>, <code><a href="../reference/cs_distribution.html">cs_distribution()</a></code>, <code><a href="../reference/cs_statistical.html">cs_statistical()</a></code>, <code><a href="../reference/cs_combined.html">cs_combined()</a></code>) now calculate group-wise statistics if the <code>group</code> argument is provided.</li>
 <li>Added new datasets (<code>garden_club</code>, <code>trackmania</code>, <code>columbo</code>) to demonstrate various analysis methods.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="minor-improvements-and-fixes-development-version">Minor improvements and fixes<a class="anchor" aria-label="anchor" href="#minor-improvements-and-fixes-development-version"></a></h3>
+<h3 id="minor-improvements-and-fixes-3-0-0">Minor improvements and fixes<a class="anchor" aria-label="anchor" href="#minor-improvements-and-fixes-3-0-0"></a></h3>
 <ul><li>Fixed an issue where the summary table for combined approaches was not displayed correctly.</li>
 <li>All vignettes have been updated to reflect the latest changes.</li>
 </ul></div>
