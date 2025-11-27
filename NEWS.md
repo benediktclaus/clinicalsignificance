@@ -1,3 +1,5 @@
+# clinicalsignificance (development version)
+
 # clinicalsignificance 3.0.0
 ## Breaking changes
 - `cs_get_summary()` now returns raw numeric values instead of formatted character strings (e.g., `0.5` instead of `"50.0%"`). This facilitates downstream analyses and plotting (e.g., in sensitivity analyses). Formatting is now handled exclusively by the respective `print()` and `summary()` methods.
